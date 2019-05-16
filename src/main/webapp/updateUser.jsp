@@ -49,7 +49,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-				<form action="UserServlet?action=update" method="post" enctype="multipart/form-data">
+				<form action="user" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="id" value="${u.id }" />
 					<h1 class="text-center text-danger"><font face="幼圆">修改用户信息</font></h1>
 					<hr>
