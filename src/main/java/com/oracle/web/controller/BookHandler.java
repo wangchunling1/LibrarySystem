@@ -53,7 +53,7 @@ public class BookHandler {
 
 		return "redirect:/books";
 	}
-	
+
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable("id") Integer id) {
 

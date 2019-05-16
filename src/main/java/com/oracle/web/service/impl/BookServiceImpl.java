@@ -15,19 +15,19 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookMapper bookMapper;
-	
+
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public List<Book> list() {
 		// TODO Auto-generated method stub
-		
+
 		return this.bookMapper.selectAll();
 	}
 
 	@Override
 	public int save(Book book) {
 		// TODO Auto-generated method stub
-		
+
 		return this.bookMapper.insert(book);
 	}
 

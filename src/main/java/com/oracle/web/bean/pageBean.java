@@ -3,16 +3,16 @@ package com.oracle.web.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class pageBean<T> implements Serializable{
-	
+public class pageBean<T> implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer pageNow;
-	
+
 	private int counts;
-	
+
 	private int pageSize;
-	
+
 	private List<T> beanList;
 
 	public pageBean() {
@@ -37,11 +37,10 @@ public class pageBean<T> implements Serializable{
 	}
 
 	public int getPages() {
-		
-		int pages=this.counts/this.pageSize;
-		return (this.counts%this.pageSize==0)?pages:pages+1;
-	}
 
+		int pages = this.counts / this.pageSize;
+		return (this.counts % this.pageSize == 0) ? pages : pages + 1;
+	}
 
 	public int getPageSize() {
 		return pageSize;
@@ -61,8 +60,8 @@ public class pageBean<T> implements Serializable{
 
 	@Override
 	public String toString() {
-		return "pageBeen [pageNow=" + pageNow + ", counts=" + counts + ", pageSize=" + pageSize
-				+ ", beanList=" + beanList + "]";
+		return "pageBeen [pageNow=" + pageNow + ", counts=" + counts + ", pageSize=" + pageSize + ", beanList="
+				+ beanList + "]";
 	}
 
 }

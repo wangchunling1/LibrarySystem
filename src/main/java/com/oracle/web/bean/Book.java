@@ -1,79 +1,79 @@
 package com.oracle.web.bean;
 
 public class Book {
-   
-    private Integer id;
 
-    private String bname;
+	private Integer id;
 
-    private String price;
+	private String bname;
 
-    private String chuban;
+	private String price;
 
-    private String zhuangtai;
+	private String chuban;
 
-    private String jieshuren;
+	private String zhuangtai;
 
-    private Integer fId;
+	private String jieshuren;
 
-    public Integer getId() {
-        return id;
-    }
+	private Integer fId;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getBname() {
-        return bname;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setBname(String bname) {
-        this.bname = bname == null ? null : bname.trim();
-    }
+	public String getBname() {
+		return bname;
+	}
 
-    public String getPrice() {
-        return price;
-    }
+	public void setBname(String bname) {
+		this.bname = bname == null ? null : bname.trim();
+	}
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
-    }
+	public String getPrice() {
+		return price;
+	}
 
-    public String getChuban() {
-        return chuban;
-    }
+	public void setPrice(String price) {
+		this.price = price == null ? null : price.trim();
+	}
 
-    public void setChuban(String chuban) {
-        this.chuban = chuban == null ? null : chuban.trim();
-    }
+	public String getChuban() {
+		return chuban;
+	}
 
-    public String getZhuangtai() {
-        return zhuangtai;
-    }
+	public void setChuban(String chuban) {
+		this.chuban = chuban == null ? null : chuban.trim();
+	}
 
-    public void setZhuangtai(String zhuangtai) {
-        this.zhuangtai = zhuangtai == null ? null : zhuangtai.trim();
-    }
+	public String getZhuangtai() {
+		return zhuangtai;
+	}
 
-    public String getJieshuren() {
-        return jieshuren;
-    }
+	public void setZhuangtai(String zhuangtai) {
+		this.zhuangtai = zhuangtai == null ? null : zhuangtai.trim();
+	}
 
-    public void setJieshuren(String jieshuren) {
-        this.jieshuren = jieshuren == null ? null : jieshuren.trim();
-    }
+	public String getJieshuren() {
+		return jieshuren;
+	}
 
-    public Integer getfId() {
-        return fId;
-    }
+	public void setJieshuren(String jieshuren) {
+		this.jieshuren = jieshuren == null ? null : jieshuren.trim();
+	}
 
-    public void setfId(Integer fId) {
-        this.fId = fId;
-    }
+	public Integer getfId() {
+		return fId;
+	}
 
-	public Book(Integer id, String bname, String price, String chuban, String zhuangtai,
-			String jieshuren, Integer fId) {
+	public void setfId(Integer fId) {
+		this.fId = fId;
+	}
+
+	public Book(Integer id, String bname, String price, String chuban, String zhuangtai, String jieshuren,
+			Integer fId) {
 		super();
 		this.id = id;
 		this.bname = bname;
@@ -95,5 +95,4 @@ public class Book {
 				+ zhuangtai + ", jieshuren=" + jieshuren + ", fId=" + fId + "]";
 	}
 
-	
 }
