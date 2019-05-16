@@ -42,7 +42,7 @@ public class BookHandler {
 
 		request.setAttribute("fList", list);
 
-		return "addM";
+		return "addBook";
 	}
 
 	@RequestMapping(value = "/book", method = RequestMethod.POST)
