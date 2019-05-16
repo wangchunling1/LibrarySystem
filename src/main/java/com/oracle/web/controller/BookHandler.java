@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,6 +54,16 @@ public class BookHandler {
 		return "redirect:/books";
 	}
 	
-	//DIRTY_WORKTREE	.classpath
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable("id") Integer id) {
+
+		Book book = new Book();
+
+		book.setId(id);
+
+		bookService.delete(book);
+
+		return "redirect:/books";
+	}
 
 }
