@@ -10,14 +10,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 3.导入核心的CSS文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入jQuery文件 --> <script type="text/javascript"
-	src="bootstrap/js/jQuery.js"></script> <!-- 5.引入Bookstrap的核心JS文件 --> <script
-	type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<!-- 4.需要引入jQuery文件 --> 
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script> 
+<!-- 5.引入Bookstrap的核心JS文件 --> 
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <title>查看图书</title>
-<script type="text/javascript" src="js/ajax.js"></script> <script
-	type="text/javascript" src="jQuery/jquery-1.8.3.js"></script> <script
-	type="text/javascript">
-		window.onload = function() {
+<script type="text/javascript" src="js/ajax.js"></script> 
+<script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script> 
+ <script type="text/javascript">
+	/*	window.onload = function() {
 
 			var selectAll = document.getElementById("selectAll");
 
@@ -89,7 +90,7 @@
 
 					alert("请至少勾选一项进行删除！");
 
-					location.href = "BookServlet?action=showBook";
+					location.href = "redirect:/books";
 
 					return;
 				}
@@ -116,14 +117,14 @@
 
 				if (queren == true) {
 
-					location.href = "BookServlet?action=delete&ids=" + str;
+					location.href = "book/${q.id }&ids=" + str;
 
 				} else {
 
 					location.reload();
 				}
 			};
-
+ 
 			//导出所有用户信息
 			var OutAll = document.getElementById("OutAll");
 
@@ -241,7 +242,7 @@
 				}
 			});
 		};
-
+ */
 		$(function() {
 
 			$("tr:even").css("background-color", "transparent");
@@ -285,33 +286,8 @@
 	</style>
 </head>
 <body background="./imgs/l.jpg">
-	 <!-- <div class="container"> -->
-		<!--  <ul class="nav nav-pills nav-justified">
-							<li><select name="name" id="fenleiList" class="form-control">
-									<option>---请选择您要查看的分类---</option>
-							</select>
-							</li>
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">作者</a>
-           <ul class="dropdown-menu">
-				<li><input type="text" class="form-control" placeholder="作者"/></li>
-			</ul>
-         </li>
-       <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">借书人</a>
-           <ul class="dropdown-menu">
-			   <li><input type="text" class="form-control" placeholder="借书人"/></li>
-			</ul>
-         </li>
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">状态</a>
-           <ul class="dropdown-menu">
-			   <li><input type="text" class="form-control" placeholder="状态"/></li>
-			</ul>
-         </li>
-       <li><button class="btn">搜&nbsp;索&nbsp;图&nbsp;书</button></li>
-     </ul>-->
-     <div class="container-fluid" id="div1">
+	
+  <%--    <div class="container-fluid" id="div1">
 	<div class="col col-md-10">
 		<ul class="nav nav-tabs">
 		    <li class="active"><a href="addBook.jsp">添加图书</a></li>
@@ -325,7 +301,7 @@
 				data-toggle="dropdown">高级搜索<span class="caret"></span></a>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
 					<li>
-						<form action="BookServlet" class="form-horizontal" id="f1">
+						<form class="form-horizontal" id="f1">
 
 							<!-- 隐藏域，用来传递action -->
 
@@ -384,7 +360,7 @@
 					</li>
 
 				</ul></li>
-		</ul>
+		</ul> --%>
 	
 	<div class="container">
 		<div class="panel panel-warning">
@@ -399,7 +375,6 @@
 					<tr align="center">
 						<td>选择</td>
 						<td>图书编号</td>
-						<td>分类名称</td>
 						<td>图书名称</td>
 						<td>图书价格</td>
 						<td>图书出版社</td>
@@ -407,23 +382,27 @@
 						<td>借书人</td>
 						<td>修改</td>
 					</tr>
-					<c:forEach items="${pb.beanList }" var="q" varStatus="s">
+					<c:forEach items="${bList }" var="q" varStatus="s">
 						<tr align="center">
-							<td><input type="checkbox" name="ids" value="${q.id }" /></td>
+                   <%-- 	<td><input type="checkbox" name="ids" value="${q.id }" /></td> --%>
 							<td>${s.index+1 }</td>
-							<td>${q.flname }</td>
 							<td>${q.bname }</td>
 							<td>${q.price }</td>
 							<td>${q.chuban }</td>
 							<td>${q.zhuangtai }</td>
 							<td>${q.jieshuren }</td>
-							<td><a href="BookServlet?action=showOne&id=${q.id }"> <input
-									type="submit" value="修改" class="btn btn-warning" /></a></td>
+							<td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td>
+							<td><a href="book/${q.id }">
+							 <input type="submit" value="修改" class="btn btn-warning" /></a></td>
 						</tr>
 					</c:forEach>
 				</table>
+				<!-- 准备一个隐藏的表单 -->
+		<form action="" method="post" id="deleteForm">
+		  <input type="hidden" name="_method" value="DELETE"/>
+		</form>
 			</div>
-			<!-- <div class="panel-footer text-center">
+			<!--  <div class="panel-footer text-center">
 				<tr height="30px">
 					<td colspan="8" align="center"><button id="selectAll"
 							class="btn btn-warning btn-xs">全选</button>
@@ -436,7 +415,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button id="OutAll" class="btn btn-warning btn-xs">导出全部</button></td>
 				</tr>
-			</div> -->
+			</div>  -->
 		</div>
 	</div>
 	<center>

@@ -252,7 +252,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-				<form action="BookServlet?action=addBook" method="post"
+				<form action="book" method="post"
 		enctype="application/x-www-form-urlencoded" name="add"
 		onsubmit="return addb()">
 					<br>
@@ -260,7 +260,7 @@
 					<hr>
 					<ul class="nav">
 						<li><b>请选择您想要添加的分类:</b></li>
-						<li><select name="flname" id="fenleiList" class="form-control">
+						<li><select name="flname" id="fList" class="form-control">
 								<option>---请选择您要添加的分类---</option>
 						</select></li>
 					</ul>

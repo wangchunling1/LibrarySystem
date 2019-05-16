@@ -220,8 +220,8 @@ a {
 							value="添加图书" id="btn4" /></a></li>
 				</ul>
 				<ul>
-					<li><span class="ui-icon ui-icon-search"></span><a
-						href="BookServlet?action=showBookByPage" target="right"><input
+					<li><span class="ui-icon ui-icon-search"></span>
+					<a href="books" target="right"><input
 							type="button" value="查看图书" id="btn5" /></a></li>
 				</ul>
 			</div>

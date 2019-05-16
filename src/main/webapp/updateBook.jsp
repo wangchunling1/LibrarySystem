@@ -154,10 +154,7 @@
 						</select></li>
 					</ul> -->
 					<br>
-					<div class="form-group">
-						<label>分&nbsp;类&nbsp;名&nbsp;称:</label> <input type="text"
-							name="flname" class="form-control" value="${b.flname }"/>
-					</div>
+			
 					<div class="form-group">
 						<label>图&nbsp;书&nbsp;名&nbsp;称:</label> <input type="text"
 							name="bname" class="form-control" value="${b.bname }"/>

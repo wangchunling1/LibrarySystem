@@ -66,4 +66,22 @@ public class Fenlei {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+	public Fenlei(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public Fenlei() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Fenlei [id=" + id + ", name=" + name + "]";
+	}
+    
+    
 }
