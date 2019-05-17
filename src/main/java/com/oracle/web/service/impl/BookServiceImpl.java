@@ -35,6 +35,7 @@ public class BookServiceImpl implements BookService {
 	public void delete(Book book) {
 		// TODO Auto-generated method stub
 		this.bookMapper.deleteByPrimaryKey(book.getId());
+	    
 	}
 
 }
