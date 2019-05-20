@@ -73,7 +73,7 @@
 
 
 		<!-- 准备一个隐藏表单 -->
-		<form action="user" method="post" id="deleteForm">
+		<form action="users" method="post" id="deleteForm">
 			<input type="hidden" name="_method" value="DELETE">
 		</form>
 
@@ -130,7 +130,7 @@
 
 
 	<p align="center">
-		<a href="addUser">点击添加妖怪</a>
+		<a href="addUser.jsp">点击添加用户</a>
 	</p>
 </body>
 </html>
