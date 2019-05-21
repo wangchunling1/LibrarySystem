@@ -2,18 +2,25 @@ package com.oracle.web.service;
 
 import java.util.List;
 
-
+import com.oracle.web.bean.PageBean;
 import com.oracle.web.bean.User;
 
 public interface UserService {
 
+	int save(User user);
+
+	void update(User user);
+
+	void delete(User u);
+
+	User queryOneUser(Integer id);
+
+	PageBean<User> selectAllPage(Integer pageNow);
+
 	List<User> list();
 
-   int save(User user);
+	PageBean<User> selectByPage(Integer pageNow, int pageSize);
 
-  int delete(User user);
-
- User queryOneUser(Integer id);
 
 
  

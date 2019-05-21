@@ -24,78 +24,142 @@
 
 
 	$(function(){
-		   
-		   $("tr:even").css("background-color","transparent");
-		   
-		   $("tr:odd").css("background-color","transparent");
-		   
-		   //事件
-		   $("tr").mouseover(function(){
-			   
-			   $(this).css("background-color","LightYellow");
-		   });
-		   
-		   $("tr").mouseout(function(){
-			   
-			   $("tr:even").css("background-color","transparent");
-			   
-			   $("tr:odd").css("background-color","transparent");
-		   });
+		$("#login").bootstrapValidator({
+
+			feedbackIcons : {
+				valid : "glyphicon glyphicon-ok",
+				invalid : "glyphicon glyphicon-remove",
+				validating : "glyphicon glyphicon-refresh"
+			},
+			fields : {
+				name : {
+					validators : {
+						notEmpty : {
+							message : '姓名不能为空'
+						},
+						regexp : {
+							regexp : /^[\u0391-\uFFE5]{2,10}$/,
+							message : '姓名必须是2~10个汉字'
+						},
+					}
+				},
+				 phone:{
+					  validators:{
+						  notEmpty:{
+							  message:'手机号不能为空'
+						  },
+						  regexp:{
+							  regexp:/^1[3-9][0-9]{9}$/,
+						    message:'手机号不合法'
+						  },
+					  }
+				  },
+				  userName:{
+					  validators:{
+						  notEmpty:{
+							  message:'用户名不能为空'
+						  },
+						  regexp:{
+							  regexp:/^[A-Za-z_\.]{6,12}$/,
+						    message:'用户名必须是6~12位字母或下划线'
+						  },
+					  }
+				  },
+				password:{
+					  validators:{
+						  notEmpty:{
+							  message:'密码不能为空'
+						  },
+						  regexp:{
+							  regexp:/^[A-Za-z_\.0-9]{6,}$/,
+							    message:'密码至少六位数'
+							  },
+						  different:{
+							  field:'userName',
+							 message:'密码不能和用户名一样'
+						  }
+						  
+					  }
+				  },
+				  repassword:{
+					  validators:{
+						  notEmpty:{
+							  message:'确认密码不能为空'
+						  },
+						  identical:{
+							  field:'password',
+								  message:'两次密码不一致'
+						  }
+						  
+					  }
+				  },
+				 
+
+				
+				
+				  time: {
+					validators : {
+						notEmpty : {
+							message : '注册时间不能为空'
+						},
+						regexp : {
+							regexp : /^([1][7-9][0-9][0-9]|[2][0][0-9][0-9])(\-)([0][1-9]|[1][0-2])(\-)([0-2][1-9]|[3][0-1])$/g,
+							message : '注册时间必须是当天'
+						},
+					}
+				},
+				
+			}
+
+		})
+		 
 	   });
 </script>
 
 </head>
 <body background="./imgs/l.jpg">
-	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
-				<form action="user" class="form-horizontal"  method="post" >
-		            
-
-					<h1 class="text-center text-danger"><font face="幼圆">添加用户</font></h1>
-					<hr>
+			<div class="col-md-4 col-md-offset-4">
+				<form id="login" action="add" method="post">
+					<h3 class="text-center text-success">添加用户</h3>
 					<div class="form-group">
-						<label>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像:</label> 
-						<input type="file" name="touxiang" onblur="validateTouxiang()" class="form-control"/>
-				        <span id="touxiangMsg"></span>
+						<label>姓&nbsp;&nbsp;名&nbsp;:</label> <input type="text"
+							name="name" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label>真实姓名:</label> 
-						<input type="text" name="name" onblur="validateName()" class="form-control" placeholder="真实姓名"/>
-				       <span id="nameMsg"></span>
+						<label>手&nbsp;机&nbsp;号&nbsp;码:</label> <input type="text"
+							name="phone" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</label> 
-						<input type="text" name="userName" onblur="validateUName()" class="form-control" placeholder="用户名"/>
-				        <span id="UNameMsg"></span>
+						<label>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名:</label> <input
+							type="text" name="username" class="form-control" />
+					</div>
+                    <div class="form-group">
+						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;</label> <input
+							type="text" name="password" class="form-control" />
+					</div>
+					  <div class="form-group">
+						<label>确&nbsp;&nbsp;认&nbsp;&nbsp;密&nbsp;&nbsp;码</label> <input
+							type="text" name="repassword" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label> 
-						<input type="text" name="password" onblur="validatePasswprd()" class="form-control" placeholder="密码"/>
-				         <span id="passwordMsg"></span>
+						<label>注&nbsp;&nbsp;册&nbsp;时&nbsp;&nbsp;&nbsp;间:</label> <input
+							type="date" name="zhucetime" class="form-control" />
 					</div>
+					
 					<div class="form-group">
-						<label>手机号码:</label> 
-						<input type="text" name="phone" onblur="validatePhone()" class="form-control" placeholder="手机号码"/>
-				        <span id="phoneMsg"></span> 
+						<button type="submit" class="btn btn-success btn-block">添加</button>
+						<button type="reset" class="btn btn-success btn-block">重填</button>
 					</div>
-					<div class="form-group">
-						<label>注册时间:</label> 
-						<input type="date" name="time" onblur="validateTime()" class="form-control"/>
-				        <span id="timeMsg"></span>
-					</div>
-					<br>
-					<div class="form-group text-center">
-						<ul class="list-inline">
-							<li><button type="submit" class="btn btn-warning" style="width:200px;">添加用户</button>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="reset" class="btn btn-danger" style="width:200px;">重置</button></li>
-						</ul>
-						</div>
 				</form>
+
 			</div>
+
+
 		</div>
+
 	</div>
+	 
 </body>
 </html>

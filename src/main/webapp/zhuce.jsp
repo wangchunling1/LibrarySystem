@@ -192,7 +192,7 @@
 	<div class="container" style="height: 650px;">
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
-				<form action="AdminServlet?action=register" id="register" enctype="multipart/form-data" method="post">
+				<form action="register" id="register" enctype="multipart/form-data" method="post">
 					<br>
 					<br>
 					<div class="form-group">

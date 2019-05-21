@@ -2,16 +2,29 @@ package com.oracle.mapper;
 
 import com.oracle.web.bean.User;
 
+
 import java.util.List;
 
 public interface UserMapper {
-	List<User> list();
 
-	int save();
+	List<User> selectAll();
 
-	int deleteByPrimaryKey(Integer id);
+	int insert(User user);
 
-	User updateByPrimaryKey(Integer id);
+int deleteByPrimaryKey(Integer id);
+
+void updateByPrimaryKey(User user);
+
+User selectByPrimaryKey(Integer id);
+
+List<User> selectAllBypage();
+
+List<User> selectBypage(int index);
+
+int selectCount();
+
+
+	
 
 	
 	
