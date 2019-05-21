@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.web.bean.User;
 import com.oracle.web.service.UserService;
-import com.oracle.web.bean.PageBean;
+import com.oracle.web.bean.pageBean;
 
 
 @Controller
@@ -100,7 +100,7 @@ public class UserHandler {
    			pageNow=1;
    			
    		}
-   		PageBean <User>  pb =userService.selectAllPage(pageNow);
+   		pageBean <User>  pb =userService.selectAllPage(pageNow);
 
    		//System.out.println(pb);
 

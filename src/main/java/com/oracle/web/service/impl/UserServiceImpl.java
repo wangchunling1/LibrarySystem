@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.oracle.mapper.UserMapper;
-import com.oracle.web.bean.PageBean;
+import com.oracle.web.bean.pageBean;
 import com.oracle.web.bean.User;
 import com.oracle.web.service.UserService;
 
@@ -54,9 +54,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public PageBean<User> selectAllPage(Integer pageNow) {
+	public pageBean<User> selectAllPage(Integer pageNow) {
 		// TODO Auto-generated method stub
-		PageBean<User> pb = new PageBean<User>();
+		pageBean<User> pb = new pageBean<User>();
 		
 		PageHelper.startPage(pageNow,5);
 		
@@ -85,8 +85,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public PageBean<User> selectByPage(Integer pageNow, int pageSize) {
-		PageBean<User> pb = new PageBean<User>();
+	public pageBean<User> selectByPage(Integer pageNow, int pageSize) {
+		pageBean<User> pb = new pageBean<User>();
 
 		pb.setPageNow(pageNow);
 

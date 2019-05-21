@@ -2,7 +2,7 @@ package com.oracle.web.service;
 
 import java.util.List;
 
-import com.oracle.web.bean.PageBean;
+import com.oracle.web.bean.pageBean;
 import com.oracle.web.bean.User;
 
 public interface UserService {
@@ -15,11 +15,11 @@ public interface UserService {
 
 	User queryOneUser(Integer id);
 
-	PageBean<User> selectAllPage(Integer pageNow);
+	pageBean<User> selectAllPage(Integer pageNow);
 
 	List<User> list();
 
-	PageBean<User> selectByPage(Integer pageNow, int pageSize);
+	pageBean<User> selectByPage(Integer pageNow, int pageSize);
 
 
 
