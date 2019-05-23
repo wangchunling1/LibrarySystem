@@ -253,18 +253,21 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
 				<form action="book" method="post"
-		enctype="application/x-www-form-urlencoded" name="add"
-		onsubmit="return addb()">
+		           enctype="application/x-www-form-urlencoded" name="add"
+		           onsubmit="return addb()">
 					<br>
 					<h1 class="text-center text-danger"><font face="幼圆">添加图书</font></h1>
 					<hr>
 					<ul class="nav">
 						<li><b>请选择您想要添加的分类:</b></li>
-						<li><select name="flname" id="fList" class="form-control">
-								<option>---请选择您要添加的分类---</option>
-						</select></li>
+						<li><select name="fId" class="form-control">
+                            <c:forEach items="${list }" var="f">
+                               <option value="${f.id }">${f.name }</option>
+                            </c:forEach>
+                         </select></li>
 					</ul>
 					<br>
+					
 					<div class="form-group">
 						<label>图&nbsp;书&nbsp;名&nbsp;称:</label> <input type="text"
 							name="bname" onblur="validateBName()" class="form-control" placeholder="图书名称"/>

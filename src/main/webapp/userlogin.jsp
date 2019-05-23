@@ -154,7 +154,7 @@
 		</table>
 	</div>
 	<div class="container-fluid" style="height: 580px;">
-				<form action="UserForegroundServlet?action=login" method="post"
+				<form action="login" method="post"
 					enctype="application/x-www-form-urlencoded"
 					class="form-horizontal">
 					<br>

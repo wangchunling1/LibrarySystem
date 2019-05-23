@@ -6,7 +6,7 @@ public interface AdminService {
 
 	int save(Admin admin);
 
-	Admin queryOne(String username);
+	Admin queryone(String userName);
 
 	Admin login(Admin admin);
 
