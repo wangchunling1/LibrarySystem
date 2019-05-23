@@ -1,18 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+  String path=request.getContextPath();
+
+  String base=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/"+path+"/";
+%>
+<!-- http://localhost:端口号/项目名/ -->
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 1.要使用Bokkstrap的话，必须是html5文档-->
+<!-- 1.要使用Bootstrap的话，必须是html5文档-->
 <meta charset="UTF-8">
 <!-- 2.移动设备优先 -->
 <mate name="viewport" content="width=device-width, initial-scale=1">
 <!-- 3.导入核心的css文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入jQuery文件 --> <script type="text/javascript"
-	src="bootstrap/js/jQuery.js"></script> <!-- 5.引入Bookstrap的核心JS文件 --> <script
-	type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="<%=base%>bootstrap/css/bootstrap.css" />
+<!-- 4.需要引入jQuery文件 -->
+<script type="text/javascript" src="<%=base%>bootstrap/js/jQuery.js"></script> 
+<!-- 5.引入Bootstrap的核心JS文件 -->
+<script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap.js"></script>
 <title>查看所有分类</title>
 <script type="text/javascript">
 		window.onload=function(){
@@ -87,7 +94,7 @@
 					
 					alert("请至少勾选一项进行删除！");
 					
-					location.href="FenleiServlet?action=showFenleiByPage";
+					location.href="<%=base %>FenleiServlet?action=showFenleiByPage";
 					
 					return;
 				}	
@@ -113,7 +120,7 @@
 				
 				if(queren==true){
 					
-					location.href="FenleiServlet?action=delete&ids="+ str;
+					location.href="<%=base %>FenleiServlet?action=delete&ids="+ str;
 
 			} else {
 
@@ -144,7 +151,7 @@
 	});
 </script>
 </head>
-<body background="./imgs/l.jpg">
+<body background="<%=base%>./imgs/l.jpg">
 	<%-- <table align="center" width="200px" height="200px" border="1px"
 		cellspacing="0" bordercolor="silver">
 		<caption align="top">
@@ -222,7 +229,7 @@
 		</div>
 		</div>
 	<center>
-	<%-- <p>
+	<p>
 		第${pb.pageNow }页/共${pb.pages }页 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		<ul class="pagination">
 		<li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=1">首页</a></li>
@@ -275,7 +282,7 @@
 		       &nbsp;&nbsp;
 		     <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${pb.pages }">尾页</a></li>
 		</ul>
-		</div> --%>
+		</div>
 	
 	<%-- <table align="center">
 		<tr align="center">

@@ -43,4 +43,8 @@ public interface FenleiMapper {
 	 * @mbg.generated Tue May 07 15:52:21 CST 2019
 	 */
 	int updateByPrimaryKey(Fenlei record);
+
+
+
+	
 }
