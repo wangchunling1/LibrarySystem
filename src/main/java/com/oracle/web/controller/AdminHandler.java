@@ -23,23 +23,46 @@ public class AdminHandler {
 	@Autowired
 	private AdminService adminService;
 	
-	
-	@RequestMapping(value = "/register",method = RequestMethod.POST)
-	public String register(Admin admin){
-	
-	    int i = adminService.save(admin);
-	    
-	    if(i>0){
-	    	
-	    	return "redirect:/login.jsp";
-	    	
-	    	
-	    }else{
-	    	
-	    	return "redirect:/register.jsp";
-	    }
-
-     }
+	//注册
+		@RequestMapping(value = "/register",method = RequestMethod.POST)
+		public String register(Admin admin){         
+			
+			int i = adminService.save(admin);
+			
+			if(i > 0){
+				
+				return "redirect:/login.jsp";
+				
+			}else{
+				
+				return "redirect:/zhuce.jsp";
+				
+			}
+			
+		}
+		
+		//登录
+		
+		@RequestMapping(value = "/login",method = RequestMethod.GET)
+		public String login(Admin admin){  
+			
+			Admin admin1 = adminService.login(admin);
+			
+			if(admin1 == null){
+				
+				return "redirect:/login.jsp";
+				
+			}
+			
+			if(!admin1.getPassword().equals(admin.getPassword())){
+				
+				return "redirect:/login.jsp";
+				
+			}
+			
+			return "redirect:/index.jsp";
+			
+		}
 	
 	@RequestMapping(value="/validate.action")
 	@ResponseBody
@@ -63,25 +86,5 @@ public class AdminHandler {
 		
 	}
 	
-	@RequestMapping(value="login",method=RequestMethod.GET)
-	public String login(Admin admin){
-		
-		Admin admin1 = adminService.login(admin);
-		
-		if(admin1==null){
-			
-			return "redirect:/login.jsp";
-			
-		}
-		
-		if(!admin1.getPassword().equals(admin.getPassword())){
-			
-			return "redirect:/login.jsp";
-			
-		
-	}
-		
-		return "redirect:/index.jsp";
-		
-	}
+	
 }
