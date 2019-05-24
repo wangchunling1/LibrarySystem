@@ -14,12 +14,12 @@
 	href="bootstrap/css/bootstrapValidator.css" />
 <!-- 4.需要引入jQuery文件 -->
 <script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
+<script type="text/javascript" src="bootstrap/js/ajax.js"></script>
 <!-- 5.引入Bootstrap的核心JS文件 -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
+
 <title>添加图书</title>
-<script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
 <script type="text/javascript">
  $(function(){
 	  $(".form-horizontal").bootstrapValidator({
@@ -92,9 +92,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-				<form action="book" method="post"
-					enctype="application/x-www-form-urlencoded" name="add"
-					onsubmit="return addb()" class="form-horizontal">
+				<form action="book" method="post" class="form-horizontal">
 					<br>
 					<h1 class="text-center text-danger">
 						<font face="幼圆">添加图书</font>
@@ -103,10 +101,14 @@
 					<div class="form-group">
 						<label>请选择您想要添加的分类:</label> 
 						<select name="fId" class="form-control">
-							<c:forEach items="${fList }" var="fenlei">
-								<option value="${fenlei.id }">${fenlei.name }</option>
-							</c:forEach>
-						</select>
+					 
+					  <c:forEach items="${fList}" var="f">
+					  
+					  <option value="${f.id}">${f.name}</option>
+					  
+					 </c:forEach>
+					</select>
+
 					</div>
 					<br>
 
