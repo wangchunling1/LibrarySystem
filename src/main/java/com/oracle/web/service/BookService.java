@@ -20,4 +20,6 @@ public interface BookService {
 
 	pageBean<SubBook> showAllByPage(Integer pageNow);
 
+	Book queryOne(String bname);
+
 }

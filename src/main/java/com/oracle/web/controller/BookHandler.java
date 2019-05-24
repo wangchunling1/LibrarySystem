@@ -1,8 +1,10 @@
 package com.oracle.web.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.web.bean.Book;
 import com.oracle.web.bean.Fenlei;
@@ -22,6 +25,8 @@ import com.oracle.web.service.FenleiService;
 @Controller
 @Scope(value = "prototype")
 public class BookHandler {
+
+	private static final String NONE = null;
 
 	@Autowired
 	private BookService bookService;
@@ -39,20 +44,43 @@ public class BookHandler {
 //		return "showBook2";
 //	}
 
+	@RequestMapping(value = "validate")
+	@ResponseBody
+	public String queryByBname(String bname,HttpServletResponse response) throws IOException{
+
+		System.out.println(bname);
+
+		Book b =bookService.queryOne(bname);
+
+		response.setContentType("text/html;charset=utf-8");
+
+        if(b!=null){
+			
+            response.getWriter().write("{\"valid\":\"false\"}");
+		
+			}else{
+				
+				response.getWriter().write("{\"valid\":\"true\"}");//不存在
+			}
+		
+		return NONE;
+
+	}
 	@RequestMapping(value = "/addUI", method = RequestMethod.GET)
 	public String addUI(HttpServletRequest request) {
 
-		List<Fenlei> list = fenleiService.list();
+		System.out.println("ok");
+		List<Fenlei> fList = fenleiService.list();
+        System.out.println(fList);
+		request.setAttribute("fList", fList);
 
-		request.setAttribute("list", list);
-
-		return "addBook";
+		return "redirect:/addBook.jsp";
 	}
 
 	@RequestMapping(value = "/book", method = RequestMethod.POST)
 	public String add(Book book) {
 
-		int i = bookService.save(book);
+		bookService.save(book);
 
 		return "redirect:/books";
 	}

@@ -20,4 +20,6 @@ public interface BookMapper {
 	int selectCounts();
 
 	List<SubBook> showAllByPage();
+
+	Book findBook(String bname);
 }

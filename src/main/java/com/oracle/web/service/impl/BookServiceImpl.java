@@ -87,4 +87,10 @@ public class BookServiceImpl implements BookService {
 		return pb;
 	}
 
+	@Override
+	public Book queryOne(String bname) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.findBook(bname);
+	}
+
 }

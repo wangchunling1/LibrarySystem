@@ -18,7 +18,186 @@
 <script type="text/javascript" src="js/ajax.js"></script> 
 <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script> 
 <script type="text/javascript">
-   $(function(){
+window.onload = function() {
+
+	var selectAll = document.getElementById("selectAll");
+
+	selectAll.onclick = function() {
+
+		var check = document.getElementsByName("ids");
+
+		for (var i = 0; i < check.length; i++) {
+
+			check[i].checked = true;
+		}
+	};
+
+	var unselectAll = document.getElementById("unselectAll");
+
+	unselectAll.onclick = function() {
+
+		var check = document.getElementsByName("ids");
+
+		for (var i = 0; i < check.length; i++) {
+
+			check[i].checked = false;
+		}
+
+	};
+
+	var fanxuan = document.getElementById("fanxuan");
+
+	fanxuan.onclick = function() {
+
+		var check = document.getElementsByName("ids");
+
+		for (var i = 0; i < check.length; i++) {
+
+			if (check[i].checked == true) {
+
+				check[i].checked = false;
+
+			} else {
+
+				check[i].checked = true;
+			}
+
+		}
+
+	};
+	
+	var deleteStudent = document.getElementById("deleteStudent");
+
+	deleteStudent.onclick = function() {
+
+		var check = document.getElementsByName("ids");
+
+		//判断一下,他选了没有
+		var flag = false;
+
+		for (var i = 0; i < check.length; i++) {
+
+			if (check[i].checked == true) {
+
+				flag = true;
+
+				break;
+
+			}
+		}
+
+		if (flag == false) {
+
+			alert("请至少勾选一项进行删除！");
+
+			location.href = "books";
+
+			return;
+		}
+
+		//如果选择了
+
+		var str = "";
+
+		for (var i = 0; i < check.length; i++) {
+
+			if (check[i].checked == true) {
+
+				str = str + check[i].value + ",";
+
+			}
+		}
+		;
+
+		//去除最后一个逗号
+		str = str.slice(0, str.length - 1);
+
+		//发送给服务器
+		var queren = confirm("您确定要删除这些图书吗？");
+
+		if (queren == true) {
+
+			location.href = "book&ids=" + str;
+
+		} else {
+
+			location.reload();
+		}
+	};
+	
+	//导出所有用户信息
+	var OutAll = document.getElementById("OutAll");
+
+	OutAll.onclick = function() {
+
+		var flag = confirm("您确定要导出所有用户信息吗？");
+
+		if (flag) {//真的话执行
+
+			window.location.href = "OutPutBookServlet?action=all";
+		}
+	};
+
+	//导出所选的用户信息
+	var OutSelect = document.getElementById("OutSelect");
+
+	OutSelect.onclick = function() {
+
+		var check = document.getElementsByName("ids");
+
+		//判断一下,他选了没有
+		var flag = false;
+
+		for (var i = 0; i < check.length; i++) {
+
+			if (check[i].checked == true) {
+
+				flag = true;
+
+				break;
+
+			}
+		}
+
+		if (flag == false) {
+
+			alert("请至少勾选一项进行导出！");
+
+			location.href = "books";
+
+			return;
+		}
+
+		//如果选择了
+
+		var str = "";
+
+		for (var i = 0; i < check.length; i++) {
+
+			if (check[i].checked == true) {
+
+				str = str + check[i].value + ",";
+
+			}
+		}
+
+		//去除最后一个逗号
+		str = str.slice(0, str.length - 1);
+
+		//发送给服务器
+		var queren = confirm("您确定要导出所勾选的用户吗？");
+
+		if (queren == true) {
+
+			location.href = "OutPutBookServlet?action=select&ids="
+					+ str;
+
+		} else {
+
+			location.reload();
+		}
+	};
+  /*  $(function(){
 	   
 	   $(".deleteId").click(function(){
 		   
@@ -33,8 +212,8 @@
 		   
 		   return false;
 	   });
-   });
-
+   }); */
+});
 </script>
 <style>
 #f1 {
@@ -42,7 +221,7 @@
 	width: 400px;
 }
 .col {
-	width: 1000px;
+	width: 900px;
 	height: 500px;
 }
 
@@ -59,9 +238,16 @@
 	</style>
 </head>
 <body background="./imgs/l.jpg">
-	
-  <%--    <div class="container-fluid" id="div1">
-	<div class="col col-md-10">
+	<div class="container">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<h2>查看图书</h2>
+				</div>
+			</div>
+			
+	<div class="container-fluid" id="div1">
+	<div class="col col-sm-10">
 		<ul class="nav nav-tabs">
 		    <li class="active"><a href="addBook.jsp">添加图书</a></li>
 			<li><a id="selectAll" href="#">全选</a></li>
@@ -74,7 +260,7 @@
 				data-toggle="dropdown">高级搜索<span class="caret"></span></a>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
 					<li>
-						<form class="form-horizontal" id="f1">
+						<form action="books" class="form-horizontal" id="f1">
 
 							<!-- 隐藏域，用来传递action -->
 
@@ -84,7 +270,7 @@
 								<br> <label class="col-sm-4 control-label">选择分类：
 								</label>
 								<div class="controls col-sm-6">
-									<select name="flname" class="form-control  input-sm"
+									<select name="book.fenlei.name" class="form-control  input-sm"
 										id="fenleiList">
 										<option value="0">----请选择----</option>
 										<c:forEach items="${updateList }" var="fenlei">
@@ -133,38 +319,33 @@
 					</li>
 
 				</ul></li>
-		</ul> --%>
-	
-	<div class="container">
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<div class="panel-title">
-					<h2>查看图书</h2>
-				</div>
-			</div>
+		</ul>
 			<div class="panel-body">
 				<table class="table table-borderd table-striped table-hover">
 					<!-- info蓝色    success绿色    warning黄色    danger红色    active灰色 -->
 					<tr align="center">
-						<td>选择</td>
+						 <td>选择</td>		
 						<td>图书编号</td>
+						<td>分类名称</td>
 						<td>图书名称</td>
 						<td>图书价格</td>
 						<td>图书出版社</td>
 						<td>状态</td>
 						<td>借书人</td>
+						<!-- <td>删除</td> -->
 						<td>修改</td>
 					</tr>
 					<c:forEach items="${pb.beanList }" var="q" varStatus="s">
 						<tr align="center">
-                   <%-- 	<td><input type="checkbox" name="ids" value="${q.id }" /></td> --%>
+                    	<td><input type="checkbox" name="ids" value="${q.id }" /></td>
 							<td>${s.index+1 }</td>
+							<td>${q.fenlei.name}</td>
 							<td>${q.bname }</td>
 							<td>${q.price }</td>
 							<td>${q.chuban }</td>
 							<td>${q.zhuangtai }</td>
 							<td>${q.jieshuren }</td>
-							<td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td>
+							<%-- <td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td> --%>
 							<td><a href="book/${q.id }">
 							 <input type="submit" value="修改" class="btn btn-warning" /></a></td>
 						</tr>
@@ -175,20 +356,7 @@
 		  <input type="hidden" name="_method" value="DELETE"/>
 		</form>
 			</div>
-			<!--  <div class="panel-footer text-center">
-				<tr height="30px">
-					<td colspan="8" align="center"><button id="selectAll"
-							class="btn btn-warning btn-xs">全选</button>
-						<button id="unselectAll" class="btn btn-warning btn-xs">全不选</button>
-						<button id="fanxuan" class="btn btn-warning btn-xs">反选</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button id="deleteStudent" class="btn btn-warning btn-xs">删除</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button id="OutSelect" class="btn btn-warning btn-xs">导出所选</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button id="OutAll" class="btn btn-warning btn-xs">导出全部</button></td>
-				</tr>
-			</div>  -->
+		
 		</div>
 	</div>
 	<hr>
