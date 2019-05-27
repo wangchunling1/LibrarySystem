@@ -31,18 +31,7 @@ public class FenleiHandler {
 		return "showFenlei";
 	}
 	
-//	@RequestMapping(value = "/addUI",method = RequestMethod.GET)
-//	
-//	public String addUI(HttpServletRequest request){
-//		
-//		List<Fenlei> list = fenleiService.list();
-//
-//		request.setAttribute("fList", list);
-//		
-//		return "addFenlei";
-//			
-//	}
-	
+
 	@RequestMapping(value = "add",method = RequestMethod.POST)
 	public String add(Fenlei fenlei){
 		
