@@ -3,6 +3,7 @@ package com.oracle.web.service.impl;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -105,9 +106,29 @@ public class UserServiceImpl implements UserService {
 		pb.setBeanList(list);
 		
 		return pb;
+		
+	}
+
+
+	@Override
+	@Transactional
+	public void updateTouxiang(User user) {
+		// TODO Auto-generated method stub
+		
+		this.userMapper.updateByPrimaryKey(user);
+		
+		
+	}
+
+
+	@Override
+	@Transactional
+	public int saveTouxiang(User user) {
+		// TODO Auto-generated method stub
+		return  (int) this.userMapper.insertTouxiang(user);
+		
+		
 	}
 	
-	
 
-	
 }

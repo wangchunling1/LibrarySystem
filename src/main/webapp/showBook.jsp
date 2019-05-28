@@ -7,7 +7,7 @@
 <!-- 1.要使用Bokkstrap的话，必须是html5文档-->
 <meta charset="UTF-8">
 <!-- 2.移动设备优先 -->
-<mate name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 3.导入核心的css文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 <!-- 4.需要引入jQuery文件 --> <script type="text/javascript"

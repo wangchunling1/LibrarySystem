@@ -27,7 +27,7 @@
 <td width="30%"></td>
 <td align="center">
 <center>
-   <form action="BookServlet?action=showBook" method="post" enctype="application/x-www-form-urlencoded">       
+   <form action="books" method="post" enctype="application/x-www-form-urlencoded">       
 	  
 		<table align="center" width="600px" height="210px" border="1px" cellspacing="0" bordercolor="silver">
 		  <caption align="top">
