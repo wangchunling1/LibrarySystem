@@ -3,8 +3,8 @@ package com.oracle.web.service;
 import java.util.List;
 
 import com.oracle.web.bean.Book;
-import com.oracle.web.bean.PageBean;
-
+import com.oracle.web.bean.SubBook;
+import com.oracle.web.bean.pageBean;
 public interface BookService {
 
 	List<Book> list();
@@ -13,6 +13,13 @@ public interface BookService {
 
 	void delete(Book book);
 
-	PageBean<Book> selectAllPage(Integer pageNow);
+	Book queryOneBook(Integer id);
+
+	void update(Book book);
+
+	pageBean<SubBook> showAllByPage(Integer pageNow);
+
+	Book queryOne(String bname);
+
 
 }

@@ -1,154 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!-- 1.要使用Bootstrap的话，必须是html5文档-->
-<meta charset="UTF-8">
-<!-- 2.移动设备优先 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 3.导入核心的CSS文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入jQuery文件 --> 
-<script type="text/javascript" src="bootstrap/js/jQuery.js"></script> 
-<!-- 5.引入Bootstrap的核心JS文件 --> 
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<style type="text/css">
-.container {
-	width: 300px;
-	height: 300px;
-}
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<c:if test="${!(empty msg2) }">
-	<script>
-		alert("${msg2 }");
-	</script>
-	<c:remove var="msg2" scope="session" />
-</c:if>
-<title>登录</title>
-<script type="text/javascript" src="js/ajax.js"></script> 
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--移动设备优先 -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<!--导入核心css文件 -->
+<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
+
+<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
 	
 </script>
+<title>登录</title>
 </head>
-<body background="./imgs/i.jpg">
-	<!-- <table width="100%" height="750px" cellspacing="0">
-		<tr height="80px">
-			<td colspan="2">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-				color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
-				size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
-				color="silver" size="5">登录</font>
-			</td>
-		</tr>
-		<tr background="./imgs/11.jpg">
-			<td width="30%"></td>
-			<td align="center">
-				<form action="AdminServlet?action=login" method="post" name="login"
-					enctype="application/x-www-form-urlencoded"
-					onsubmit="return test()" class="container">
-					<table frame="box" width="300px" height="280px" bordercolor="white" class="table table-hover">
-						<tr>
-							<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-								size="4"><b>会员登录</b></font></td>
-						</tr>
-						<tr>
-							<td align="center"><b>登录账号:</b></td>
-							<td><input type="text" name="userName" /></td>
-						</tr>
-						<tr>
-							<td align="center"><b>密&nbsp;&nbsp;&nbsp;&nbsp;码:</b></td>
-							<td><input type="password" name="password" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" checked><font size="2">两周内自动登录</font></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="image" src="./imgs/login.png" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a href="zhuce.jsp"><font size="2" color="red">还不是会员？立即注册</font></a></td>
-						</tr>
-					</table>
-				</form>
-			</td>
-		</tr>
-		<tr height="100px">
+<body background="imgs/bg2.jpg">
 
-			<td align="center" colspan="2"><font color="gray" size="4"
-				face="楷体">Ling公司版权所有&copy;2000-2018</font></td>
-		</tr>
-	</table> -->
-	<div class="container-fluid" style="background-color: white;">
-		<table width="100%" height="50px" cellspacing="0">
-			<tr height="80px">
-				<td colspan="2">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-					color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
-					size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
-					color="silver" size="5">登录</font>
-				</td>
-			</tr>
-		</table>
+
+	<div class="container">
+
+
+		<h1 align="center">图书管理系统----管理员登录</h1>
+		<hr width="1000px">
+		<form action="login" class="form-horizontal" method="post">
+
+
+			<!-- 用户名 -->
+			<div class="form-group">
+				<label for="username" class="col-sm-4 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="username"
+						name="username" />
+				</div>
+			</div>
+
+
+			<!-- 密码 -->
+			<div class="form-group">
+				<label for="password" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+				<div class="col-sm-4">
+					<input type="password" class="form-control" id="password"
+						name="password" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-sm-offset-5 col-sm-4">
+					<button type="submit" class="btn btn-info">点击登录</button>
+				</div>
+			</div>
+
+
+		</form>
+		<div class="col-sm-offset-5 col-sm-4">
+			<a href="zhuce.jsp">还不是管理员？点击注册</a>
+		</div>
 	</div>
-	<div class="container-fluid" style="height: 580px;">
-				<form action="AdminServlet?action=login" method="post"
-					enctype="application/x-www-form-urlencoded"
-					class="form-horizontal">
-					<br>
-					<br>
-					<h1 class="text-center text-danger">登录</h1>
-					<hr>
-					<div class="form-group">
-						<label for="userName" class="col-md-4 control-label text-danger">
-							<!-- class="sr-only" --><font size="3">用&nbsp;户&nbsp;名&nbsp;:</font>
-						</label>
-						<div class="col-md-4">
-							<input type="text" class="form-control" name="userName"
-								placeholder="用户名" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="password" class="col-md-4 control-label text-danger"><font size="3">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;:</font></label>
-						<div class="col-md-4">
-							<input type="password" class="form-control" name="password"
-								placeholder="密码" />
-						</div>
-					</div>
-	<div class="form-group">
-       <div class="col-md-4 col-md-offset-4">
-         <div class="checkbox">
-            <label class="text-danger">
-              <input type="checkbox"/>两周内自动登录
-            </label>
-         </div>
-        </div>
-       </div>
-       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
-         <button class="btn btn-warning btn-block">登录</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
-      <a href="zhuce.jsp" class="btn btn-danger btn-block">还不是会员？立即注册</a>
-      </div>
-      </div>
-  </form>
-  </div>
-	<div class="container-fluid" style="background-color: white;">
-	<table align="center">
-	<tr height="100px">
 
-			<td align="center" colspan="2"><font color="gray" size="4"
-				face="楷体">Ling公司版权所有&copy;2000-2018</font></td>
-		</tr>
-	</table>
-</div>
+
 </body>
 </html>
