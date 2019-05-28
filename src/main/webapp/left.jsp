@@ -202,7 +202,7 @@ a {
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="fenlei" target="right"><input
+						href="fenleis" target="right"><input
 							type="button" value="查看分类" id="btn2" /></a></li>
 				</ul>
 				<ul>

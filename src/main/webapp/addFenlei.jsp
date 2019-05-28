@@ -174,28 +174,6 @@
 </script>
 </head>
 <body background="./imgs/l.jpg">
-	<%-- <form action="FenleiServlet?action=addFenlei" method="post"
-		enctype="application/x-www-form-urlencoded" name="fenlei"
-		onsubmit="return Fenlei()">
-		<table align="center" width="300px" height="100px" border="1px"
-			cellspacing="0" bordercolor="silver">
-			<caption align="top">
-				<h1>
-					<font color="red">添加分类</font>
-				</h1>
-				<hr size="2px" color="red" width="600px" />
-			</caption>
-			<tr align="center">
-				<td width="150px">请输入分类的名字:</td>
-				<td><input type="text" name="name" onblur="validateName()" /></td>
-				<td width="150px"><span id="NameMsg"></span></td>
-			</tr>
-			<tr align="center">
-				<td colspan="3"><input type="submit" value="添加" class="btn btn-success btn-xs"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-					type="reset" value="重填" class="btn btn-info btn-xs" /></td>
-			</tr>
-		</table>
-	</form> --%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">

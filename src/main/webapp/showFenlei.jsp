@@ -4,17 +4,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 1.要使用Bokkstrap的话，必须是html5文档-->
+<!-- 1.要使用Bootstrap的话，必须是html5文档-->
 <meta charset="UTF-8">
 <!-- 2.移动设备优先 -->
-<mate name="viewport" content="width=device-width, initial-scale=1">
-<!-- 3.导入核心的css文件 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 3.导入核心的CSS文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入jQuery文件 --> <script type="text/javascript"
-	src="bootstrap/js/jQuery.js"></script> <!-- 5.引入Bookstrap的核心JS文件 --> <script
-	type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<!-- 4.需要引入jQuery文件 --> 
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script> 
+<!-- 5.引入Bookstrap的核心JS文件 --> 
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <title>查看所有分类</title>
 <script type="text/javascript">
+
+$(function(){
+	   
+	   $(".deleteId").click(function(){
+		   
+		   var $url=this.href;
+		   
+		   //alert($url);
+		   
+		   $("#deleteForm").attr("action",$url);
+		   
+		   //提交表单
+		   $("#deleteForm").submit();
+		   
+		   return false;
+	   });
+});
+
+
+
 		window.onload=function(){
 			
 			var selectAll=document.getElementById("selectAll");
@@ -63,7 +84,7 @@
 				
 			};
 			
-			var deleteStudent=document.getElementById("deleteStudent");
+			/* var deleteStudent=document.getElementById("deleteStudent");
 			
 			deleteStudent.onclick=function(){
 				
@@ -119,7 +140,7 @@
 
 				location.reload();
 			}
-		};
+		}; */
 
 	};
 	
@@ -145,36 +166,7 @@
 </script>
 </head>
 <body background="./imgs/l.jpg">
-	<%-- <table align="center" width="200px" height="200px" border="1px"
-		cellspacing="0" bordercolor="silver">
-		<caption align="top">
-			<h1>
-				<font color="red">查看所有分类</font>
-			</h1>
-			<hr size="2px" color="red" width="600px" />
-		</caption>
-		<tr align="center">
-			<td>选择</td>
-			<td>编号</td>
-			<td>分类名称</td>
-		</tr>
-		<c:forEach items="${pb.beanList }" var="f" varStatus="s">
-			<tr align="center">
-				<td><input type="checkbox" name="ids" value="${f.id }" /></td>
-				<td>${s.index+1 }</td>
-				<td>${f.name }</td>
-			</tr>
-		</c:forEach>
-		<tr height="30px">
-			<td colspan="3" align="center"><button id="selectAll" class="btn btn-success btn-xs">全选</button>
-				<button id="unselectAll" class="btn btn-info btn-xs">全不选</button>
-				<button id="fanxuan" class="btn btn-success btn-xs">反选</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button id="deleteStudent" class="btn btn-info btn-xs">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<%=base%>updateFenlei.jsp">
-				<input type="submit" value="修改" class="btn btn-success btn-xs"/></a></td>
-		</tr>
-	</table> --%>
+	
 	<div class="col col-md-8">
 		<ul class="nav nav-tabs">
 		    <li class="active"><a href="addFenlei.jsp">添加分类</a></li>
@@ -182,7 +174,6 @@
 			<li><a id="selectAll" href="#">全选</a></li>
 			<li><a id="unselectAll" href="#">全不选</a></li>
 			<li><a id="fanxuan" href="#">反选</a></li>
-			<li><a id="deleteStudent" href="#">删除</a></li>
 			</ul>
 	<div class="container">
      <div class="panel panel-warning">
@@ -198,15 +189,23 @@
 			<td>选择</td>
 			<td>编号</td>
 			<td>分类名称</td>
+			<td>修改</td>
+			<td>删除</td>
 		</tr>
-			<c:forEach items="${pb.beanList }" var="f" varStatus="s">
+			<c:forEach items="${fList }" var="f" varStatus="s">
 			<tr align="center">
 				<td><input type="checkbox" name="ids" value="${f.id }" /></td>
 				<td>${s.index+1 }</td>
 				<td>${f.name }</td>
+				<td><a href="fenlei/${f.id }">
+				<input type="submit" value="修改" class="btn btn-warning" /></a></td>
+			    <td><a href="fenlei/${f.id }" class="deleteId btn btn-danger">删除</a></td>
 			</tr>
 		</c:forEach>
 		</table>
+		<form action="" method="post" id="deleteForm">
+		  <input type="hidden" name="_method" value="DELETE"/>
+		</form>
 		</div>
 		<%-- <div class="panel-footer text-center">
           <tr height="30px">
@@ -275,8 +274,8 @@
 		       &nbsp;&nbsp;
 		     <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${pb.pages }">尾页</a></li>
 		</ul>
-		</div> --%>
-	
+		</div>
+	 --%>
 	<%-- <table align="center">
 		<tr align="center">
 			<td><h4>没有您想要的分类？您可以点击这里<a href="<%=base%>addFenlei.jsp">添加分类</a></h4></td>

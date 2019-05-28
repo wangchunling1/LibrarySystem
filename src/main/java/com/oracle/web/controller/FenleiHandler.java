@@ -20,7 +20,7 @@ public class FenleiHandler {
 	@Autowired
 	private FenleiService fenleiService;
 	
-	@RequestMapping(value = "/fenlei", method = RequestMethod.GET)
+	@RequestMapping(value = "/fenleis", method = RequestMethod.GET)
 	
 	public String Fenlei(HttpServletRequest request) {
 
@@ -37,7 +37,7 @@ public class FenleiHandler {
 		
 		int i = fenleiService.save(fenlei);
 		
-		return "redirect:/fenlei";
+		return "redirect:/fenleis";
 			
 	}
 	
@@ -50,7 +50,7 @@ public class FenleiHandler {
 		
 		int i = fenleiService.delete(fenlei);
 		
-		return "redirect:/fenlei";
+		return "redirect:/fenleis";
 		
 		
 	}
@@ -62,7 +62,7 @@ public class FenleiHandler {
 		
 		session.setAttribute("fenlei", fenlei);
 		
-		return "updateFenlei";
+		return "redirect:/updateFenlei.jsp";
 		
 		
 	}
@@ -72,7 +72,7 @@ public class FenleiHandler {
 
 		fenleiService.update(fenlei);
 
-		return "redirect:/fenlei";
+		return "redirect:/fenleis";
 	}
 
 	
