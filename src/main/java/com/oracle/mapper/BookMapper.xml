@@ -95,4 +95,14 @@
   <select id="findBook"  parameterType="com.oracle.web.bean.Book" resultMap="SubBookResultMap">
 	   select * from book where bname = #{bname,jdbcType=VARCHAR}
     </select>
+    
+    <delete id="showBookByIds" parameterType="java.lang.Integer">
+
+    delete from book where 
+    <foreach collection="array" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+  </delete>
+    
 </mapper>

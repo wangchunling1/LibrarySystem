@@ -22,4 +22,6 @@ public interface BookMapper {
 	List<SubBook> showAllByPage();
 
 	Book findBook(String bname);
+
+	List<Book> showBookByIds(String[] arr);
 }

@@ -216,7 +216,7 @@ a {
 			<div height="80px" align="center" cellspacing="0" width="100px">
 				<ul>
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="addBook.jsp" target="right"><input type="button"
+						href="addUI" target="right"><input type="button"
 							value="添加图书" id="btn4" /></a></li>
 				</ul>
 				<ul>

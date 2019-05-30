@@ -12,12 +12,11 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 <!-- 4.需要引入jQuery文件 -->
 <script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
+<script type="text/javascript" src="bootstrap/js/ajax.js"></script>
 <!-- 5.引入Bootstrap的核心JS文件 -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>修改图书</title>
-<script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
 
 </head>
 <body background="./imgs/l.jpg">

@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 <!-- 4.需要引入jQuery文件 --> 
 <script type="text/javascript" src="bootstrap/js/jQuery.js"></script> 
+<script type="text/javascript" src="bootstrap/js/ajax.js"></script>
 <!-- 5.引入Bookstrap的核心JS文件 --> 
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<title>查看图书</title>
-<script type="text/javascript" src="js/ajax.js"></script> 
+<title>查看图书</title> 
 <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script> 
 <script type="text/javascript">
 window.onload = function() {
@@ -65,28 +65,46 @@ window.onload = function() {
 		}
 
 	};
-	
-	var deleteStudent = document.getElementById("deleteStudent");
+/* 	var deleteStudent = document.getElementById("deleteStudent");
+	 
+	 $(".deleteId").click(function(){
+		   
+		   var $url=this.href;
+		   
+		   //alert($url);
+		   
+		   $("#deleteForm").attr("action",$url);
+		   
+		   //提交表单
+		   $("#deleteForm").submit();
+		   
+		   return false;
+	   }); */
+	 var deleteStudent = document.getElementById("deleteStudent");
 
-	deleteStudent.onclick = function() {
+	 $(".deleteId").click(function(){
+		 
+		 //var $url=this.href;
+		 
+		 //alert($url)
 
 		var check = document.getElementsByName("ids");
-
+		
 		//判断一下,他选了没有
-		var flag = false;
+		var flag1 = false;
 
 		for (var i = 0; i < check.length; i++) {
 
 			if (check[i].checked == true) {
 
-				flag = true;
+				flag1 = true;
 
 				break;
 
 			}
 		}
 
-		if (flag == false) {
+		if (flag1 == false) {
 
 			alert("请至少勾选一项进行删除！");
 
@@ -106,8 +124,7 @@ window.onload = function() {
 				str = str + check[i].value + ",";
 
 			}
-		}
-		;
+		};
 
 		//去除最后一个逗号
 		str = str.slice(0, str.length - 1);
@@ -116,25 +133,26 @@ window.onload = function() {
 		var queren = confirm("您确定要删除这些图书吗？");
 
 		if (queren == true) {
+			//$("#deleteForm").attr("action",$url);
 
-			location.href = "book&ids=" + str;
+			location.href = "select?ids=" + str;
 
 		} else {
 
 			location.reload();
 		}
-	};
-	
+	});
+	 
 	//导出所有用户信息
 	var OutAll = document.getElementById("OutAll");
 
 	OutAll.onclick = function() {
 
-		var flag = confirm("您确定要导出所有用户信息吗？");
+		var flag2 = confirm("您确定要导出所有用户信息吗？");
 
-		if (flag) {//真的话执行
+		if (flag2) {//真的话执行
 
-			window.location.href = "OutPutBookServlet?action=all";
+			window.location.href = "down";
 		}
 	};
 
@@ -189,31 +207,14 @@ window.onload = function() {
 
 		if (queren == true) {
 
-			location.href = "OutPutBookServlet?action=select&ids="
-					+ str;
+			location.href = "down?ids="+ str;
 
 		} else {
 
 			location.reload();
 		}
 	};
-  /*  $(function(){
-	   
-	   $(".deleteId").click(function(){
-		   
-		   var $url=this.href;
-		   
-		   //alert($url);
-		   
-		   $("#deleteForm").attr("action",$url);
-		   
-		   //提交表单
-		   $("#deleteForm").submit();
-		   
-		   return false;
-	   });
-   }); */
-});
+};
 </script>
 <style>
 #f1 {
@@ -222,14 +223,12 @@ window.onload = function() {
 }
 .col {
 	width: 900px;
-	height: 500px;
 }
 
 #div2 {
 	margin-left: 10px;
 }
 #div1 {
-	height: 840px;
 	background-size: cover;
 }
 .ss {
@@ -253,7 +252,7 @@ window.onload = function() {
 			<li><a id="selectAll" href="#">全选</a></li>
 			<li><a id="unselectAll" href="#">全不选</a></li>
 			<li><a id="fanxuan" href="#">反选</a></li>
-			<li><a id="deleteStudent" href="#">删除</a></li>
+			<li><a id="deleteStudent" class="deleteId" href="#">删除</a></li>
 			<li><a id="OutSelect" href="#">导出选中</a></li>
 			<li><a id="OutAll" href="#">导出全部</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"

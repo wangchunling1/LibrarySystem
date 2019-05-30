@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,14 +99,17 @@
 					</h1>
 					<hr>
 					<div class="form-group">
+					
 						<label>请选择您想要添加的分类:</label> 
+						
 						<select name="fId" class="form-control">
 					 
-					  <c:forEach items="${fList}" var="f">
+					  <c:forEach items="${fList }" var="f">
 					  
-					  <option value="${f.id}">${f.name}</option>
+					  <option value="${f.id}" >${f.name}</option>
 					  
 					 </c:forEach>
+					 
 					</select>
 
 					</div>
