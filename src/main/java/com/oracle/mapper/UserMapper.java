@@ -2,7 +2,6 @@ package com.oracle.mapper;
 
 import com.oracle.web.bean.User;
 
-
 import java.util.List;
 
 public interface UserMapper {
@@ -11,20 +10,19 @@ public interface UserMapper {
 
 	int insert(User user);
 
-int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-void updateByPrimaryKey(User user);
+	void updateByPrimaryKey(User user);
 
-User selectByPrimaryKey(Integer id);
+	User selectByPrimaryKey(Integer id);
 
-List<User> selectAllBypage();
+	List<User> selectAllBypage();
 
-List<User> selectBypage(int index);
+	List<User> selectBypage(int index);
 
-int selectCount();
-
-
+	int selectCount();
 	
+    int insertTouxiang(User user);
 
 	
 	

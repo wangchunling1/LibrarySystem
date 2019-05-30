@@ -23,5 +23,6 @@ public interface BookService {
 	Book queryOne(String bname);
 
 	List<Book> showBookByIds(String[] arr);
+	
 
 }
