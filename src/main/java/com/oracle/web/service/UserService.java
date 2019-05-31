@@ -3,6 +3,7 @@ package com.oracle.web.service;
 import java.util.List;
 
 import com.oracle.web.bean.pageBean;
+
 import com.oracle.web.bean.User;
 
 public interface UserService {
@@ -20,6 +21,10 @@ public interface UserService {
 	List<User> list();
 
 	pageBean<User> selectByPage(Integer pageNow, int pageSize);
+
+	void updateTouxiang(User user);
+
+	int saveTouxiang(User user);
 
 
 

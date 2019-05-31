@@ -216,7 +216,7 @@ a {
 			<div height="80px" align="center" cellspacing="0" width="100px">
 				<ul>
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="addBook.jsp" target="right"><input type="button"
+						href="addUI" target="right"><input type="button"
 							value="添加图书" id="btn4" /></a></li>
 				</ul>
 				<ul>
@@ -231,12 +231,12 @@ a {
 			<div height="80px" align="center" cellspacing="0" width="100px">
 				<ul>
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="addUser.jsp" target="right"><input type="button"
+						href="users" target="right"><input type="button"
 							value="添加用户" id="btn6" /></a></li>
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="UserServlet?action=showUserByPage" target="right"><input
+						href="users" target="right"><input
 							type="button" value="查看用户" id="btn7" /></a></li>
 				</ul>
 			</div>

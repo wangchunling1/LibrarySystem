@@ -128,17 +128,19 @@
 							name="name" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label>手&nbsp;机&nbsp;号&nbsp;码:</label> <input type="text"
-							name="phone" class="form-control" />
-					</div>
-					<div class="form-group">
 						<label>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名:</label> <input
 							type="text" name="username" class="form-control" />
 					</div>
-                    <div class="form-group">
+					<div class="form-group">
 						<label>密&nbsp;&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;</label> <input
 							type="text" name="password" class="form-control" />
 					</div>
+					<div class="form-group">
+						<label>手&nbsp;机&nbsp;号&nbsp;码:</label> <input type="text"
+							name="phone" class="form-control" />
+					</div>
+					
+                    
 					  <div class="form-group">
 						<label>确&nbsp;&nbsp;认&nbsp;&nbsp;密&nbsp;&nbsp;码</label> <input
 							type="text" name="repassword" class="form-control" />
@@ -147,7 +149,13 @@
 						<label>注&nbsp;&nbsp;册&nbsp;时&nbsp;&nbsp;&nbsp;间:</label> <input
 							type="date" name="zhucetime" class="form-control" />
 					</div>
-					
+					<div class="form-group">
+						<label>头&nbsp;&nbsp;&nbsp;&nbsp;像:&nbsp;&nbsp;</label> <input
+							type="submit" value="上传" class="form-control" />
+					</div>
+					<div class="form-group">
+					<a href="download">下载</a>
+					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success btn-block">添加</button>
 						<button type="reset" class="btn btn-success btn-block">重填</button>

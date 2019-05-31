@@ -23,6 +23,110 @@
 </head>
 <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
 <script type="text/javascript">
+//导出所选的用户信息
+var OutSelect = document.getElementById("OutSelect");
+
+OutSelect.onclick = function() {
+
+	var check = document.getElementsByName("ids");
+
+	//判断一下,他选了没有
+	var flag = false;
+
+	for (var i = 0; i < check.length; i++) {
+
+		if (check[i].checked == true) {
+
+			flag = true;
+
+			break;
+
+		}
+	}
+
+	if (flag == false) {
+
+		alert("请至少勾选一项进行导出！");
+
+		location.href = "action=showUser";
+
+		return;
+	}
+
+	//如果选择了
+
+	var str = "";
+
+	for (var i = 0; i < check.length; i++) {
+
+		if (check[i].checked == true) {
+
+			str = str + check[i].value + ",";
+
+		}
+	}
+
+	//去除最后一个逗号
+	str = str.slice(0, str.length - 1);
+
+	//发送给服务器
+	var queren = confirm("您确定要导出所勾选的用户吗？");
+
+	if (queren == true) {
+
+		location.href = "users"
+				+ str;
+
+	} else {
+
+		location.reload();
+	}
+};
+
+ajax({
+
+	method : "POST",
+
+	url : "user",
+
+	ansy : true,
+
+	params : "action=user",
+
+	type : "xml",
+
+	success : function(data) {
+
+		var select = document.getElementById("userList");
+
+		var names = data.getElementsByTagName("name");
+
+		for (var i = 0; i < names.length; i++) {
+
+			var name = names[i];
+
+			var opt = document.createElement("option");
+
+			var value;
+
+			if (window.addEventListener) {
+
+				value = name.textContent;
+
+			} else {
+
+				value = text;
+			}
+
+			opt.innerHTML = value;
+
+			opt.value = value;
+
+			select.appendChild(opt);
+		}
+	}
+});
+
 	$(function() {
 		$(".deleteId").click(function() {
 			var $url = this.href;
@@ -39,7 +143,10 @@
 <body>
 	<div class="container">
 		<h1 align="center">图书管理系统</h1>
-		<table class="table table-bordered table-hover table-striped">
+		<ul class="nav nav-tabs">
+			<li><a id="OutSelect" href="#">导出选中</a></li>
+			<li><a id="OutAll" href="#">导出全部</a></li>
+		</ul>
 			<tr>
 				<th>用户编号</th>
 				<th>用户头像</th>

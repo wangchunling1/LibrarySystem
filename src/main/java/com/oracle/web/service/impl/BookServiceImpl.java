@@ -87,4 +87,18 @@ public class BookServiceImpl implements BookService {
 		return pb;
 	}
 
+	@Override
+	@Transactional
+	public Book queryOne(String bname) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.findBook(bname);
+	}
+
+	@Override
+	@Transactional
+	public List<Book> showBookByIds(String[] arr) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.showBookByIds(arr);
+	}
+
 }
