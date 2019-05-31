@@ -65,83 +65,6 @@ window.onload = function() {
 		}
 
 	};
-/* 	var deleteStudent = document.getElementById("deleteStudent");
-	 
-	 $(".deleteId").click(function(){
-		   
-		   var $url=this.href;
-		   
-		   //alert($url);
-		   
-		   $("#deleteForm").attr("action",$url);
-		   
-		   //提交表单
-		   $("#deleteForm").submit();
-		   
-		   return false;
-	   }); */
-	 var deleteStudent = document.getElementById("deleteStudent");
-
-	 $(".deleteId").click(function(){
-		 
-		 //var $url=this.href;
-		 
-		 //alert($url)
-
-		var check = document.getElementsByName("ids");
-		
-		//判断一下,他选了没有
-		var flag1 = false;
-
-		for (var i = 0; i < check.length; i++) {
-
-			if (check[i].checked == true) {
-
-				flag1 = true;
-
-				break;
-
-			}
-		}
-
-		if (flag1 == false) {
-
-			alert("请至少勾选一项进行删除！");
-
-			location.href = "books";
-
-			return;
-		}
-
-		//如果选择了
-
-		var str = "";
-
-		for (var i = 0; i < check.length; i++) {
-
-			if (check[i].checked == true) {
-
-				str = str + check[i].value + ",";
-
-			}
-		};
-
-		//去除最后一个逗号
-		str = str.slice(0, str.length - 1);
-
-		//发送给服务器
-		var queren = confirm("您确定要删除这些图书吗？");
-
-		if (queren == true) {
-			//$("#deleteForm").attr("action",$url);
-
-			location.href = "select?ids=" + str;
-
-		} else {
-
-			location.reload();
-		}
-	});
 	 
 	//导出所有用户信息
 	var OutAll = document.getElementById("OutAll");
@@ -215,6 +138,23 @@ window.onload = function() {
 		}
 	};
 };
+$(function(){
+	   
+	   $(".deleteId").click(function(){
+		   
+		   var $url=this.href;
+		   
+		   //alert($url);
+		   
+		   $("#deleteForm").attr("action",$url);
+		   
+		   //提交表单
+		   $("#deleteForm").submit();
+		   
+		   return false;
+	   });
+});
+
 </script>
 <style>
 #f1 {
@@ -252,7 +192,7 @@ window.onload = function() {
 			<li><a id="selectAll" href="#">全选</a></li>
 			<li><a id="unselectAll" href="#">全不选</a></li>
 			<li><a id="fanxuan" href="#">反选</a></li>
-			<li><a id="deleteStudent" class="deleteId" href="#">删除</a></li>
+<%-- 			<li><a id="deleteStudent" class="deleteId" href="book/${q.id }">删除</a></li> --%>
 			<li><a id="OutSelect" href="#">导出选中</a></li>
 			<li><a id="OutAll" href="#">导出全部</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -331,7 +271,7 @@ window.onload = function() {
 						<td>图书出版社</td>
 						<td>状态</td>
 						<td>借书人</td>
-						<!-- <td>删除</td> -->
+						<td>删除</td>
 						<td>修改</td>
 					</tr>
 					<c:forEach items="${pb.beanList }" var="q" varStatus="s">
@@ -344,9 +284,8 @@ window.onload = function() {
 							<td>${q.chuban }</td>
 							<td>${q.zhuangtai }</td>
 							<td>${q.jieshuren }</td>
-							<%-- <td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td> --%>
-							<td><a href="book/${q.id }">
-							 <input type="submit" value="修改" class="btn btn-warning" /></a></td>
+							<td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td>
+							<td><a href="book/${q.id }"><input type="submit" value="修改" class="btn btn-warning" /></a></td>
 						</tr>
 					</c:forEach>
 				</table>
