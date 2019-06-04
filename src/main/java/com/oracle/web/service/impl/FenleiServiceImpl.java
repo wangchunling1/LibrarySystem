@@ -56,4 +56,10 @@ public class FenleiServiceImpl implements FenleiService {
 		
 	}
 
+	@Override
+	public Fenlei queryOne(String name) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.findfenlei(name);
+	}
+
 }

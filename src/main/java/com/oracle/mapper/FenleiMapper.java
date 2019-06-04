@@ -44,6 +44,8 @@ public interface FenleiMapper {
 	 */
 	int updateByPrimaryKey(Fenlei record);
 
+	Fenlei findfenlei(String name);
+
 
 
 	

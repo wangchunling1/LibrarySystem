@@ -16,5 +16,7 @@ public interface FenleiService {
 
 	void update(Fenlei fenlei);
 
+	Fenlei queryOne(String name);
+
 
 }
