@@ -46,6 +46,10 @@ public interface FenleiMapper {
 
 	Fenlei findfenlei(String name);
 
+	List<Fenlei> showByPage();
+
+	List<Fenlei> showfenleiByIds(String[] arr);
+
 
 
 	

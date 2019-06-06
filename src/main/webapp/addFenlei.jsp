@@ -20,11 +20,11 @@
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>添加分类</title>
 <script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
+<!-- <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>--> 
 <script type="text/javascript">
 
 
-$(function(){
+ $(function(){
 	  $(".form-horizontal").bootstrapValidator({
 		  
 		  feedbackIcons:{
@@ -36,7 +36,7 @@ $(function(){
 		  
 		  fields:{
 			  
-			  fname:{
+			  name:{
 				  
 				  validators :{
 					  
@@ -59,7 +59,7 @@ $(function(){
 							  
 							  return{
 								  
-								  fname:$("input[name=fname]").val()
+								  name:$("input[name=name]").val()
 							  }
 						  }
 					  }
@@ -69,7 +69,7 @@ $(function(){
 			  
 		  }
 	  });
-});
+}); 
 
 
 

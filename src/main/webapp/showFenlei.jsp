@@ -84,63 +84,48 @@ $(function(){
 				
 			};
 			
-			/* var deleteStudent=document.getElementById("deleteStudent");
-			
-			deleteStudent.onclick=function(){
-				
-				var check=document.getElementsByName("ids");
-				
+			//导出所有用户信息
+			var OutAll = document.getElementById("OutAll");
+			OutAll.onclick = function() {
+				var flag2 = confirm("您确定要导出所有用户信息吗？");
+				if (flag2) {//真的话执行
+					window.location.href = "down";
+				}
+			};
+			//导出所选的用户信息
+			var OutSelect = document.getElementById("OutSelect");
+			OutSelect.onclick = function() {
+				var check = document.getElementsByName("ids");
 				//判断一下,他选了没有
-				var flag=false;
-				
-				for(var i=0;i<check.length;i++){
-					
-					if(check[i].checked==true){   
-						
-						flag=true;
-						
+				var flag = false;
+				for (var i = 0; i < check.length; i++) {
+					if (check[i].checked == true) {
+						flag = true;
 						break;
-						
-					}																
+					}
 				}
-				
-				if(flag==false){
-					
-					alert("请至少勾选一项进行删除！");
-					
-					location.href="FenleiServlet?action=showFenleiByPage";
-					
+				if (flag == false) {
+					alert("请至少勾选一项进行导出！");
+					location.href = "fenleis";
 					return;
-				}	
-						
-				//如果选择了
-						
-				var str="";
-						
-				for(var i=0;i<check.length;i++){
-							
-					if(check[i].checked==true){
-								
-					str=str+check[i].value+",";
-	
 				}
-			}
-								
+				//如果选择了
+				var str = "";
+				for (var i = 0; i < check.length; i++) {
+					if (check[i].checked == true) {
+						str = str + check[i].value + ",";
+					}
+				}
 				//去除最后一个逗号
-				str=str.slice(0,str.length-1);
-												
-		        //发送给服务器
-				var queren=confirm("您确定要删除这些分类吗？");
-				
-				if(queren==true){
-					
-					location.href="FenleiServlet?action=delete&ids="+ str;
-
-			} else {
-
-				location.reload();
-			}
-		}; */
+				str = str.slice(0, str.length - 1);
+				//发送给服务器
+				var queren = confirm("您确定要导出所勾选的用户吗？");
+				if (queren == true) {
+					location.href = "down?ids="+ str;
+				} else {
+					location.reload();
+				}
+			};
 
 	};
 	
@@ -170,10 +155,11 @@ $(function(){
 	<div class="col col-md-8">
 		<ul class="nav nav-tabs">
 		    <li class="active"><a href="addFenlei.jsp">添加分类</a></li>
-		    <li class="active"><a href="updateFenlei.jsp">修改分类</a></li>
 			<li><a id="selectAll" href="#">全选</a></li>
 			<li><a id="unselectAll" href="#">全不选</a></li>
 			<li><a id="fanxuan" href="#">反选</a></li>
+			<li><a id="OutSelect" href="#">导出选中</a></li>
+			<li><a id="OutAll" href="#">导出全部</a></li>
 			</ul>
 	<div class="container">
      <div class="panel panel-warning">
@@ -192,7 +178,7 @@ $(function(){
 			<td>修改</td>
 			<td>删除</td>
 		</tr>
-			<c:forEach items="${fList }" var="f" varStatus="s">
+			<c:forEach items="${pb.beanList }" var="f" varStatus="s">
 			<tr align="center">
 				<td><input type="checkbox" name="ids" value="${f.id }" /></td>
 				<td>${s.index+1 }</td>
@@ -207,79 +193,59 @@ $(function(){
 		  <input type="hidden" name="_method" value="DELETE"/>
 		</form>
 		</div>
-		<%-- <div class="panel-footer text-center">
-          <tr height="30px">
-			<td colspan="3" align="center"><button id="selectAll" class="btn btn-warning btn-xs">全选</button>
-				<button id="unselectAll" class="btn btn-warning btn-xs">全不选</button>
-				<button id="fanxuan" class="btn btn-warning btn-xs">反选</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button id="deleteStudent" class="btn btn-warning btn-xs">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<%=base%>updateFenlei.jsp">
-				<input type="submit" value="修改" class="btn btn-warning btn-xs"/></a></td>
-		</tr>
-       </div> --%>
 		</div>
 		</div>
+		<hr>
 	<center>
-	<%-- <p>
-		第${pb.pageNow }页/共${pb.pages }页 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		<ul class="pagination">
-		<li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=1">首页</a></li>
-		     &nbsp;&nbsp;
-		     <c:if test="${pb.pageNow>1 }">
-		     <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${pb.pageNow-1 }">上一页</a></li>
-		     </c:if>
-		       &nbsp;
-		       
-		       <!-- 分两种情况：
-		         如果页数小于10：
-		         如果页数大于10：
-		         
-		        -->
-		        
-		        <c:choose>
-		          <c:when test="${pb.pages<=10 }">
-		              <c:set var="begin" value="1"></c:set>
-		              <c:set var="end" value="${pb.pages }"></c:set>
-		          </c:when>
-		          <c:otherwise>
-		             <c:set var="begin" value="${pb.pageNow-5 }"></c:set>
-		             <c:set var="end" value="${pb.pageNow+4 }"></c:set>
-		             <c:if test="${begin<=1 }">
-		                 <c:set var="begin" value="1"></c:set>
-		                 <c:set var="end" value="10"></c:set>
-		             </c:if>
-		             <c:if test="${end>=pb.pages }">
-		              <c:set var="begin" value="${pb.pages-9 }"></c:set>
-		                 <c:set var="end" value="${pb.pages }"></c:set>
-		             </c:if>
-		          </c:otherwise>
-		        </c:choose>
-		        <!-- 循环十个数 -->
-		        <c:forEach begin="${begin }" end="${end }" var="i">
-		            <c:choose>
-		                <c:when test="${pb.pageNow==i }">
-		                 <li class="active"><span>${i }</span></li>
-		                </c:when>
-		                <c:otherwise>
-		                <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${i }">${i }</a></li>
-		                </c:otherwise>
-		            </c:choose>
-		           
-		        </c:forEach>
-		       &nbsp;
-		       <c:if test="${pb.pageNow<pb.pages }">
-		     <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${pb.pageNow+1 }">下一页</a></li>
-		     </c:if>
-		       &nbsp;&nbsp;
-		     <li><a href="<%=base %>FenleiServlet?action=showFenleiByPage&pageNow=${pb.pages }">尾页</a></li>
-		</ul>
+		<p>第${pb.pageNow }页/共${pb.pages }页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<ul class="pagination">
+				<li><a href="fenleis?pageNow=1">首页</a></li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${pb.pageNow>1 }">
+					<li><a href="fenleis?pageNow=${pb.pageNow-1 }">上一页</a></li>
+				</c:if>
+				<!-- 分两种情况		 
+		   1.如果页数小于10
+		   2.如果页数大于10 
+		-->
+				<c:choose>
+					<c:when test="${pb.pages<=10 }">
+						<c:set var="begin" value="1"></c:set>
+						<c:set var="end" value="${pb.pages }"></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="begin" value="${pb.pageNow-5 }"></c:set>
+						<c:set var="end" value="${pb.pageNow+4 }"></c:set>
+						<c:if test="${begin<=1 }">
+							<c:set var="begin" value="1"></c:set>
+							<c:set var="end" value="10"></c:set>
+						</c:if>
+						<c:if test="${end>=pb.pages }">
+							<c:set var="begin" value="${pb.pageNow-9 }"></c:set>
+							<c:set var="end" value="${pb.pages }"></c:set>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+				<!-- 循环十个数 -->
+				<c:forEach begin="${begin }" end="${end }" var="i">
+					<c:choose>
+						<c:when test="${pb.pageNow==i }">
+							<li class="active"><span>${i }</span></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="books?pageNow=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${pb.pageNow<pb.pages }">
+					<li><a href="fenleis?pageNow=${pb.pageNow+1 }">下一页</a></li>
+				</c:if>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<li><a href="fenleis?pageNow=${pb.pages }">尾页</a></li>
+			</ul>
 		</div>
-	 --%>
-	<%-- <table align="center">
-		<tr align="center">
-			<td><h4>没有您想要的分类？您可以点击这里<a href="<%=base%>addFenlei.jsp">添加分类</a></h4></td>
-		</tr>
-	</table> --%>
 </body>
 </html>
