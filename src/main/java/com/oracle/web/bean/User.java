@@ -16,7 +16,7 @@ public class User {
 
 	private String phone;
 
-	private Date time;
+	private String time;
 
 	public Integer getId() {
 		return id;
@@ -66,6 +66,13 @@ public class User {
 	}
 
 
+	
+
+	public User(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public void setPassword(String password) {
 		this.password = password == null ? null : password.trim();
 	}
@@ -74,18 +81,40 @@ public class User {
 		return phone;
 	}
 
+	public User(Integer id, String touxiang, String name, String userName, String password, String phone,String time) {
+		super();
+		this.id = id;
+		this.touxiang = touxiang;
+		this.name = name;
+		this.userName = userName;
+		this.password = password;
+		this.phone = phone;
+		this.time = time;
+	}
+
+	
+
 	public void setPhone(String phone) {
 		this.phone = phone == null ? null : phone.trim();
 	}
 
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
+	public User(String time) {
+		super();
 		this.time = time;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	
+
+	
+	
 	
 
 	

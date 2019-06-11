@@ -23,129 +23,193 @@
 </head>
 <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-//导出所选的用户信息
-var OutSelect = document.getElementById("OutSelect");
+window.onload = function() {
+	<%-- 	
+		String path = request.getContextPath();
+		String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/"
+				+ path + "/";
+	 --%>
+		/*	 
+					$("#table2 tr").mouseover(function(){
+						$(this).css("background-color","#F8C7D4");
+					})
+					
+					$("#table2 tr").mouseout(function(){
+						$(this).css("background-color","#FFFBFC");
+						 
+					})
+			 */
+			var chek = document.getElementsByName("ids");
 
-OutSelect.onclick = function() {
+			var selectAll = document.getElementById("selectAll");
 
-	var check = document.getElementsByName("ids");
+			selectAll.onclick = function() {
+				//全选
 
-	//判断一下,他选了没有
-	var flag = false;
+				for (i = 0; i < chek.length; i++) {
 
-	for (var i = 0; i < check.length; i++) {
+					chek[i].checked = true;
 
-		if (check[i].checked == true) {
+				}
 
-			flag = true;
+			}
+			//全不选
+			var selectNot = document.getElementById("selectNot");
 
-			break;
+			selectNot.onclick = function() {
 
-		}
-	}
+				for (i = 0; i < chek.length; i++) {
 
-	if (flag == false) {
+					chek[i].checked = false;
 
-		alert("请至少勾选一项进行导出！");
+				}
 
-		location.href = "action=showUser";
-
-		return;
-	}
-
-	//如果选择了
-
-	var str = "";
-
-	for (var i = 0; i < check.length; i++) {
-
-		if (check[i].checked == true) {
-
-			str = str + check[i].value + ",";
-
-		}
-	}
-
-	//去除最后一个逗号
-	str = str.slice(0, str.length - 1);
-
-	//发送给服务器
-	var queren = confirm("您确定要导出所勾选的用户吗？");
-
-	if (queren == true) {
-
-		location.href = "users"
-				+ str;
-
-	} else {
-
-		location.reload();
-	}
-};
-
-ajax({
-
-	method : "POST",
-
-	url : "user",
-
-	ansy : true,
-
-	params : "action=user",
-
-	type : "xml",
-
-	success : function(data) {
-
-		var select = document.getElementById("userList");
-
-		var names = data.getElementsByTagName("name");
-
-		for (var i = 0; i < names.length; i++) {
-
-			var name = names[i];
-
-			var opt = document.createElement("option");
-
-			var value;
-
-			if (window.addEventListener) {
-
-				value = name.textContent;
-
-			} else {
-
-				value = text;
 			}
 
-			opt.innerHTML = value;
+			//反选
+			var fanxuan = document.getElementById("fanxuan");
 
-			opt.value = value;
+			fanxuan.onclick = function() {
 
-			select.appendChild(opt);
-		}
-	}
-});
+				for (i = 0; i < chek.length; i++) {
+					if (chek[i].checked == true) {
+						chek[i].checked = false;
 
-	$(function() {
-		$(".deleteId").click(function() {
-			var $url = this.href;
+					} else {
+						chek[i].checked = true;
 
-			$("#deleteForm").attr("action", $url);
+					}
 
-			$("#deleteForm").submit();
+				}
 
-			return false;
-		});
-	});
+			}
+
+			var df = document.getElementById("dfd");
+
+			df.onclick = function() {
+
+				var flag = false;
+
+				for (i = 0; i < chek.length; i++) {
+
+					if (chek[i].checked == true) {
+						flag = true;
+						break;
+					}
+				}
+
+				if (flag == false) {
+					alert("请至少选一项");
+					return;
+
+				} else {
+
+					var str = "";
+
+					for (var i = 0; i < chek.length; i++) {
+
+						if (chek[i].checked == true) {
+
+							str += chek[i].value + ",";
+
+						}
+					}
+					str = str.slice(0, str.length - 1);
+
+					var flag = confirm("你确定删除所勾选的用户吗？");
+					if (flag == true) {//确定
+						//拿到请求地址
+
+						var $url = "http://localhost/LibrarySystem/user/" + str;
+						/* var $url = "http://localhost/Book/deleteUser/" + str
+							+ "/${pb.pageNow}";  */
+
+						//var $url = this.href;
+						//拿到表单
+						$("#deleteForm").attr("action", $url);
+
+						//提交表单
+						$("#deleteForm").submit();
+
+						return false;
+
+					} else {//取消
+
+						window.location.href = "http://localhost/LibrarySystem/showUserByPage";
+
+					}
+
+				}
+			};
+
+			//导出部分	  
+			var outIds = document.getElementById("outIds");
+
+			outIds.onclick = function() {
+
+				var flag = false;
+
+				for (i = 0; i < chek.length; i++) {
+
+					if (chek[i].checked == true) {
+						flag = true;
+						break;
+					}
+				}
+
+				if (flag == false) {
+					alert("请至少选一项");
+					return;
+
+				} else {
+
+					var str = "";
+
+					for (var i = 0; i < chek.length; i++) {
+
+						if (chek[i].checked == true) {
+
+							str += chek[i].value + ",";
+
+						}
+					}
+					str = str.slice(0, str.length - 1);
+
+					var flag = confirm("你确定导出所勾选的用户信息吗？");
+					if (flag == true) {//确定
+						 
+						window.location.href = "http://localhost/LibrarySystem/outPutUser/" + str;
+					} else {//取消
+						window.location.href = "http://localhost/LibrarySystem/showUserByPage";
+					}
+				}
+			};
+
+			var outAll = document.getElementById("outAll");
+			outAll.onclick = function() {
+				var flag = confirm("你确定导出全部的用户信息吗？");
+
+				if (flag == true) {//确定
+					window.location.href ="http://localhost/LibrarySystem/outPutUser/all";
+				} else {//取消
+					window.location.href = "http://localhost/LibrarySystem/showUserByPage";
+				}
+
+			}
+		};
 </script>
 
 <body>
 	<div class="container">
-		<h1 align="center">图书管理系统</h1>
+		<h1 align="center">查看用户</h1>
 		<ul class="nav nav-tabs">
-			<li><a id="OutSelect" href="#">导出选中</a></li>
-			<li><a id="OutAll" href="#">导出全部</a></li>
+			<li role="presentation" class="active"><a id="selectAll"
+					href="#">全选</a></li>
+				<li role="presentation"><a id="selectNot" href="#">全不选</a></li>
+				<li role="presentation"><a id="fanxuan" href="#">反选</a></li>
+				<li role="presentation"><a id="outIds" href="#">导出选中</a></li>
+				<li role="presentation"><a id="outAll" href="#">导出全部</a></li>
+			
 		</ul>
 			<tr>
 				<th>用户编号</th>
@@ -158,36 +222,33 @@ ajax({
 				<th>点击删除</th>
 				<th>点击修改</th>
 			</tr>
-			<c:forEach items="${pb.beanList }" var="u">
+			<c:forEach items="${pb.beanList }"  var="u" varStatus="u1">
 				<tr>
-					<td>${u.userId }</td>
-					<td>${u.touxiang}</td>
+					<td>${u1.index+1}</td>
+					<td>${u.id }</td>
+					<td><img src="${u.touxiang}" width="30" height="30"></td>
 					<td>${u.name }</td>
 					<td>${u.userName }</td>
 					<td>${u.password }</td>
 					<td>${u.phone }</td>
 					<td>${u.time }</td>
-					<td><a href="user/${u.userId }"
-						class="deleteId btn btn-danger">删除</a></td>
-					<td><a href="user/${u.userId }" class="btn btn-primary">修改</a></td>
+					<td><input type="checkbox" name="ids" value="${u.id }"></td>
+					<td><a href="/user/{ids}/${u.id }" class="deleteId btn btn-primary" >删除</a></td>
+						
+					<td><a href="/updateUser/${u.id }" class="btn btn-primary">修改</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 
-
-
-
-
-
 		<!-- 准备一个隐藏表单 -->
-		<form action="users" method="post" id="deleteForm">
+		<form action="" method="post" id="deleteForm">
 			<input type="hidden" name="_method" value="DELETE">
 		</form>
 
 		<center>
-			<a href="users?pageNow=1">首页</a> &nbsp;&nbsp;
+			<a href="showUserByPage?pageNow=1">首页</a> &nbsp;&nbsp;
 			<c:if test="${pb.pageNow>1 }">
-				<a href="users?pageNow=${pb.pageNow-1 }">上一页</a>
+				<a href="showUserByPage?pageNow=${pb.pageNow-1 }">上一页</a>
 			</c:if>
 			&nbsp;
 			<!-- 分两种情况：
@@ -219,18 +280,18 @@ ajax({
 						<span>${i}</span>
 					</c:when>
 					<c:otherwise>
-						<a href="users?pageNow=${i }">[${i }]</a>
+						<a href="showUserByPage?pageNow=${i }">[${i }]</a>
 					</c:otherwise>
 				</c:choose>
 
 			</c:forEach>
 			&nbsp;
 			<c:if test="${pb.pageNow<pb.pages }">
-				<a href="users?pageNow=${pb.pageNow+1 }">下一页</a>
+				<a href="showUserByPage?pageNow=${pb.pageNow+1 }">下一页</a>
 			</c:if>
-			&nbsp;&nbsp; <a href="users?pageNow=${pb.pages }">尾页</a>
+			&nbsp;&nbsp; <a href="showUserByPage?pageNow=${pb.pages }">尾页</a>
 
-		</center>
+		
 	</div>
 	<p align="center">第${pb.pageNow }页/共${pb.pages }页</p>
 

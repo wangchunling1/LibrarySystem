@@ -231,7 +231,7 @@ a {
 			<div height="80px" align="center" cellspacing="0" width="100px">
 				<ul>
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="users" target="right"><input type="button"
+						href="addUser.jsp" target="right"><input type="button"
 							value="添加用户" id="btn6" /></a></li>
 				</ul>
 				<ul>

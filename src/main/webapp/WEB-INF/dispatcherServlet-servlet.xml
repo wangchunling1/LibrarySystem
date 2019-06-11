@@ -40,6 +40,9 @@
         <property name="basename" value="i18n"></property>
     </bean>
     
+    <!-- 配置了springmvc的文件上传解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+    
     <!-- SpringMVC默认不加载本地的js和css : 开启对js和css支持 -->
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>

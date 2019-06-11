@@ -2,27 +2,43 @@ package com.oracle.mapper;
 
 import com.oracle.web.bean.User;
 
+
+import com.oracle.web.bean.UserExample;
+
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserMapper {
 
-	List<User> selectAll();
+	
 
-	int insert(User user);
+	void deleteByExample(UserExample example);
 
-	int deleteByPrimaryKey(Integer id);
+	int selectCounts();
 
-	void updateByPrimaryKey(User user);
+	void updateUserByPrimaryKey(User user);
+
+	List<User> selectBypage();
+
 
 	User selectByPrimaryKey(Integer id);
 
-	List<User> selectAllBypage();
+	List<User> selectOutPutAll();
 
-	List<User> selectBypage(int index);
+	List<User> selectOutPutIds(List<Integer> list);
 
-	int selectCount();
+	void updateTouxiangByPrimaryKey(User user);
+
+	User selectValidate(String userName);
+
+	int insert(User user);
+
+
+
+
 	
-    int insertTouxiang(User user);
+   
 
 	
 	

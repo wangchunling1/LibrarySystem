@@ -49,34 +49,47 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-				<form action="user" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="id" value="${u.id }" />
+			<form id="f1" action="updateTouxiang"  method="post"  enctype="multipart/form-data"  class="form-horizontal f1">
+					<input type="hidden" name="id" value="${user.id }"> 
+					<div class="form-group">
+						<label class="col-sm-3 col-sm-offset-2 control-label text-info">
+							<img src="${user.touxiang }" width="90" height="90">
+						</label>
+						<div class="col-sm-4 f1input1">
+							<input type="file" name="touxiang" class="form-control input-sm" />
+						</div>
+					 
+						<div class="col-sm-4  f1input2">
+						 
+						  <button class="btn" type="submit">修改头像</button>					 
+						</div>
+						</div>
+					 
+				</form>
+				<form action="User" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="id" value="${user.id }" />
 					<h1 class="text-center text-danger"><font face="幼圆">修改用户信息</font></h1>
 					<hr>
-					<div class="form-group">
-						<label>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像:</label> 
-						<img src="/img${u.touxiang }" id="img" class="img-circle"/>
-						<input type="file" name="touxiang" value="${u.touxiang }" class="form-control"/>
-					</div>
+					
 					<div class="form-group">
 						<label>真实姓名:</label> 
-						<input type="text" name="name" value="${u.name }" class="form-control"/>
+						<input type="text" name="name" value="${user.name }" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>用&nbsp;&nbsp;户&nbsp;&nbsp;名:</label> 
-						<input type="text" name="userName" value="${u.userName }" class="form-control"/>
+						<input type="text" name="userName" value="${user.userName }" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label> 
-						<input type="text" name="password" value="${u.password }" class="form-control"/>
+						<input type="text" name="password" value="${user.password }" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>手机号码:</label> 
-						<input type="text" name="phone" value="${u.phone }" class="form-control"/>
+						<input type="text" name="phone" value="${user.phone }" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>注册时间:</label> 
-						<input type="date" name="time" value="${u.time }" class="form-control"/>
+						<input type="date" name="time" value="${user.time }" class="form-control"/>
 					</div>
 					<br>
 					<div class="form-group text-center">
