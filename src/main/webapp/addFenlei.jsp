@@ -4,37 +4,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 1.要使用Bokkstrap的话，必须是html5文档-->
+<!-- 1.要使用Bootstrap的话，必须是html5文档-->
 <meta charset="UTF-8">
 <!-- 2.移动设备优先 -->
-<mate name="viewport" content="width=device-width, initial-scale=1">
-<!-- 3.导入核心的css文件 -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 3.导入核心的CSS文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrapValidator.css" />
 <!-- 4.需要引入jQuery文件 -->
-<script type="text/javascript" src="bootstrap/js/jQuery.js"></script> <!-- 5.引入Bookstrap的核心JS文件 -->
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
+<script type="text/javascript" src="bootstrap/js/ajax.js"></script>
+<!-- 5.引入Bootstrap的核心JS文件 -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<!-- <style type="text/css">
-.container {
-	border: 1px solid aqua;
-	background-color: lightpink;
-}
-
-.container-fluid {
-	border: 1px solid green;
-}
-</style> -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%-- <c:if test="${!(empty msg) }">
-	<script>
-		alert("${msg }");
-	</script>
-	<c:remove var="msg" scope="session" />
-</c:if> --%>
+<script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>添加分类</title>
 <script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
+<!-- <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>--> 
 <script type="text/javascript">
-	var flag;
+
+
+ $(function(){
+	  $(".form-horizontal").bootstrapValidator({
+		  
+		  feedbackIcons:{
+			  
+			  valid : "glyphicon glyphicon-ok",
+				invalid : "glyphicon glyphicon-remove",
+				validating : "glyphicon glyphicon-refresh"
+		  },
+		  
+		  fields:{
+			  
+			  name:{
+				  
+				  validators :{
+					  
+					  notEmpty : {
+							message : '分类名称不能为空'
+						},
+						regexp : {
+							regexp : /^[\u0391-\uFFE5_A-z0-9]{1,15}$/,
+							message : '分类名称必须由长度为1-15的汉字字母数字下划线组成'
+						},
+					  
+						remote:{
+						  message:'该分类已被添加，请重新输入',
+						  
+						  url:"validate",
+						
+						  type:'post',
+						  
+						  data:function(validator){
+							  
+							  return{
+								  
+								  name:$("input[name=name]").val()
+							  }
+						  }
+					  }
+					 
+				  }
+			  }
+			  
+		  }
+	  });
+}); 
+
+
+
+	/* var flag;
 
 	function validateName() {
 
@@ -87,70 +126,13 @@
 		})
 	}
 
-	/*	var xmlhttp = getXMLHttpRequest();
-
-		xmlhttp.open("POST", "FenleiServlet", true);
-
-		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-
-		xmlhttp.send("action=validateName&name=" + name.value);
-		
-		var nameReg = /^[\u0391-\uFFE5_A-z0-9]{2,15}$/;
-
-		var flag1 = nameReg.test(name.value);
-
-		var NameMsg = document.getElementById("NameMsg");
-		
-		if (flag1) {
-
-		xmlhttp.onreadystatechange = function() {
-
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-				var content = xmlhttp.responseText;
-
-				var span = document.getElementById("NameMsg");
-
-				if (content == "0") {//图书名称已经存在
-
-					span.style.color = "red";
-
-					span.innerHTML = "此分类名称已经存在";
-
-					span.focus();
-
-					flag = false;					
-
-				} else {//图书名称不存在
-
-					span.style.color = "darkcyan";
-
-					span.innerHTML = "此分类名称可以添加";
-
-					flag = true;
-					
-				}
-				
-			 }
-			
-		  }
-		} else {
-
-			NameMsg.style.color = "red";
-
-			NameMsg.innerHTML = "必须是长度为2-15的汉字字母数字下划线";
-
-			flag=false;
-		}
-				
-	}*/
-
+	
 	function Fenlei() {
 
 		//alert(flag);
 		return (flag);
 	};
-	
+	 */
 
 	$(function(){
 		   
@@ -174,42 +156,17 @@
 </script>
 </head>
 <body background="./imgs/l.jpg">
-	<%-- <form action="FenleiServlet?action=addFenlei" method="post"
-		enctype="application/x-www-form-urlencoded" name="fenlei"
-		onsubmit="return Fenlei()">
-		<table align="center" width="300px" height="100px" border="1px"
-			cellspacing="0" bordercolor="silver">
-			<caption align="top">
-				<h1>
-					<font color="red">添加分类</font>
-				</h1>
-				<hr size="2px" color="red" width="600px" />
-			</caption>
-			<tr align="center">
-				<td width="150px">请输入分类的名字:</td>
-				<td><input type="text" name="name" onblur="validateName()" /></td>
-				<td width="150px"><span id="NameMsg"></span></td>
-			</tr>
-			<tr align="center">
-				<td colspan="3"><input type="submit" value="添加" class="btn btn-success btn-xs"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-					type="reset" value="重填" class="btn btn-info btn-xs" /></td>
-			</tr>
-		</table>
-	</form> --%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-	<form action="FenleiServlet?action=addFenlei" method="post"
-		enctype="application/x-www-form-urlencoded" name="fenlei"
-		onsubmit="return Fenlei()">
+	<form action="add" method="post" class="form-horizontal">
 		<br>
 					<br>
 						<h1 class="text-center text-danger"><font face="幼圆">添加分类</font></h1>
 						<hr>
 	                <div class="form-group">
 						<label>请输入分类的名称:</label> 
-						<input type="text" name="name" class="form-control" onblur="validateName()" placeholder="分类名称"/>
-						<span id="NameMsg"></span>
+					    <input type="text" name="name" id="fname" class="form-control" placeholder="分类名称" />
 					</div>
 					<br>
 					<div class="form-group text-center">

@@ -57,4 +57,25 @@
     select id, name
     from fenlei
   </select>
+  <select id="findfenlei"  parameterType="com.oracle.web.bean.Fenlei" resultMap="BaseResultMap">
+	   select * from fenlei where name = #{name,jdbcType=VARCHAR}
+    </select>
+    
+   <select id="showByPage" resultMap="BaseResultMap">
+  	
+  	select * from fenlei order by id desc
+    
+  </select>
+    <select id="getCount" resultType="int">
+  	SELECT COUNT(*) FROM Fenlei
+  </select>
+  
+  <delete id="showFenleiByIds" parameterType="java.lang.Integer">
+
+    delete from fenlei where 
+    <foreach collection="array" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+  </delete>
 </mapper>
