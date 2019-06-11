@@ -65,11 +65,11 @@ public class BookHandler {
 //		return "showBook2";
 //	}
 
-	@RequestMapping(value = "validate")
+	@RequestMapping(value = "validate1")
 	@ResponseBody
-	public String queryByBname(String bname,HttpServletResponse response) throws IOException{
+	public String queryByName(String bname,HttpServletResponse response) throws IOException{
 
-		System.out.println(bname);
+		//System.out.println(bname);
 
 		Book b =bookService.queryOne(bname);
 

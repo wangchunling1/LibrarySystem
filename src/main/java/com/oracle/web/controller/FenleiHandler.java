@@ -1,4 +1,5 @@
 package com.oracle.web.controller;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,7 +8,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import java.util.List;
 import com.oracle.web.bean.Fenlei;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,20 +22,12 @@ import com.oracle.web.service.FenleiService;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.oracle.web.service.FenleiService;
-import com.oracle.web.bean.Fenlei;
 import com.oracle.web.bean.pageBean;
 
 @Controller
