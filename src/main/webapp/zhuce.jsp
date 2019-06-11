@@ -19,66 +19,37 @@
 	$(function() {
 		$(".form-horizontal").bootstrapValidator({
 
-
-
-
 					feedbackIcons : {
-
-
-
 
 						valid : "glyphicon glyphicon-ok",
 						invalid : "glyphicon glyphicon-remove",
 						validating : "glyphicon glyphicon-refresh"
 					},
 
-
-
-
 					fields : {
 
-
-
-
 						username : {
-
-
 
 
 							validators : {
 
 
-
-
 								notEmpty : {
-
-
-
 
 									message : '用户名不能为空'
 
-
-
-
 								},
+								
+                               regexp : {
 
-
-
-
-								regexp : {
-
-
-
-
-									regexp : /^[A-z0-9_]{3,25}$/,
+                                 regexp : /^[A-z0-9_]{3,25}$/,
+                                 
 									message : '用户名必须由3-25个英文字母、数字和下划线组成'
 
 
 
 
 								},
-
-
 
 
 								remote : {
@@ -119,7 +90,7 @@
 	});
 </script> 
 </head>
-<body background="imgs/bg2.jpg">
+<body background="imgs/11.jpg">
 
 
 	<div class = "container">
@@ -153,7 +124,7 @@
 					<input type="text" class="form-control" id="username"
 						name="username" />
 				</div>	
-			</div>
+			</div>   
 			
 			<!-- 密码 -->
 			<div class="form-group">
