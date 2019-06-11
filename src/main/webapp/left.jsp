@@ -202,14 +202,14 @@ a {
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="FenleiServlet?action=showFenleiByPage" target="right"><input
+						href="fenleis" target="right"><input
 							type="button" value="查看分类" id="btn2" /></a></li>
 				</ul>
-				<ul>
+				<!-- <ul>
 					<li><span class="ui-icon ui-icon-pencil"></span><a
 						href="updateFenlei.jsp" target="right"><input type="button"
 							value="修改分类" id="btn3" /></a></li>
-				</ul>
+				</ul> -->
 			</div>
 			<h3>图书管理</h3>
 			<!-- <div id="changeBook"> -->
