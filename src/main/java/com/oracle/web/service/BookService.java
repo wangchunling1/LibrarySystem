@@ -12,7 +12,7 @@ public interface BookService {
 
 	int save(Book book);
 
-	void delete(Book book);
+	//void delete(Book book);
 
 	Book queryOneBook(Integer id);
 
@@ -22,7 +22,11 @@ public interface BookService {
 
 	Book queryOne(String bname);
 
-	List<Book> showBookByIds(String[] arr);
+	List<Book> queryBooks(String[] arr);
+
+	List<Book> list2();
+
+	void delete1(String[] arr);
 	
 
 }

@@ -36,13 +36,13 @@ public class BookServiceImpl implements BookService {
 		return this.bookMapper.insert(book);
 	}
 
-	@Override
-	@Transactional
-	public void delete(Book book) {
-		// TODO Auto-generated method stub
-		this.bookMapper.deleteByPrimaryKey(book.getId());
-
-	}
+//	@Override
+//	@Transactional
+//	public void delete(Book book) {
+//		// TODO Auto-generated method stub
+//		this.bookMapper.deleteByPrimaryKey(book.getId());
+//
+//	}
 
 	@Override
 	@Transactional
@@ -96,9 +96,25 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
-	public List<Book> showBookByIds(String[] arr) {
+	public List<Book> queryBooks(String[] arr) {
 		// TODO Auto-generated method stub
-		return this.bookMapper.showBookByIds(arr);
+		
+		return this.bookMapper.queryBooks(arr);
+	}
+
+	@Override
+	@Transactional
+	public List<Book> list2() {
+		// TODO Auto-generated method stub
+		return this.bookMapper.selectAll2();
+	}
+
+	@Override
+	@Transactional
+	public void delete1(String[] arr) {
+		// TODO Auto-generated method stub
+		
+	this.bookMapper.deleteByPrimaryKey(arr);
 	}
 
 }
