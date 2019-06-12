@@ -50,6 +50,10 @@ public interface FenleiMapper {
 
 	List<Fenlei> showfenleiByIds(String[] arr);
 
+	List<Fenlei> showfenleiById(String[] arr);
+
+	List<Fenlei> selectAll2();
+
 
 
 	

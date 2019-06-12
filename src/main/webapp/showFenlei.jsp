@@ -85,7 +85,7 @@ $(function(){
 			};
 			
 			//导出所有用户信息
-			var OutAll = document.getElementById("OutAll");
+			/* var OutAll = document.getElementById("OutAll");
 			OutAll.onclick = function() {
 				var flag2 = confirm("您确定要导出所有用户信息吗？");
 				if (flag2) {//真的话执行
@@ -128,7 +128,101 @@ $(function(){
 			};
 
 	};
+	 */
+	 
+	 
+	 
+	 
+	 
+	 
+	 var  outAll=document.getElementById("OutAll");
+		
+		outAll.onclick=function(){
+		
+			var flag=confirm("你确定导出所有用户信息吗？");
+			
+			if(flag){
+			
+				window.location.href="http://localhost:8080/LibrarySystem/OutAll "
+			
+			}
+		
+		};
+		
+		var outSelect=document.getElementById("OutSelect");
+		
+		outSelect.onclick=function(){
+			
+			var chek=document.getElementsByName("ids");
+			
+			var flag = false;
+
+
+			for (i = 0; i < chek.length; i++) {
+
+
+				if (chek[i].checked == true) {
+				
+					flag = true;
+					
+					break;
+				}
+			}
+
+
+			if (flag == false) {
+				
+				alert("请至少选一项");
+				
+				return;
+
+
+			} else {    
+				
+				var str = "";
+
+
+				for (var i = 0; i < chek.length; i++) {
+
+
+					if (chek[i].checked == true) {
+
+
+						str += chek[i].value + ",";
+
+
+					}
+				}
+				
+				str = str.slice(0, str.length - 1);
+				
+				var flag = confirm("你确定导出选中的用户信息？");
+				
+				if (flag) {//确定
+					
+					
+					window.location.href = "http://localhost:8080/LibrarySystem/OutSelect/"+str;
+
+
+				}
+			}
+			
+		};
+
+
+	};
 	
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	$(function() {
 
 		$("tr:even").css("background-color", "transparent");

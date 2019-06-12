@@ -70,7 +70,7 @@
   	SELECT COUNT(*) FROM Fenlei
   </select>
   
-  <delete id="showFenleiByIds" parameterType="java.lang.Integer">
+  <!-- <delete id="showFenleiByIds" parameterType="java.lang.Integer">
 
     delete from fenlei where 
     <foreach collection="array" item="ids" open="(" separator=","
@@ -78,4 +78,23 @@
 			#{ids}
 		</foreach>
   </delete>
+  -->
+  <select id="showfenleiById" parameterType="java.lang.String" resultMap="BaseResultMap">
+  
+   select * from fenlei where id in
+   
+  <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+    
+   #{arr}
+	
+  </foreach>
+  
+  </select>
+  
+  <select id="selectAll2" resultMap="BaseResultMap">
+  
+  select * from fenlei
+  
+  </select>
+ 
 </mapper>
