@@ -10,8 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- 3.导入核心的CSS文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css"
-	href="bootstrap/css/bootstrapValidator.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrapValidator.css" />
 <!-- 4.需要引入jQuery文件 -->
 <script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
 <script type="text/javascript" src="bootstrap/js/ajax.js"></script>

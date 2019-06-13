@@ -89,7 +89,7 @@ public class FenleiHandler {
 	
 	
 
-	@RequestMapping(value = "add",method = RequestMethod.POST)
+	@RequestMapping(value = "add1",method = RequestMethod.POST)
 	public String add(Fenlei fenlei){
 		
 		int i = fenleiService.save(fenlei);

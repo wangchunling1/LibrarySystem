@@ -159,7 +159,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-	<form action="add" method="post" class="form-horizontal">
+	<form action="add1" method="post" class="form-horizontal">
 		<br>
 					<br>
 						<h1 class="text-center text-danger"><font face="幼圆">添加分类</font></h1>
