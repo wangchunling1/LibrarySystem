@@ -16,9 +16,9 @@ public interface UserService {
 
 	User selectOne(Integer id);
 
-	void delete(String ids);
+       void delete(String ids);
 
-	void updateTouxiang(User user);
+      void   updateTouxiang(User user);
 
 	void updateUser(User user);
 

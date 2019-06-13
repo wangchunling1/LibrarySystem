@@ -58,7 +58,7 @@
 					  }
 				  },
 				  
-				 /* userName:{
+				userName:{
 					  validators:{
 						  notEmpty:{
 							  message:'用户名不能为空'
@@ -104,6 +104,7 @@
 				  repassword:{
 					  validators:{
 						  notEmpty:{
+							  
 							  message:'确认密码不能为空'
 						  },
 						  identical:{
@@ -112,7 +113,7 @@
 						  }
 						  
 					  }
-				  },*/
+				  },
 				  touxiang : {
 
 						validators : {
@@ -157,7 +158,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form id="login" action="add" method="post" enctype="multipart/form-data" >
+				<form id="login" action="add1" method="post" enctype="multipart/form-data" >
 					<h3 class="text-center text-success">添加用户</h3>
 					<div class="form-group">
 						<label>头&nbsp;&nbsp;&nbsp;&nbsp;像:&nbsp;&nbsp;</label>

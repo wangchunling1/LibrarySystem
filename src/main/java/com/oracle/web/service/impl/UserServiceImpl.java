@@ -1,6 +1,9 @@
 package com.oracle.web.service.impl;
 
 import java.util.ArrayList;
+
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,24 +30,29 @@ public class UserServiceImpl implements UserService {
 	
 //分页
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public pageBean<User> showByPage(Integer pageNow) {
+
 		pageBean<User> pb = new pageBean<User>();
 		
-		PageHelper.startPage(pageNow,5);
+		int pageSize = 8;
+
+		pb.setPageNow(pageNow);
+
+		pb.setPageSize(pageSize);
 		
-		List<User> list = this.userMapper.selectBypage();
+		//查看有多少条
+		int sum=userMapper.selectCount();
+		
+		pb.setCounts(sum);
+		
+		//从第几条开始
+		int index=(pageNow-1)*pageSize;
+		
+		List<User> list=this.userMapper.showByPage(index);
 		
 		pb.setBeanList(list);
-		// 查看有多少条
-		PageInfo<User> pi = new PageInfo<User>(list);
 		
-		pb.setCounts((int)pi.getTotal());
-		
-		pb.setPageNow(pi.getPageNum());
-		
-		pb.setPageSize(pi.getPageSize());
-
 		return pb;
 
 	}
@@ -63,6 +71,9 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User selectOne(Integer id) {
 		// TODO Auto-generated method stub
+	
+		
+	
 		return this.userMapper.selectByPrimaryKey(id);
 	}
 //删除
@@ -92,7 +103,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		this.userMapper.updateUserByPrimaryKey(user);
+		this.userMapper.updateByPrimaryKey(user);
 	}
 //导出
 	@Override
@@ -132,7 +143,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void updateTouxiang(User user) {
 		// TODO Auto-generated method stub
-		this.userMapper.updateTouxiangByPrimaryKey(user);
+		this.userMapper.updateByPrimaryKey(user);
 	}
 
 }
