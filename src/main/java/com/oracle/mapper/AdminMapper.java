@@ -1,23 +1,30 @@
 package com.oracle.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.oracle.web.bean.Admin;
-import java.util.List;
+
+
 
 public interface AdminMapper {
 
-	int deleteByPrimaryKey(Integer id);
+	
+	int save(Admin admin);//保存
+	
+	Admin login(String userName);//登录
+	
+	Admin queryOne(String userName);//单个查询
+	
+	Admin selectByPrimaryKey(String userName);//查看管理员
 
-	int insert(Admin record);
+	Admin queryByPassword(Admin admin);//密码
+	
+	//修改密码
 
-	Admin selectByPrimaryKey(Integer id);
+	Admin changePassword(@Param("userName") String userName, @Param("password") String newpassword);
+	
+	
+	
+	
 
-	List<Admin> selectAll();
-
-	int updateByPrimaryKey(Admin record);
-
-	int save(Admin admin);
-
-	Admin queryOne(String userName);
-
-	Admin login(Admin admin);
 }

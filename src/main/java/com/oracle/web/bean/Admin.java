@@ -3,9 +3,7 @@ package com.oracle.web.bean;
 public class Admin {
 	
 	private Integer id;
-
-	private String touxiang;
-
+	
 	
 	private String name;
 
@@ -13,38 +11,47 @@ public class Admin {
 	private String phone;
 
 	
-	private String username;
+	private String userName;
 
 	
 	private String password;
 
-	
+
+	public Admin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Admin(Integer id, String name, String phone, String userName, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.userName = userName;
+		this.password = password;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	
-	public String getTouxiang() {
-		return touxiang;
-	}
-
-
-	public void setTouxiang(String touxiang) {
-		this.touxiang = touxiang == null ? null : touxiang.trim();
-	}
 
 	public String getName() {
 		return name;
 	}
 
-	
+
 	public void setName(String name) {
-		this.name = name == null ? null : name.trim();
+		this.name = name;
 	}
+
 
 	public String getPhone() {
 		return phone;
@@ -52,31 +59,35 @@ public class Admin {
 
 
 	public void setPhone(String phone) {
-		this.phone = phone == null ? null : phone.trim();
+		this.phone = phone;
 	}
 
-	public String getUsername() {
-		return username;
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username == null ? null : username.trim();
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	
+
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
-		this.password = password == null ? null : password.trim();
+		this.password = password;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", touxiang=" + touxiang + ", name=" + name + ", phone=" + phone + ", username="
-				+ username + ", password=" + password + "]";
+		return "Admin [id=" + id + ", name=" + name + ", phone=" + phone + ", userName=" + userName + ", password="
+				+ password + "]";
 	}
-	
+
 	
 }

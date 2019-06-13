@@ -14,36 +14,32 @@
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
-
 <script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
 	
 </script>
 <title>登录</title>
 </head>
-<body background="imgs/11.jpg">
+<body background="imgs/l.jpg">
 
-
-	<div class="container">
-
+<div class="container">
 
 		<h1 align="center">图书管理系统----管理员登录</h1>
 		<hr width="1000px">
 		<form action="login" class="form-horizontal" method="post">
 
-
 			<!-- 用户名 -->
 			<div class="form-group">
-				<label for="username" class="col-sm-4 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+				<label for="userName" class="col-sm-4 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="username"
-						name="username" />
+					<input type="text" class="form-control" id="userName"
+						name="userName" />
 				</div>
 			</div>
 
-
 			<!-- 密码 -->
 			<div class="form-group">
+			
 				<label for="password" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 				<div class="col-sm-4">
 					<input type="password" class="form-control" id="password"
@@ -51,20 +47,17 @@
 				</div>
 			</div>
 
-
 			<div class="form-group">
 				<div class="col-sm-offset-5 col-sm-4">
 					<button type="submit" class="btn btn-info">点击登录</button>
 				</div>
 			</div>
 
-
 		</form>
 		<div class="col-sm-offset-5 col-sm-4">
 			<a href="zhuce.jsp">还不是管理员？点击注册</a>
 		</div>
 	</div>
-
 
 </body>
 </html>
