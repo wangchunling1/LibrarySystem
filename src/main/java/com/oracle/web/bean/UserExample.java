@@ -2,13 +2,13 @@ package com.oracle.web.bean;
 
 import java.util.ArrayList;
 
-
 import java.util.List;
 
 public class UserExample {
     protected String orderByClause;
 
     protected boolean distinct;
+
     protected List<Criteria> oredCriteria;
 
     public UserExample() {
@@ -135,8 +135,8 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andUidLessThan(Integer value) {
+            addCriterion("uid <", value, "uid");
             return (Criteria) this;
         }
 
@@ -260,7 +260,7 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUsernameGreaterThanOrEqualTo(String value) {
+        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
             addCriterion("userName >=", value, "userName");
             return (Criteria) this;
         }
@@ -500,7 +500,7 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<String> values) {
+        public Criteria andTtimeNotIn(List<String> values) {
             addCriterion("time not in", values, "time");
             return (Criteria) this;
         }

@@ -40,7 +40,7 @@ public class  UserHandler{
 	
 	
 //添加用户
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(value="/add1", method=RequestMethod.POST)
 
 	public String add(MultipartFile touxiang,String name,String userName,String password,String phone,String time,HttpSession session ) throws IllegalStateException, IOException {
 		String realPath = session.getServletContext().getRealPath("/upload");
@@ -91,7 +91,7 @@ public class  UserHandler{
 			
 			System.out.println("添加失败");
 
-			return "addUser.jsp";
+			return "addUser";
 		}
 	
 
@@ -126,6 +126,8 @@ public class  UserHandler{
 	@RequestMapping(value= "/updateUser/{id}", method=RequestMethod.GET)
 	public String updateUser(@PathVariable(value="id") Integer id,Integer pageNow, HttpSession session) {
 
+		
+		//System.out.println("ok");
 	User user =this.userService.selectOne(id);
 	
 		 System.out.println(user);
@@ -264,29 +266,29 @@ public class  UserHandler{
 						cell1.setCellStyle(style1);
 						cell1.setCellValue(user.getId());
 
-						HSSFCell cell7 = row1.createCell(1);
-						cell7.setCellStyle(style1);
-						cell7.setCellValue(user.getTouxiang());
-						
-						HSSFCell cell2 = row1.createCell(2);
+						HSSFCell cell2 = row1.createCell(1);
 						cell2.setCellStyle(style1);
-						cell2.setCellValue(user.getName());
-
-						HSSFCell cell3 = row1.createCell(3);
+						cell2.setCellValue(user.getTouxiang());
+						
+						HSSFCell cell3 = row1.createCell(2);
 						cell3.setCellStyle(style1);
-						cell3.setCellValue(user.getUserName());
+						cell3.setCellValue(user.getName());
 
-						HSSFCell cell4 = row1.createCell(4);
+						HSSFCell cell4 = row1.createCell(3);
 						cell4.setCellStyle(style1);
-						cell4.setCellValue(user.getPassword());
+						cell4.setCellValue(user.getUserName());
 
-						HSSFCell cell5 = row1.createCell(5);
+						HSSFCell cell5 = row1.createCell(4);
 						cell5.setCellStyle(style1);
-						cell5.setCellValue(user.getPhone());
+						cell5.setCellValue(user.getPassword());
 
-						HSSFCell cell6 = row1.createCell(6);
+						HSSFCell cell6 = row1.createCell(5);
 						cell6.setCellStyle(style1);
-						cell6.setCellValue(user.getTime());
+						cell6.setCellValue(user.getPhone());
+
+						HSSFCell cell7 = row1.createCell(6);
+						cell7.setCellStyle(style1);
+						cell7.setCellValue(user.getTime());
 
 					}
 					 

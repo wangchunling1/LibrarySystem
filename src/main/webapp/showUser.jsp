@@ -202,6 +202,15 @@ window.onload = function() {
 <body>
 	<div class="container">
 		<h1 align="center">查看用户</h1>
+		<div class="container-fluid" id="div1">
+		<c:if test="${!empty mag }">
+			<script>
+				alert("${mag }");
+			</script>
+		</c:if>
+		<c:remove var="mag" />
+
+		<div class="col col-md-8 " id="div3">
 		<ul class="nav nav-tabs">
 			<li role="presentation" class="active"><a id="selectAll"
 					href="#">全选</a></li>
@@ -213,14 +222,16 @@ window.onload = function() {
 		</ul>
 			<tr>
 				<th>用户编号</th>
+				    <th>id</th>
 				<th>用户头像</th>
 				<th>用户姓名</th>
 				<th>用户名</th>
 				<th>密码</th>
 				<th>手机号</th>
 				<th>注册时间</th>
-				<th>点击删除</th>
-				<th>点击修改</th>
+				<td><button id="dfd">删除</button></td>
+								
+								
 			</tr>
 			<c:forEach items="${pb.beanList }"  var="u" varStatus="u1">
 				<tr>
