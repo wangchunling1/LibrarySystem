@@ -27,6 +27,8 @@ public interface FenleiService {
 
 	List<Fenlei> list2();
 
+	void delete1(String[] arr);
+
 
 	
 
