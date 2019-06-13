@@ -121,7 +121,7 @@ a {
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="users" target="right"><input
+						href="showUserByPage" target="right"><input
 							type="button" value="查看用户" id="btn7" /></a></li>
 				</ul>
 			</div>
