@@ -266,16 +266,16 @@ $(function(){
 
 							<!-- 隐藏域，用来传递action -->
 
-							<input type="hidden" name="action" value="findBookByWhere">
+							<input type="hidden" name="action" value="bookByWhere">
 
 							<div class="form-group">
 								<br> <label class="col-sm-4 control-label">选择分类：
 								</label>
 								<div class="controls col-sm-6">
 									<select name="book.fenlei.name" class="form-control  input-sm"
-										id="fList">
+										id="flist">
 										<option value="0">----请选择----</option>
-										<c:forEach items="${fList }" var="fenlei">
+										<c:forEach items="${flist }" var="fenlei">
 											<option>${fenlei.name}</option>
 										</c:forEach>
 									</select><br>
@@ -334,7 +334,6 @@ $(function(){
 						<td>图书出版社</td>
 						<td>状态</td>
 						<td>借书人</td>
-						<td>删除</td>
 						<td>修改</td>
 					</tr>
 					<c:forEach items="${pb.beanList }" var="q" varStatus="s">
@@ -347,7 +346,6 @@ $(function(){
 							<td>${q.chuban }</td>
 							<td>${q.zhuangtai }</td>
 							<td>${q.jieshuren }</td>
-							<%-- <td><a href="book/${q.id }" class="deleteId btn btn-danger">删除</a></td> --%>
 							<td><a href="book/${q.id }"><input type="submit" value="修改" class="btn btn-warning" /></a></td>
 						</tr>
 					</c:forEach>

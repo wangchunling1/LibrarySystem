@@ -28,4 +28,6 @@ public interface BookMapper {
 	List<Book> selectAll2();
 
 	int deleteByPrimaryKey(String[] arr);
+
+	List<SubBook> selectAllByPageAndWhere(Book where);
 }

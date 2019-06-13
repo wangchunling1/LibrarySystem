@@ -117,4 +117,31 @@ public class BookServiceImpl implements BookService {
 	this.bookMapper.deleteByPrimaryKey(arr);
 	}
 
+	@Override
+	public pageBean<SubBook> selectAllByPageAndWhere(Book where, int pageNow) {
+		// TODO Auto-generated method stub
+		pageBean<SubBook> pb = new pageBean<SubBook>();
+
+		// 当前页的数据
+		PageHelper.startPage(pageNow, 5);
+
+		// 已经是分页好的数据了
+		List<SubBook> list = this.bookMapper.selectAllByPageAndWhere(where);
+
+		pb.setBeanList(list);
+
+		// 总记录数
+		PageInfo<SubBook> pi = new PageInfo<SubBook>(list);
+
+		pb.setCounts((int) pi.getTotal());
+
+		// 当前页
+		pb.setPageNow(pi.getPageNum());
+
+		// 每页显示的条数，自定义
+		pb.setPageSize(pi.getPageSize());
+
+		return pb;
+	}
+
 }

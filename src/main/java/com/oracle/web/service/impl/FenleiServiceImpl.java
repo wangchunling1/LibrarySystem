@@ -98,4 +98,17 @@ public class FenleiServiceImpl implements FenleiService {
 		return this.fenleiMapper.showfenleiByIds(arr);
 	}
 
+	@Override
+	public List<Fenlei> showFenleiByIds(String[] arr) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.showfenleiById(arr);
+	}
+
+	@Override
+	public List<Fenlei> list2() {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.selectAll2();
+	}
+
+
 }

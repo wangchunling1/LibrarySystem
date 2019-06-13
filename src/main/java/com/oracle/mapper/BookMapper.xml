@@ -114,5 +114,34 @@
    	
    	select * from book
    </select>
+   
+   <select id="selectAllByPageAndWhere" resultMap="SubBookResultMap">
+   	
+   	select * from book
+   	
+   	<where>
+   		
+   		<if test="fId != 0">
+   			and f_id = #{fId,jdbcType=INTEGER}
+   		</if>
+   		<if test="bname != null and bname != ''">
+   			
+   			AND bname LIKE COUNT(CONCAT('%',#{bname,jdbcType=VARCHAR},'%'))
+   		</if>
+   		<if test="chuban != null and chuban != ''">
+   			
+   			AND chuban LIKE COUNT(CONCAT('%',#{chuban,jdbcType=VARCHAR},'%'))
+   		</if>
+   		<if test="jieshuren != null and jieshuren != ''">
+   			
+   			AND jieshuren LIKE COUNT(CONCAT('%',#{jieshuren,jdbcType=VARCHAR},'%'))
+   		</if>
+   		<if test="zhuangtai != null and zhuangtai != ''">
+   			
+   			AND zhuangtai LIKE COUNT(CONCAT('%',#{zhuangtai,jdbcType=VARCHAR},'%'))
+   		</if>
+   	</where>
+   	order by id ASC
+   </select>
     
 </mapper>

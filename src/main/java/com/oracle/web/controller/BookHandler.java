@@ -1,19 +1,13 @@
 package com.oracle.web.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -180,7 +174,7 @@ public class BookHandler {
 		
 		List<Book> list = bookService.queryBooks(arr);
 		
-		System.out.println(list);
+		//System.out.println(list);
 
 		String key = "选择";
 
@@ -493,6 +487,50 @@ public class BookHandler {
 
 		return null;
 
+	}
+	
+	@RequestMapping(value="/bookByWhere/{pageNow}",method=RequestMethod.GET)
+	public String ByWhere(Book where,@PathVariable("pageNow") int pageNow,HttpServletRequest request){
+		
+		String url = this.getURL2(request);
+		
+		pageBean<SubBook> pb = bookService.selectAllByPageAndWhere(where,pageNow);
+		
+		pb.setUrl(url);
+		
+		request.setAttribute("pb", pb);
+		
+		List<Fenlei> list = fenleiService.list();
+		
+		request.setAttribute("flist", list);
+		
+		return "showBook2";
+	}
+	
+    private String getURL2(HttpServletRequest req) {
+		
+        String url=this.getURL(req);
+		
+	    int index=url.lastIndexOf("/");
+	    
+	    if(index==-1){
+	    	
+	    	return url;
+	    }
+
+		return url.substring(index+3);
+	}
+
+	private String getURL(HttpServletRequest req) {
+		
+        String path=req.getContextPath();///LibrarySystem
+		
+		String servlet=req.getServletPath();// BookServlet 
+		
+		String param=req.getQueryString();		
+		
+		return path+servlet+"?"+param;
+		
 	}
 	
 }

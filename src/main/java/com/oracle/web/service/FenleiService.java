@@ -23,6 +23,13 @@ public interface FenleiService {
 
 	List<Fenlei> showfenleiByIds(String[] arr);
 
+	List<Fenlei> showFenleiByIds(String[] arr);
+
+	List<Fenlei> list2();
+
+
+	
+
 	
 
 

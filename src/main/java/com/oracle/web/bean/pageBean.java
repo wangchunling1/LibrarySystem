@@ -13,6 +13,8 @@ public class pageBean<T> implements Serializable{
 	
 	private int pageSize;
 	
+	private String url;
+	
 	private List<T> beanList;
 
 	public pageBean() {
@@ -51,6 +53,14 @@ public class pageBean<T> implements Serializable{
 		this.pageSize = pageSize;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public List<T> getBeanList() {
 		return beanList;
 	}
@@ -61,7 +71,7 @@ public class pageBean<T> implements Serializable{
 
 	@Override
 	public String toString() {
-		return "pageBeen [pageNow=" + pageNow + ", counts=" + counts + ", pageSize=" + pageSize
+		return "pageBean [pageNow=" + pageNow + ", counts=" + counts + ", pageSize=" + pageSize + ", url=" + url
 				+ ", beanList=" + beanList + "]";
 	}
 

@@ -27,6 +27,8 @@ public interface BookService {
 	List<Book> list2();
 
 	void delete1(String[] arr);
+
+	pageBean<SubBook> selectAllByPageAndWhere(Book where, int pageNow);
 	
 
 }

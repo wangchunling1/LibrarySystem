@@ -45,6 +45,14 @@
 
 					}
 				},
+				chuban : {
+					validators : {
+						
+						notEmpty : {
+							message : '出版社不能为空'
+						}
+					}
+				},
 			  bname:{
 				  
 				  validators :{
