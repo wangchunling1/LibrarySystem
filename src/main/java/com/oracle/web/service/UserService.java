@@ -2,29 +2,40 @@ package com.oracle.web.service;
 
 import java.util.List;
 
+
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.oracle.web.bean.pageBean;
 
 import com.oracle.web.bean.User;
 
 public interface UserService {
 
-	int save(User user);
+	int addUser(User user);
 
-	void update(User user);
+	User selectOne(Integer id);
 
-	void delete(User u);
+       void delete(String ids);
 
-	User queryOneUser(Integer id);
+      void   updateTouxiang(User user);
 
-	pageBean<User> selectAllPage(Integer pageNow);
+	void updateUser(User user);
 
-	List<User> list();
+	pageBean<User> showByPage(Integer pageNow);
 
-	pageBean<User> selectByPage(Integer pageNow, int pageSize);
+	List<User> outPutUserAll();
 
-	void updateTouxiang(User user);
+	List<User> outPutUserIds(String ids);
 
-	int saveTouxiang(User user);
+	User validateUser(String userName);
+
+	
+
+	
+
+
+
 
 
 

@@ -43,4 +43,18 @@ public interface FenleiMapper {
 	 * @mbg.generated Tue May 07 15:52:21 CST 2019
 	 */
 	int updateByPrimaryKey(Fenlei record);
+
+	Fenlei findfenlei(String name);
+
+	List<Fenlei> showByPage();
+
+	List<Fenlei> showfenleiByIds(String[] arr);
+
+	List<Fenlei> showfenleiById(String[] arr);
+
+	List<Fenlei> selectAll2();
+
+
+
+	
 }

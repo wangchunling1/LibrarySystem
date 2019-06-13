@@ -45,6 +45,14 @@
 
 					}
 				},
+				chuban : {
+					validators : {
+						
+						notEmpty : {
+							message : '出版社不能为空'
+						}
+					}
+				},
 			  bname:{
 				  
 				  validators :{
@@ -65,7 +73,7 @@
 						remote:{
 						  message:'该图书已被添加，请重新输入',
 						  
-						  url:"validate",
+						  url:"validate1",
 						
 						  type:'post',
 						  

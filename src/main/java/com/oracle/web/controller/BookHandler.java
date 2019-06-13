@@ -2,18 +2,25 @@ package com.oracle.web.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStream;
 import java.util.List;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -28,62 +35,13 @@ import com.oracle.web.bean.SubBook;
 import com.oracle.web.bean.pageBean;
 import com.oracle.web.service.BookService;
 import com.oracle.web.service.FenleiService;
+import com.oracle.web.test.DownUtils;
 
 @Controller
 @Scope(value = "prototype")
 public class BookHandler {
 
 	private static final String NONE = null;
-	
-	private String filename;//页面传过来的文件名
-
-	private String contentType;//文件MIME类型
-	
-	private long contentLength;//文件的大小
-	
-	private String contentDisposition;//下载弹出的信息
-	
-	private InputStream inputStream;//一个输入流
-
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public long getContentLength() {
-		return contentLength;
-	}
-
-	public void setContentLength(long contentLength) {
-		this.contentLength = contentLength;
-	}
-
-	public String getContentDisposition() {
-		return contentDisposition;
-	}
-
-	public void setContentDisposition(String contentDisposition) {
-		this.contentDisposition = contentDisposition;
-	}
-
-	public InputStream getInputStream() {
-		return inputStream;
-	}
-
-	public void setInputStream(InputStream inputStream) {
-		this.inputStream = inputStream;
-	}
 
 	@Autowired
 	private BookService bookService;
@@ -101,11 +59,11 @@ public class BookHandler {
 //		return "showBook2";
 //	}
 
-	@RequestMapping(value = "validate")
+	@RequestMapping(value = "validate1")
 	@ResponseBody
-	public String queryByBname(String bname,HttpServletResponse response) throws IOException{
+	public String queryByName(String bname,HttpServletResponse response) throws IOException{
 
-		System.out.println(bname);
+		//System.out.println(bname);
 
 		Book b =bookService.queryOne(bname);
 
@@ -143,14 +101,28 @@ public class BookHandler {
 		return "redirect:/books";
 	}
 
+//	@RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
+//	public String delete(@PathVariable("id") Integer id) {
+//
+//		Book book = new Book();
+//
+//		book.setId(id);
+//
+//		bookService.delete(book);
+//
+//		return "redirect:/books";
+//	}
+	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable("id") Integer id) {
+	public String delete(@PathVariable("id") String ids) {
 
-		Book book = new Book();
-
-		book.setId(id);
-
-		bookService.delete(book);
+		String[] arr = ids.split(",");
+		
+		for(String str : arr){
+			
+			System.out.println(str);
+		}
+		bookService.delete1(arr);
 
 		return "redirect:/books";
 	}
@@ -194,52 +166,371 @@ public class BookHandler {
 		
 	}
 	
-	List<Book> list = null;
+	@RequestMapping(value = "/outSelect/{ids}", method = RequestMethod.GET)
+	public String outSelect(@PathVariable("ids") String ids, HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 
-	String key = "";
-
-	private GenericServlet ServletActionContext;
-	
-	@RequestMapping(value="/all",method=RequestMethod.GET)
-	public String All(){
-		
-		list = bookService.list();
-		
-		return "redirect:/books";
-	}
-	
-	@RequestMapping(value="/select",method=RequestMethod.GET)
-	public String Select(String ids, HttpServletRequest request){
-		
 		String[] arr = ids.split(",");
+		
+		List<Book> list = bookService.queryBooks(arr);
+		
+		//System.out.println(list);
 
-		list = bookService.showBookByIds(arr);
+		String key = "选择";
 
-		return "redirect:/books";
+		// 1.创建一个工作簿
+
+		HSSFWorkbook workbook = new HSSFWorkbook();
+
+		// 2.创建一个工作表
+
+		HSSFSheet sheet = workbook.createSheet("图书信息表");
+
+		// HSSFSheet sheet2 = workbook.createSheet();
+
+		// 设置单元格的宽度,
+
+		sheet.setColumnWidth(4, 15 * 256);
+
+		// 3.创建行，并在行中写入数据（表头）
+
+		// 创建一个样式对象
+
+		HSSFCellStyle style = workbook.createCellStyle();
+
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 居中
+
+		HSSFFont font = workbook.createFont();// 设置字体样式的
+
+		font.setBold(true);
+
+		font.setColor(HSSFColor.BLUE.index);
+
+		style.setFont(font);
+
+		String[] title = { "图书编号", "图书名称", "图书价格", "出版社", "图书状态", "借书人", "分类编号" };
+
+		HSSFRow row = sheet.createRow(0);// 从0开始,第一行
+
+		for (int i = 0; i < title.length; i++) {
+
+			HSSFCell cell = row.createCell(i);// 0 1 2 3 4
+
+			cell.setCellStyle(style);
+
+			cell.setCellValue(title[i]);
+
+		}
+
+		// 4.把list里面的数据放进去
+
+		// List<Fenlei> list =
+		// FenleiServiceFactory.getFenleiServiceImpl().showFenlei();
+
+		// 在创建一个样式对象
+
+		HSSFCellStyle style2 = workbook.createCellStyle();
+
+		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+		// 要几行？
+
+		for (int i = 0; i < list.size(); i++) {// 循环几次创建几行
+
+			HSSFRow row2 = sheet.createRow(i + 1);// 从第二行开始 1 2 3 4 5
+
+			Book b = list.get(i);
+
+			HSSFCell cell1 = row2.createCell(0);
+
+			cell1.setCellStyle(style2);
+
+			cell1.setCellValue(b.getId());
+
+			HSSFCell cell2 = row2.createCell(1);
+
+			cell2.setCellStyle(style2);
+
+			cell2.setCellValue(b.getBname());
+
+			HSSFCell cell3 = row2.createCell(2);
+
+			cell3.setCellStyle(style2);
+
+			cell3.setCellValue(b.getPrice());
+
+			HSSFCell cell4 = row2.createCell(3);
+
+			cell4.setCellStyle(style2);
+
+			cell4.setCellValue(b.getChuban());
+			
+			HSSFCell cell5 = row2.createCell(4);
+			
+			cell5.setCellStyle(style2);
+
+			cell5.setCellValue(b.getZhuangtai());
+
+			HSSFCell cell6 = row2.createCell(5);
+
+			cell6.setCellStyle(style2);
+
+			cell6.setCellValue(b.getJieshuren());
+
+			HSSFCell cell7 = row2.createCell(6);
+			
+			cell7.setCellStyle(style2);
+
+			cell7.setCellValue(b.getfId());
+
+		}
+
+		// 内存，把数据输出到硬盘
+
+		File f = new File("图书信息表.xls");
+
+		OutputStream outputStream = new FileOutputStream(f);
+
+		workbook.write(outputStream);// 把工作簿的内容输出到person.xls里面
+
+		// 响应该浏览器
+
+		String file = f.getName();// "person.xls"
+
+		// System.out.println(file);
+
+		String mime = req.getSession().getServletContext().getMimeType(file);
+
+		String fileName = DownUtils.filenameEncoding(key + f.getName(), req);
+
+		String disposition = "attachment;filename=" + fileName;
+
+		// 设置两个响应头信息即可 (两个头)，告诉浏览器，我这个东西是下载的
+
+		resp.setHeader("Content-Type", mime);
+
+		resp.setHeader("Content-DisPosition", disposition);
+
+		// 一个流 （两个流）
+
+		// 把文件加载到内存
+
+		InputStream inputStream = new FileInputStream(file);
+
+		// 把流输出给浏览器
+
+		ServletOutputStream out = resp.getOutputStream();
+
+		// 复制
+
+		IOUtils.copy(inputStream, out);
+
+		return null;
+
 	}
 
+	//导出全部
+	
+	@RequestMapping(value = "/outAll", method = RequestMethod.GET)
+	public String outAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-	@RequestMapping(value="/down")
-	public String download() throws FileNotFoundException, UnsupportedEncodingException{
-		
-		ServletContext context=ServletActionContext.getServletContext();
-		
-		contentType=context.getMimeType(filename);
-		
-		String path=context.getRealPath("/downloads/"+filename);
-		
-		path=new String(path.getBytes("ISO-8859-1"),"UTF-8");
-		
-		System.out.println(path);
-		
-		contentLength=new File(path).length();
-		
-		contentDisposition="attachment;filename="+filename;
-		
-		inputStream = new FileInputStream(path);
-		
-		return "books";
+		List<Book> list = bookService.list2();
+
+		String key = "全部";
+
+		// 1.创建一个工作簿
+
+		HSSFWorkbook workbook = new HSSFWorkbook();
+
+		// 2.创建一个工作表
+
+		HSSFSheet sheet = workbook.createSheet("图书信息表");
+
+		// HSSFSheet sheet2 = workbook.createSheet();
+
+		// 设置单元格的宽度,
+
+		sheet.setColumnWidth(4, 15 * 256);
+
+		// 3.创建行，并在行中写入数据（表头）
+
+		// 创建一个样式对象
+
+		HSSFCellStyle style = workbook.createCellStyle();
+
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 居中
+
+		HSSFFont font = workbook.createFont();// 设置字体样式的
+
+		font.setBold(true);
+
+		font.setColor(HSSFColor.BLUE.index);
+
+		style.setFont(font);
+
+		String[] title = { "图书编号", "图书名称", "图书价格", "出版社", "图书状态", "借书人", "分类编号" };
+
+		HSSFRow row = sheet.createRow(0);// 从0开始,第一行
+
+		for (int i = 0; i < title.length; i++) {
+
+			HSSFCell cell = row.createCell(i);// 0 1 2 3 4
+
+			cell.setCellStyle(style);
+
+			cell.setCellValue(title[i]);
+
+		}
+
+		// 4.把list里面的数据放进去
+
+		// List<Fenlei> list =
+		// FenleiServiceFactory.getFenleiServiceImpl().showFenlei();
+
+		// 在创建一个样式对象
+
+		HSSFCellStyle style2 = workbook.createCellStyle();
+
+		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+		// 要几行？
+
+		for (int i = 0; i < list.size(); i++) {// 循环几次创建几行
+
+			HSSFRow row2 = sheet.createRow(i + 1);// 从第二行开始 1 2 3 4 5
+
+			Book b = list.get(i);
+
+			HSSFCell cell1 = row2.createCell(0);
+
+			cell1.setCellStyle(style2);
+
+			cell1.setCellValue(b.getId());
+
+			HSSFCell cell2 = row2.createCell(1);
+
+			cell2.setCellStyle(style2);
+
+			cell2.setCellValue(b.getBname());
+
+			HSSFCell cell3 = row2.createCell(2);
+
+			cell3.setCellStyle(style2);
+
+			cell3.setCellValue(b.getPrice());
+
+			HSSFCell cell4 = row2.createCell(3);
+
+			cell4.setCellStyle(style2);
+
+			cell4.setCellValue(b.getChuban());
+
+            HSSFCell cell5 = row2.createCell(4);
+			
+			cell5.setCellStyle(style2);
+
+			cell5.setCellValue(b.getZhuangtai());
+
+			HSSFCell cell6 = row2.createCell(5);
+
+			cell6.setCellStyle(style2);
+
+			cell6.setCellValue(b.getJieshuren());
+
+			HSSFCell cell7 = row2.createCell(6);
+
+			cell7.setCellStyle(style2);
+
+			cell7.setCellValue(b.getfId());
+
+		}
+
+		// 内存，把数据输出到硬盘
+
+		File f = new File("图书信息表.xls");
+
+		OutputStream outputStream = new FileOutputStream(f);
+
+		workbook.write(outputStream);// 把工作簿的内容输出到person.xls里面
+
+		// 响应该浏览器
+
+		String file = f.getName();// "person.xls"
+
+		// System.out.println(file);
+
+		String mime = req.getSession().getServletContext().getMimeType(file);
+
+		String fileName = DownUtils.filenameEncoding(key + f.getName(), req);
+
+		String disposition = "attachment;filename=" + fileName;
+
+		// 设置两个响应头信息即可 (两个头)，告诉浏览器，我这个东西是下载的
+
+		resp.setHeader("Content-Type", mime);
+
+		resp.setHeader("Content-DisPosition", disposition);
+
+		// 一个流 （两个流）
+
+		// 把文件加载到内存
+
+		InputStream inputStream = new FileInputStream(file);
+
+		// 把流输出给浏览器
+
+		ServletOutputStream out = resp.getOutputStream();
+
+		// 复制
+
+		IOUtils.copy(inputStream, out);
+
+		return null;
+
 	}
-   
+	
+	@RequestMapping(value="/bookByWhere/{pageNow}",method=RequestMethod.GET)
+	public String ByWhere(Book where,@PathVariable("pageNow") int pageNow,HttpServletRequest request){
+		
+		String url = this.getURL2(request);
+		
+		pageBean<SubBook> pb = bookService.selectAllByPageAndWhere(where,pageNow);
+		
+		pb.setUrl(url);
+		
+		request.setAttribute("pb", pb);
+		
+		List<Fenlei> list = fenleiService.list();
+		
+		request.setAttribute("flist", list);
+		
+		return "showBook2";
+	}
+	
+    private String getURL2(HttpServletRequest req) {
+		
+        String url=this.getURL(req);
+		
+	    int index=url.lastIndexOf("/");
+	    
+	    if(index==-1){
+	    	
+	    	return url;
+	    }
 
+		return url.substring(index+3);
+	}
+
+	private String getURL(HttpServletRequest req) {
+		
+        String path=req.getContextPath();///LibrarySystem
+		
+		String servlet=req.getServletPath();// BookServlet 
+		
+		String param=req.getQueryString();		
+		
+		return path+servlet+"?"+param;
+		
+	}
+	
 }
