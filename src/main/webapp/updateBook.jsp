@@ -15,7 +15,7 @@
 <script type="text/javascript" src="bootstrap/js/ajax.js"></script>
 <!-- 5.引入Bootstrap的核心JS文件 -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>修改图书</title>
 
 </head>
@@ -25,8 +25,8 @@
 			<div class="col-md-6 col-md-offset-2">
 				<form action="book" method="post"
 					enctype="application/x-www-form-urlencoded">
-					<input type="hidden" name="_method" value="PUT"> <input
-						type="hidden" name="id" value="${book.id }" />
+					<input type="hidden" name="_method" value="PUT"> 
+					<input type="hidden" name="id" value="${book.id }" />
 					<h1 class="text-center text-danger">
 						<font face="幼圆">修改图书信息</font>
 					</h1>

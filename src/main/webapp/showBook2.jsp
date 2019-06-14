@@ -107,8 +107,7 @@ $(function(){
 				str = str + check[i].value + ",";
 
 			}
-		}
-		;
+		};
 
 		//去除最后一个逗号
 		str = str.slice(0, str.length - 1);

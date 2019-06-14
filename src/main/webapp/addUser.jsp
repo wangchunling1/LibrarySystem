@@ -157,9 +157,13 @@
 <body background="./imgs/l.jpg">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-6 col-md-offset-2">
 				<form id="login" action="add" method="post" enctype="multipart/form-data" >
-					<h3 class="text-center text-success">添加用户</h3>
+				
+					<h1 class="text-center text-danger">
+						<font face="幼圆">添加用户</font>
+					</h1>
+				
 					<div class="form-group">
 						<label>头&nbsp;&nbsp;&nbsp;&nbsp;像:&nbsp;&nbsp;</label>
 						 <input type="file" name="touxiang" class="form-control input-sm" />
@@ -193,10 +197,15 @@
 							type="date" name="time" class="form-control" />
 					</div>
 					
-					
-					<div class="form-group">
-						<button type="submit" class="btn btn-success btn-block">添加</button>
-						<button type="reset" class="btn btn-success btn-block">重填</button>
+					<br>
+					<div class="form-group text-center">
+						<ul class="list-inline">
+							<li><button type="submit" class="btn btn-warning"
+									style="width: 200px;">添加</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="reset" class="btn btn-danger"
+									style="width: 200px;">重填</button></li>
+						</ul>
 					</div>
 				</form>
 

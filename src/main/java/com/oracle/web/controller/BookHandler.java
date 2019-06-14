@@ -158,11 +158,11 @@ public class BookHandler {
 
 		}
 		
-		String url=this.getURL2(req);
+		//String url=this.getURL2(req);
 		
 		pageBean<SubBook> pb=bookService.showAllByPage(pageNow);
 				
-		pb.setUrl(url);
+		//pb.setUrl(url);
 		
 		req.setAttribute("pb", pb);
 

@@ -16,7 +16,7 @@ public interface UserService {
 
 	User selectOne(Integer id);
 
-       void delete(String ids);
+       //void delete(String ids);
 
       void   updateTouxiang(User user);
 
@@ -24,11 +24,13 @@ public interface UserService {
 
 	pageBean<User> showByPage(Integer pageNow);
 
-	List<User> outPutUserAll();
-
-	List<User> outPutUserIds(String ids);
-
 	User validateUser(String userName);
+
+	void delete1(String[] arr);
+
+	List<User> queryUsers(String[] arr);
+
+	List<User> list2();
 
 	
 
