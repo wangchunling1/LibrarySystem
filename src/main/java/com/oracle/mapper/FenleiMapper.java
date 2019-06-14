@@ -54,6 +54,8 @@ public interface FenleiMapper {
 
 	List<Fenlei> selectAll2();
 
+	int deleteByPrimaryKey(String[] arr);
+
 
 
 	

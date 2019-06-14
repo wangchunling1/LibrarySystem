@@ -272,7 +272,8 @@ $(function(){
 								<br> <label class="col-sm-4 control-label">选择分类：
 								</label>
 								<div class="controls col-sm-6">
-									<select name="fId" class="form-control input-sm" id="fId">
+									<select name="fId" class="form-control input-sm"
+										id="fId">
 										<option value="0">----请选择----</option>
 										<c:forEach items="${flist }" var="fenlei">
 											<option value="${fenlei.id }">${fenlei.name}</option>
@@ -363,10 +364,10 @@ $(function(){
 		<p>第${pb.pageNow }页/共${pb.pages }页
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<ul class="pagination">
-				<li><a href="${pb.url }&pageNow=1">首页</a></li>
+				<li><a href="books?pageNow=1">首页</a></li>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<c:if test="${pb.pageNow>1 }">
-					<li><a href="${pb.url }&pageNow=${pb.pageNow-1 }">上一页</a></li>
+					<li><a href="books?pageNow=${pb.pageNow-1 }">上一页</a></li>
 				</c:if>
 				<!-- 分两种情况		 
 		   1.如果页数小于10
@@ -397,17 +398,17 @@ $(function(){
 							<li class="active"><span>${i }</span></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="${pb.url }&pageNow=${i }">${i }</a></li>
+							<li><a href="books?pageNow=${i }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<c:if test="${pb.pageNow<pb.pages }">
-					<li><a href="${pb.url }&pageNow=${pb.pageNow+1 }">下一页</a></li>
+					<li><a href="books?pageNow=${pb.pageNow+1 }">下一页</a></li>
 				</c:if>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<li><a href="${pb.url }&pageNow=${pb.pages }">尾页</a></li>
+				<li><a href="books?pageNow=${pb.pages }">尾页</a></li>
 			</ul>
 
 		</div>

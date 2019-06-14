@@ -19,7 +19,7 @@
 <title>查看所有分类</title>
 <script type="text/javascript">
 
-$(function(){
+/* $(function(){
 	   
 	   $(".deleteId").click(function(){
 		   
@@ -34,7 +34,7 @@ $(function(){
 		   
 		   return false;
 	   });
-});
+}); */
 
 
 
@@ -133,7 +133,58 @@ $(function(){
 	 */
 	 
 	 
-	 
+	 var deleteF=document.getElementById("DeleteF");
+		
+		deleteF.onclick=function(){
+			
+			var check=document.getElementsByName("ids");
+			//判断一下,他选了没有
+			var flag = false;
+			for (var i = 0; i < check.length; i++) {
+				if (check[i].checked == true) {
+					flag = true;
+					break;
+				}
+			}
+			if (flag == false) {
+				alert("请至少勾选一项进行删除！");
+				location.href = "fenleis";
+				return;
+			}
+			//如果选择了
+			var str = "";
+			for (var i = 0; i < check.length; i++) {
+				if (check[i].checked == true) {
+					str = str + check[i].value + ",";
+				}
+				
+			}
+			;
+			//去除最后一个逗号
+			str = str.slice(0, str.length - 1);
+			//发送给服务器
+			var queren = confirm("您确定要删除这些分类吗？");
+			
+			if (queren == true) {
+				
+			   var $url="fenlei/"+str;
+				   
+			   //alert($url);
+			   
+			   $("#deleteForm").attr("action",$url);
+			   
+			   //提交表单
+			   $("#deleteForm").submit();
+			   
+			   return false;
+			   
+			} else {
+				
+				location.reload();
+			}
+		};
+		 
+		 
 	 
 	 
 	 
@@ -141,11 +192,11 @@ $(function(){
 		
 		outAll.onclick=function(){
 		
-			var flag=confirm("你确定导出所有用户信息吗？");
+			var flag=confirm("你确定导出所有分类信息吗？");
 			
 			if(flag){
 			
-				window.location.href="http://localhost:8080/LibrarySystem/OutAll "
+				window.location.href="OutAll "
 			
 			}
 		
@@ -198,12 +249,12 @@ $(function(){
 				
 				str = str.slice(0, str.length - 1);
 				
-				var flag = confirm("你确定导出选中的用户信息？");
+				var flag = confirm("你确定导出选中的分类信息？");
 				
 				if (flag) {//确定
 					
 					
-					window.location.href = "http://localhost:8080/LibrarySystem/OutSelect/"+str;
+					window.location.href = "OutSelect/"+str;
 
 
 				}
@@ -215,10 +266,7 @@ $(function(){
 	};
 	
 
-	 
-	 
-	 
-	 
+	
 	 
 	 
 	 
@@ -256,6 +304,7 @@ $(function(){
 			<li><a id="fanxuan" href="#">反选</a></li>
 			<li><a id="OutSelect" href="#">导出选中</a></li>
 			<li><a id="OutAll" href="#">导出全部</a></li>
+			<li><a id="DeleteF" href="#">删除</a></li>
 			</ul>
 	<div class="container">
      <div class="panel panel-warning">
@@ -272,7 +321,7 @@ $(function(){
 			<td>编号</td>
 			<td>分类名称</td>
 			<td>修改</td>
-			<td>删除</td>
+			<!-- <td>删除</td> -->
 		</tr>
 			<c:forEach items="${pb.beanList }" var="f" varStatus="s">
 			<tr align="center">
@@ -281,7 +330,7 @@ $(function(){
 				<td>${f.name }</td>
 				<td><a href="fenlei/${f.id }">
 				<input type="submit" value="修改" class="btn btn-warning" /></a></td>
-			    <td><a href="fenlei/${f.id }" class="deleteId btn btn-danger">删除</a></td>
+			    <%-- <td><a href="fenlei/${f.id }" class="deleteId btn btn-danger">删除</a></td> --%>
 			</tr>
 		</c:forEach>
 		</table>
@@ -330,7 +379,7 @@ $(function(){
 							<li class="active"><span>${i }</span></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="books?pageNow=${i }">${i }</a></li>
+							<li><a href="fenleis?pageNow=${i }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
