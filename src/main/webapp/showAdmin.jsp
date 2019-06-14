@@ -22,61 +22,9 @@ a {
 <title>查看管理员信息</title>
 <script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript" src="jQuery/jquery-1.8.3.js"></script>
+
 <script type="text/javascript">
-	window.onload = function() {
-
-		var opt = {
-
-			method : "POST",
-
-			url : "AdminServlet",
-
-			params : "action=showAdmin",
-
-			type : "json",
-
-			success : function(data) {
-
-				var admin = data;
-
-				var id = document.getElementById("id");
-
-				id.innerHTML = admin.id;
-
-				var name = document.getElementById("name");
-
-				name.innerHTML = admin.name;
-
-				var phone = document.getElementById("phone");
-
-				phone.innerHTML = admin.phone;
-
-				var userName = document.getElementById("userName");
-
-				userName.innerHTML = admin.userName;
-
-				var password = document.getElementById("password");
-
-				password.value = admin.password;
-
-				var touxiang = document.getElementById("touxiang");
-
-				var img = document.createElement("img");
-
-				img.src = "/img" + admin.touxiang;
-
-				img.width = 50;
-
-				img.height = 50;
-
-				touxiang.appendChild(img);
-
-			}
-
-		};
-
-		ajax(opt);
-	};
+	
 
 	$(function() {
 
@@ -99,89 +47,41 @@ a {
 	});
 </script>
 </head>
-<body background="./imgs/l.jpg">
-	<%-- <center>
-		<table width="300px" height="300px" border="1px" bordercolor="pink"
-			cellspacing="0">
+<body align="center"  background="./imgs/l.jpg">
+	
+         <caption>
+			<font size="7" face="宋体">查看管理员信息</font>
+		</caption>
+		<h1 class="text-center text-danger"><span class="glyphicon glyphicon-user"></span></h1>
 
-			<caption align="top">
-				<h1>
-					<font color="red">查看管理员信息</font>
-				</h1>
-				<hr size="2px" color="red" width="600px" />
-			</caption>
 
+		<table  border="1" align="center" width="500px"
+			height="300px" cellspacing="0">
 			<tr align="center">
-				<td>编号</td>
-				<td id="id"></td>
+				<th>编号</th>
+				<th>${admin.id}</th>
 			</tr>
-
+			
 			<tr align="center">
-				<td>头像</td>
-				<td id="touxiang"></td>
+				<th>姓名</th>
+				<th>${admin.name}</th>
 			</tr>
-
+			
 			<tr align="center">
-				<td>姓名</td>
-				<td id="name"></td>
+				<th>手机</th>
+				<th>${admin.phone}</th>
 			</tr>
-
+			
 			<tr align="center">
-				<td>手机</td>
-				<td id="phone"></td>
+				<th>账号</th>
+				<th>${admin.userName}</th>
 			</tr>
-
+			
 			<tr align="center">
-				<td>账号</td>
-				<td id="userName"></td>
+				<th>密码</th>
+				<th><input type="password" value="${admin.password}" disabled="disabled"/></th>
 			</tr>
-
-			<tr align="center">
-				<td>密码</td>
-				<td><input type="password" id="password" disabled="disabled" /></td>
-			</tr>
-		</table> --%>
-	<div class="container">
-     <div class="panel panel-warning">
-       <div class="panel-heading">
-         <div class="panel-title">
-           <h2>查看图书</h2>
-         </div>
-       </div>
-       <div class="panel-body">
-         <table class="table table-borderd table-striped table-hover">
-         <tr align="center" height="60px">
-				<td>编号</td>
-				<td id="id"></td>
-			</tr>
-
-			<tr align="center" height="60px">
-				<td>头像</td>
-				<td id="touxiang"></td>
-			</tr>
-
-			<tr align="center" height="60px">
-				<td>姓名</td>
-				<td id="name"></td>
-			</tr>
-
-			<tr align="center" height="60px">
-				<td>手机</td>
-				<td id="phone"></td>
-			</tr>
-
-			<tr align="center" height="60px">
-				<td>账号</td>
-				<td id="userName"></td>
-			</tr>
-
-			<tr align="center">
-				<td>密码</td>
-				<td><input type="password" id="password" disabled="disabled" /></td>
-			</tr>
-			</table>
-			</div>
-			</div>
-			</div>
+			
+		</table>
 </body>
 </html>

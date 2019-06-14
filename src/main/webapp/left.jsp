@@ -87,14 +87,14 @@ a {
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="fenleis" target="right"><input
+						href="FenleiServlet?action=showFenleiByPage" target="right"><input
 							type="button" value="查看分类" id="btn2" /></a></li>
 				</ul>
-				<!-- <ul>
+				<ul>
 					<li><span class="ui-icon ui-icon-pencil"></span><a
 						href="updateFenlei.jsp" target="right"><input type="button"
 							value="修改分类" id="btn3" /></a></li>
-				</ul> -->
+				</ul>
 			</div>
 			<h3>图书管理</h3>
 			<!-- <div id="changeBook"> -->
@@ -116,12 +116,12 @@ a {
 			<div height="80px" align="center" cellspacing="0" width="100px">
 				<ul>
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="addUser.jsp" target="right"><input type="button"
+						href="users" target="right"><input type="button"
 							value="添加用户" id="btn6" /></a></li>
 				</ul>
 				<ul>
 					<li><span class="ui-icon ui-icon-search"></span><a
-						href="showUserByPage" target="right"><input
+						href="users" target="right"><input
 							type="button" value="查看用户" id="btn7" /></a></li>
 				</ul>
 			</div>
@@ -130,20 +130,26 @@ a {
 			<!-- <div id="changeAdmin"> -->
 			<div height="100px" align="center" cellspacing="0" width="100px">
 				<ul>
-					<li><span class="ui-icon ui-icon-search"></span><a
-						href="showAdmin.jsp" target="right"><input type="button"
+					<li><span class="ui-icon ui-icon-lightbulb"></span><a
+						href="showAdmin" target="right"><input type="button"
 							value="查看管理员" id="btn8" /></a></li>
 				</ul>
 				<ul>
-					<li><span class="ui-icon ui-icon-pencil"></span><a
+					<li><span class="ui-icon ui-icon-flag"></span><a
 						href="changePassword.jsp" target="right"><input type="button"
 							value="修改密码" id="btn9" /></a></li>
 				</ul>
 				<ul>
-					<li><span class="ui-icon ui-icon-power"></span><a
-						href="AdminServlet?action=exit" target="_parent"><input
-							type="button" value="退出登录" id="btn10" /></a></li>
+					<li>
+						<span class="ui-icon ui-icon-power"></span>
+						<a href="exit" target="_parent">
+							<input type="button" value="退出登录">
+							</a>
+							
+				      </li>
+						
 				</ul>
+				
 			</div>
 		</div>
 	</table>

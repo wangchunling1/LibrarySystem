@@ -15,11 +15,6 @@
 </head>
 <body>
    <form action="AdminServlet?action=exit" method="post">
-<%--
-   <%
-     session.removeAttribute("userName");
-     response.sendRedirect("login.jsp");
-   %>
-    --%>
+</form>
 </body>
 </html>

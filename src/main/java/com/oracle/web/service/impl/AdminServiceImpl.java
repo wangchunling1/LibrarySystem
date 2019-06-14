@@ -22,18 +22,37 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public Admin queryone(String userName) {
+	@Transactional
+	public Admin login(String userName) {
+		// TODO Auto-generated method stub
+		return this.adminMapper.login(userName);
+	}
+
+	@Override
+	@Transactional
+	public Admin queryOne(String userName) {
 		// TODO Auto-generated method stub
 		return this.adminMapper.queryOne(userName);
 	}
 
 	@Override
 	@Transactional
-	public Admin login(Admin admin) {
+	public Admin selectByPrimaryKey(String userName) {
 		// TODO Auto-generated method stub
-		return this.adminMapper.login(admin);
-		
+		return this.adminMapper.selectByPrimaryKey(userName);
+	}
+
+	@Override
+	public Admin queryByPassword(Admin admin) {
+		// TODO Auto-generated method stub
+		return this.adminMapper.queryByPassword(admin);
+	}
+
+	@Override
+	public Admin changePassword(String userName, String newpassword) {
+		// TODO Auto-generated method stub
+		return this.adminMapper.changePassword(userName, newpassword);
+	
 	}
 
 }

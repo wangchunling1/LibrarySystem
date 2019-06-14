@@ -6,29 +6,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="bootstrap/css/bootstrapValidator.css">
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrapValidator.css">
+
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
+<script type="text/javascript" src="bootstrap/js/ajax.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>注册</title>
-<script type="text/javascript" src="js/ajax.js"></script>
- <script type="text/javascript">
+
+<script type="text/javascript">
 	$(function() {
 		$(".form-horizontal").bootstrapValidator({
 
+
 					feedbackIcons : {
+
 
 						valid : "glyphicon glyphicon-ok",
 						invalid : "glyphicon glyphicon-remove",
 						validating : "glyphicon glyphicon-refresh"
 					},
 
+
 					fields : {
 
-						username : {
+
+						userName : {
 
 
 							validators : {
@@ -36,17 +41,18 @@
 
 								notEmpty : {
 
+
 									message : '用户名不能为空'
 
+
 								},
-								
-                               regexp : {
 
-                                 regexp : /^[A-z0-9_]{3,25}$/,
-                                 
+
+								regexp : {
+
+
+									regexp : /^[A-z0-9_]{3,25}$/,
 									message : '用户名必须由3-25个英文字母、数字和下划线组成'
-
-
 
 
 								},
@@ -58,29 +64,22 @@
 									message : '该用户已被注册，请重新输入',
 
 
-									url : "validate.action",
+									url : "validate2",
+
 
 									type : 'post',
-
-
 
 
 									data : function(validator) {
 
 
-
-
 										return {
 
 
-
-
-											username : $("input[name=username]").val()
+											userName : $("input[name=userName]").val()
 										}
 									}
 								}
-
-
 
 
 							}
@@ -90,8 +89,7 @@
 	});
 </script> 
 </head>
-<body background="imgs/11.jpg">
-
+<body background="imgs/l.jpg">
 
 	<div class = "container">
 		<h1 align = "center">图书管理系统----管理员注册</h1>
@@ -119,12 +117,12 @@
 			
 			<!-- 用户名 -->
 			<div class="form-group">
-				<label for="username" class="col-sm-4 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+				<label for="userName" class="col-sm-4 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="username"
-						name="username" />
+					<input type="text" class="form-control" id="userName"
+						name="userName" />
 				</div>	
-			</div>   
+			</div>
 			
 			<!-- 密码 -->
 			<div class="form-group">
@@ -144,7 +142,7 @@
 		</form>
 		
 		<div class="col-sm-offset-5 col-sm-4">
-			<a href="login.jsp">已经是管理员？直接登录</a>
+			<a href="Login.jsp">已经是管理员？直接登录</a>
 		</div>
 	
 	</div>
