@@ -164,7 +164,9 @@
 			str = str.slice(0, str.length - 1);
 			//发送给服务器
 			var queren = confirm("您确定要删除这些分类吗？");
+			
 			if (queren == true) {
+				
 			   var $url="fenlei/"+str;
 				   
 			   //alert($url);
@@ -175,8 +177,10 @@
 			   $("#deleteForm").submit();
 			   
 			   return false;
+			   
 			} else {
-				window.location.href = "http://localhost:8080/LibrarySystem/DeleteF/"+str;
+				
+				location.reload();
 			}
 		};
 		 
@@ -192,7 +196,7 @@
 			
 			if(flag){
 			
-				window.location.href="http://localhost:8080/LibrarySystem/OutAll "
+				window.location.href="OutAll "
 			
 			}
 		
@@ -250,7 +254,7 @@
 				if (flag) {//确定
 					
 					
-					window.location.href = "http://localhost:8080/LibrarySystem/OutSelect/"+str;
+					window.location.href = "OutSelect/"+str;
 
 
 				}
