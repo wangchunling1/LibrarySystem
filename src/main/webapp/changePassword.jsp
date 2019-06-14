@@ -136,7 +136,6 @@
 
 	function queryByrePassword() {
 
-
 		var newpassword=document.changepassword.newpassword;
 		
 		var repassword=document.changepassword.repassword;

@@ -34,7 +34,7 @@ public class AdminHandler {
 			
 			if(i > 0){
 				
-				return "redirect:/Login.jsp";
+				return "redirect:/login.jsp";
 				
 			}else{
 				
@@ -55,13 +55,13 @@ public class AdminHandler {
 			
 			if(admin1 == null){
 				
-				return "redirect:/Login.jsp";
+				return "redirect:/login.jsp";
 				
 			}
 			
 			if(!admin1.getPassword().equals(admin.getPassword())){
 				
-				return "redirect:/Login.jsp";
+				return "redirect:/login.jsp";
 				
 			}
 			
@@ -158,7 +158,7 @@ public class AdminHandler {
 				session.invalidate();
 				
 				//2.跳转到登录界面		
-				return "redirect:/Login.jsp";
+				return "redirect:/login.jsp";
 				
 			}
 			
