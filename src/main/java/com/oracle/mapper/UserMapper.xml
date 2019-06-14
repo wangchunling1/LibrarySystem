@@ -23,9 +23,9 @@
  
 <delete id="deleteByExample" parameterType="com.oracle.web.bean.UserExample">
     delete from user
-    <if test="_parameter != null">
+    <!--<if test="_parameter != null">
       <include refid="Example_Where_Clause" />
-    </if>
+    </if>-->
   </delete>
   <!--导出选中-->
   <select id="selectOutPutIds" resultType="user">

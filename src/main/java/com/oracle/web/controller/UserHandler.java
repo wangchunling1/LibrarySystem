@@ -40,7 +40,7 @@ public class  UserHandler{
 	
 	
 //添加用户
-	@RequestMapping(value="/add1", method=RequestMethod.POST)
+	@RequestMapping(value="/add", method=RequestMethod.POST)
 
 	public String add(MultipartFile touxiang,String name,String userName,String password,String phone,String time,HttpSession session ) throws IllegalStateException, IOException {
 		String realPath = session.getServletContext().getRealPath("/upload");
