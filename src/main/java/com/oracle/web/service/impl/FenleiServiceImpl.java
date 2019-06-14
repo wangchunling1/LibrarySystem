@@ -110,5 +110,12 @@ public class FenleiServiceImpl implements FenleiService {
 		return this.fenleiMapper.selectAll2();
 	}
 
+	@Override
+	public void delete1(String[] arr) {
+		// TODO Auto-generated method stub
+		this.fenleiMapper.deleteByPrimaryKey(arr);
+		
+	}
+
 
 }

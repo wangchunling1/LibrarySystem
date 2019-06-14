@@ -17,7 +17,10 @@
       This element was generated on Tue May 07 15:52:21 CST 2019.
     -->
     delete from fenlei
-    where id = #{id,jdbcType=INTEGER}
+    where id in
+     <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+    	#{arr}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="com.oracle.web.bean.Fenlei">
     <!--

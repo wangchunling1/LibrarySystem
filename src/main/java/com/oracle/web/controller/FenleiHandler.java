@@ -99,13 +99,15 @@ public class FenleiHandler {
 	}
 	
 	@RequestMapping(value = "/fenlei/{id}",method = RequestMethod.DELETE)
-	public String delete(@PathVariable("id") Integer id){
+	public String delete(@PathVariable("id") String ids){
 		
-		Fenlei fenlei = new Fenlei();
+        String[] arr = ids.split(",");
 		
-		fenlei.setId(id);
-		
-		int i = fenleiService.delete(fenlei);
+		for(String str : arr){
+			
+			System.out.println(str);
+		}
+		fenleiService.delete1(arr);
 		
 		return "redirect:/fenleis";
 		
