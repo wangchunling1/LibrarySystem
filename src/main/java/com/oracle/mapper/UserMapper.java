@@ -21,6 +21,8 @@ public interface UserMapper {
 	List<User> showByPage();
 
 	int updateByPrimaryKey(User user);
+		
+	int updateUser(User user);
 
 	int deleteByPrimaryKey(String[] arr);
 

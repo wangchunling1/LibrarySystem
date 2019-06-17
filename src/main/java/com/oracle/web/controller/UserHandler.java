@@ -22,12 +22,14 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.util.IOUtils;
+import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.web.bean.Book;
@@ -76,7 +78,7 @@ public class UserHandler {
 
 		String realsavepath = "upload" + savepath;
 
-		System.out.println(realsavepath);
+		//System.out.println(realsavepath);
 
 		User user = new User(null, realsavepath, name, userName, password, phone, time);
 
@@ -86,13 +88,13 @@ public class UserHandler {
 
 		if (i > 0) {
 
-			System.out.println("添加成功");
+			//System.out.println("添加成功");
 
 			return "redirect:/showUserByPage";
 
 		} else {
 
-			System.out.println("添加失败");
+			//System.out.println("添加失败");
 
 			return "addUser";
 		}
@@ -103,7 +105,7 @@ public class UserHandler {
 	@RequestMapping(value = "/validateUser", method = RequestMethod.GET)
 	public String validateUser(String userName, HttpServletResponse response) throws IOException {
 
-		System.out.println(userName);
+		//System.out.println(userName);
 
 		User i = this.userService.validateUser(userName);
 
@@ -134,7 +136,7 @@ public class UserHandler {
 	// 修改用户
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
 	public String update(User user) {
-
+    //System.out.println(user.toString());
 		userService.updateUser(user);
 
 		return "redirect:/showUserByPage";
@@ -178,9 +180,9 @@ public class UserHandler {
 
 	// 修改头像
 	@RequestMapping(value = "/updateTouxiang", method = RequestMethod.POST)
-	public String updateTouxiang(Integer id, MultipartFile touxiang, HttpSession session) throws Exception {
+	public String updateTouxiang(@RequestParam(value="id")Integer id,@RequestParam(value="touxiang") MultipartFile touxiang, HttpSession session) throws Exception {
 
-		System.out.println("修改头像");
+		//System.out.println("修改头像");
 
 		String realPath = session.getServletContext().getRealPath("/upload");
 

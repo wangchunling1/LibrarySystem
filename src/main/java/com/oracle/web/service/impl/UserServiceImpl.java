@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 		@Transactional
 		public void updateUser(User user) {
 			// TODO Auto-generated method stub
-			this.userMapper.updateByPrimaryKey(user);
+			this.userMapper.updateUser(user);
 		}
 ////删除
 //	@Override

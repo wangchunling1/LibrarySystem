@@ -45,10 +45,10 @@
 						</div>
 					 
 				</form> 
-				<form action="updateUser" method="post" enctype="multipart/form-data">
-				
-				<input type="hidden" name="id" value="${user.id }" />
+				<form action="updateUser" method="post"  >
 				<input type="hidden" name="_method" value="PUT">
+				<input type="hidden" name="id" value="${user.id }" />
+				
 					<h1 class="text-center text-danger"><font face="幼圆">修改用户信息</font></h1>
 					<hr>
 					
@@ -77,7 +77,7 @@
 						<ul class="list-inline">
 							<li><button type="submit" class="btn btn-warning" style="width:200px;">修改</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="reset" class="btn btn-danger" style="width:200px;">清空</button></li>
+							<button class="btn btn-danger" style="width:200px;"><a href="showUserByPage">返回</a></button></li>
 						</ul>
 					</div>
 				</form>

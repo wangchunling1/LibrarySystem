@@ -55,7 +55,13 @@
   <update id="updateByPrimaryKey" parameterType="com.oracle.web.bean.User">
    
     update user
-    set touxiang = #{touxiang,jdbcType=VARCHAR},
+    set touxiang = #{touxiang,jdbcType=VARCHAR} 
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <update id="updateUser" parameterType="com.oracle.web.bean.User">
+   
+    update user
+    set  
       name = #{name,jdbcType=VARCHAR},
       userName = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -63,6 +69,7 @@
       time = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
 <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     
     select id, touxiang, name, userName, password, phone, time
