@@ -16,6 +16,7 @@ import com.github.pagehelper.PageInfo;
 import com.oracle.web.bean.pageBean;
 import com.oracle.web.bean.UserExample.Criteria;
 import com.oracle.mapper.UserMapper;
+import com.oracle.web.bean.SubBook;
 import com.oracle.web.bean.User;
 import com.oracle.web.bean.UserExample;
 import com.oracle.web.service.UserService;
@@ -30,31 +31,31 @@ public class UserServiceImpl implements UserService {
 	
 //分页
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public pageBean<User> showByPage(Integer pageNow) {
 
 		pageBean<User> pb = new pageBean<User>();
-		
-		int pageSize = 8;
 
-		pb.setPageNow(pageNow);
+		// 当前页的数据
+		PageHelper.startPage(pageNow, 5);
 
-		pb.setPageSize(pageSize);
-		
-		//查看有多少条
-		int sum=userMapper.selectCount();
-		
-		pb.setCounts(sum);
-		
-		//从第几条开始
-		int index=(pageNow-1)*pageSize;
-		
-		List<User> list=this.userMapper.showByPage(index);
-		
+		// 已经是分页好的数据了
+		List<User> list = this.userMapper.showByPage();
+
 		pb.setBeanList(list);
-		
-		return pb;
 
+		// 总记录数
+		PageInfo<User> pi = new PageInfo<User>(list);
+
+		pb.setCounts((int) pi.getTotal());
+
+		// 当前页
+		pb.setPageNow(pi.getPageNum());
+
+		// 每页显示的条数，自定义
+		pb.setPageSize(pi.getPageSize());
+
+		return pb;
 	}
 
 	
@@ -76,58 +77,38 @@ public class UserServiceImpl implements UserService {
 	
 		return this.userMapper.selectByPrimaryKey(id);
 	}
-//删除
-	@Override
-	@Transactional
-	public void delete(String ids) {
-		// TODO Auto-generated method stub
-
-		String[] a = ids.split(",");
-
-		Integer[] values = new Integer[a.length];
-		for (int i = 0; i < a.length; i++) {
-
-			values[i] = Integer.parseInt(a[i]);
+	
+	//修改
+		@Override
+		@Transactional
+		public void updateUser(User user) {
+			// TODO Auto-generated method stub
+			this.userMapper.updateUser(user);
 		}
-		
-		UserExample example = new UserExample();
-		
-		Criteria criteria = example.createCriteria();
-		
-		criteria.andIdIn(Arrays.asList(values));
-		
-		this.userMapper.deleteByExample(example);
-	}
-//修改
-	@Override
-	@Transactional
-	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		this.userMapper.updateByPrimaryKey(user);
-	}
-//导出
-	@Override
-	@Transactional
-	public List<User> outPutUserAll() {
-		// TODO Auto-generated method stub
-	return this.userMapper.selectOutPutAll();
-	}
+////删除
+//	@Override
+//	@Transactional
+//	public void delete(String ids) {
+//		// TODO Auto-generated method stub
+//
+//		String[] a = ids.split(",");
+//
+//		Integer[] values = new Integer[a.length];
+//		for (int i = 0; i < a.length; i++) {
+//
+//			values[i] = Integer.parseInt(a[i]);
+//		}
+//		
+//		UserExample example = new UserExample();
+//		
+//		Criteria criteria = example.createCriteria();
+//		
+//		criteria.andIdIn(Arrays.asList(values));
+//		
+//		this.userMapper.deleteByExample(example);
+//	}
 
-	@Override
-	@Transactional
-	public List<User> outPutUserIds(String ids) {
-		// TODO Auto-generated method stub
-		
-		String[] a = ids.split(",");
-		 
-		 List<Integer> list =new ArrayList<Integer>();
-		 for (int i = 0; i < a.length; i++) {
-	           
-				list.add(Integer.parseInt(a[i]));
-				 
-			}
-		return this.userMapper.selectOutPutIds(list);
-	}
+
 	
 //验证
 	@Override
@@ -144,6 +125,29 @@ public class UserServiceImpl implements UserService {
 	public void updateTouxiang(User user) {
 		// TODO Auto-generated method stub
 		this.userMapper.updateByPrimaryKey(user);
+	}
+
+
+	@Override
+	public void delete1(String[] arr) {
+		// TODO Auto-generated method stub
+		this.userMapper.deleteByPrimaryKey(arr);
+	}
+
+
+	//选择导出
+	@Override
+	public List<User> queryUsers(String[] arr) {
+		// TODO Auto-generated method stub
+		return this.userMapper.queryUsers(arr);
+	}
+
+
+	//全部导出
+	@Override
+	public List<User> list2() {
+		// TODO Auto-generated method stub
+		return this.userMapper.selectAll2();
 	}
 
 }

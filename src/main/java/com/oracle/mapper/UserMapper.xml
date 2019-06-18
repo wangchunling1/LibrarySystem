@@ -21,35 +21,47 @@
       #{time,jdbcType=VARCHAR})
   </insert>
  
-<delete id="deleteByExample" parameterType="com.oracle.web.bean.UserExample">
+<!--<delete id="deleteByExample" parameterType="com.oracle.web.bean.UserExample">
     delete from user
-    <!--<if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>-->
+
+  </delete>-->
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where id in
+    <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+    	#{arr}
+    </foreach>
   </delete>
   <!--导出选中-->
-  <select id="selectOutPutIds" resultType="user">
-  			select * from user 
-    
-     <where>
-		 id in
-		<foreach collection="list" item="id" open="(" separator="," close=")" >
-		     #{id}
-	 </foreach>
-	 
-   </where> 
-		 order by id desc
-  </select>
+  <select id="queryUsers"  resultMap="BaseResultMap">
+   	
+   	select * from user where id in
+   	
+   	<foreach item="arr" collection="array"  open="(" separator="," close=")">
+   		
+   		#{arr }
+   		
+   	</foreach>
+   </select>
   
  <!--导出全部-->
-  <select id="selectOutPutAll" parameterType="list" resultType="user">
-  	select * from user order by id desc
-  </select>
+  <select id="selectAll2" resultMap="BaseResultMap">
+   	
+   	select * from user
+   </select>
+
  
   <update id="updateByPrimaryKey" parameterType="com.oracle.web.bean.User">
    
     update user
-    set touxiang = #{touxiang,jdbcType=VARCHAR},
+    set touxiang = #{touxiang,jdbcType=VARCHAR} 
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <update id="updateUser" parameterType="com.oracle.web.bean.User">
+   
+    update user
+    set  
       name = #{name,jdbcType=VARCHAR},
       userName = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -57,7 +69,13 @@
       time = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  
+<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    
+    select id, touxiang, name, userName, password, phone, time
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
@@ -77,7 +95,7 @@
   
    <select id="showByPage" resultMap="BaseResultMap">
    
-  	select * from user order by id  desc  limit #{index},8
+  	select * from user order by id  desc
   	
   </select>
  

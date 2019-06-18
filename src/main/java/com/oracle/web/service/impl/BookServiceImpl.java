@@ -123,7 +123,7 @@ public class BookServiceImpl implements BookService {
 		pageBean<SubBook> pb = new pageBean<SubBook>();
 
 		// 当前页的数据
-		PageHelper.startPage(pageNow, 5);
+		PageHelper.startPage(pageNow, 2);
 
 		// 已经是分页好的数据了
 		List<SubBook> list = this.bookMapper.selectAllByPageAndWhere(where);

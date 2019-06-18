@@ -10,10 +10,6 @@ public interface UserMapper {
 
 	User selectByPrimaryKey(Integer id);
 
-	List<User> selectOutPutAll();
-
-	List<User> selectOutPutIds(List<Integer> list);
-
 	User selectValidate(String userName);
 
 	int insert(User user);
@@ -22,9 +18,17 @@ public interface UserMapper {
 
 	int selectCount();
 
-	List<User> showByPage(int index);
+	List<User> showByPage();
 
 	int updateByPrimaryKey(User user);
+		
+	int updateUser(User user);
+
+	int deleteByPrimaryKey(String[] arr);
+
+	List<User> queryUsers(String[] arr);
+
+	List<User> selectAll2();
 
 
 

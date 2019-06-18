@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -158,11 +159,7 @@ public class BookHandler {
 
 		}
 		
-		String url=this.getURL2(req);
-		
 		pageBean<SubBook> pb=bookService.showAllByPage(pageNow);
-				
-		pb.setUrl(url);
 		
 		req.setAttribute("pb", pb);
 
@@ -494,35 +491,59 @@ public class BookHandler {
 	}
 	
 	@RequestMapping(value="/bookByWhere/{pageNow}",method=RequestMethod.GET)
-	public String ByWhere(Book where,@PathVariable("pageNow") int pageNow,HttpServletRequest request){
+	public String ByWhere(Book where,@PathVariable("pageNow") int pageNow,HttpServletRequest request) throws UnsupportedEncodingException{
 		
 		String url = this.getURL2(request);
 		
+		System.out.println("==="+url);
+		
+        String bname=where.getBname();
+		
+	    where.setBname(new String(bname.getBytes("ISO-8859-1"),"UTF-8"));
+	    
+        String chuban=where.getChuban();
+	    
+	    where.setChuban(new String(chuban.getBytes("ISO-8859-1"),"UTF-8"));
+	    
+        String zhuangtai=where.getZhuangtai();
+	    
+	    where.setZhuangtai(new String(zhuangtai.getBytes("ISO-8859-1"),"UTF-8"));
+	    
+        String jieshuren=where.getJieshuren();
+	    
+	    where.setJieshuren(new String(jieshuren.getBytes("ISO-8859-1"),"UTF-8"));
+	    
 		pageBean<SubBook> pb = bookService.selectAllByPageAndWhere(where,pageNow);
+		
+		System.out.println(pb);
 		
 		pb.setUrl(url);
 		
 		request.setAttribute("pb", pb);
 		
-		List<Fenlei> list = fenleiService.list();
+		List<Fenlei> flist = this.fenleiService.list();
 		
-		request.setAttribute("flist", list);
+		request.setAttribute("flist", flist);
 		
-		return "showBook2";
+		//request.setAttribute("show","gaoji");
+		
+		return "showBook";
 	}
 	
     private String getURL2(HttpServletRequest req) {
 		
         String url=this.getURL(req);
 		
-	    int index=url.lastIndexOf("/");
+        System.out.println("--"+url);
+        
+        int index=url.lastIndexOf("&pageNow=");
 	    
 	    if(index==-1){
 	    	
 	    	return url;
 	    }
 
-		return url.substring(index+3);
+		return url.substring(0, index);
 	}
 
 	private String getURL(HttpServletRequest req) {
