@@ -1,6 +1,8 @@
 package com.oracle.web.bean;
 
-public class SubBook extends Book {
+import java.io.Serializable;
+
+public class SubBook extends Book implements Serializable{
 
 	// 拓展自己的属性
 	public Fenlei fenlei;

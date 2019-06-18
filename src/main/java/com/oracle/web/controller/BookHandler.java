@@ -490,12 +490,12 @@ public class BookHandler {
 
 	}
 	
-	@RequestMapping(value="/bookByWhere/{pageNow}",method=RequestMethod.GET)
-	public String ByWhere(Book where,@PathVariable("pageNow") int pageNow,HttpServletRequest request) throws UnsupportedEncodingException{
+	@RequestMapping(value="/bookByWhere",method=RequestMethod.GET)
+	public String ByWhere(Book where,String url,int pageNow,HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException{
 		
-		String url = this.getURL2(request);
+		url = this.getURL2(request);
 		
-		System.out.println("==="+url);
+		//System.out.println("==="+url);
 		
         String bname=where.getBname();
 		
@@ -515,42 +515,45 @@ public class BookHandler {
 	    
 		pageBean<SubBook> pb = bookService.selectAllByPageAndWhere(where,pageNow);
 		
-		System.out.println(pb);
-		
 		pb.setUrl(url);
 		
-		request.setAttribute("pb", pb);
+		//System.out.println(pb);
+			
+		session.setAttribute("pb", pb);
 		
-		List<Fenlei> flist = this.fenleiService.list();
+		List<Fenlei> flist =fenleiService.list();
 		
-		request.setAttribute("flist", flist);
+		session.setAttribute("flist", flist);
 		
-		//request.setAttribute("show","gaoji");
-		
-		return "showBook";
+		return "redirect:/showBook.jsp";
 	}
 	
     private String getURL2(HttpServletRequest req) {
 		
         String url=this.getURL(req);
 		
-        System.out.println("--"+url);
+        //System.out.println("---"+url);
         
         int index=url.lastIndexOf("&pageNow=");
+        
+        //System.out.println("index=="+index);
 	    
-	    if(index==-1){
+	    if(index == -1){
 	    	
 	    	return url;
+	    	
+	    	
+	    }else{
+	    
+		return url.substring(0,index);
 	    }
-
-		return url.substring(0, index);
 	}
 
 	private String getURL(HttpServletRequest req) {
 		
         String path=req.getContextPath();///LibrarySystem
 		
-		String servlet=req.getServletPath();// BookServlet 
+		String servlet=req.getServletPath();// bookByWhere 
 		
 		String param=req.getQueryString();		
 		
