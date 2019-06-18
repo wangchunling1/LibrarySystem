@@ -1,5 +1,6 @@
 package com.oracle.web.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.web.bean.Admin;
 import com.oracle.web.service.AdminService;
@@ -27,51 +29,63 @@ public class AdminHandler {
 	private AdminService adminService;
 	
 	//注册
-		@RequestMapping(value = "/register",method = RequestMethod.POST)
-		public String register(Admin admin){         
+	@RequestMapping(value = "/register")
+	public String register(String name, String phone, String userName, String password,
+			@RequestParam("touxiang") MultipartFile filetx, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+
+		String str = request.getSession().getServletContext().getRealPath("/touxiang");
+
+		File file = new File(str + "\\" + filetx.getOriginalFilename());
+
+		filetx.transferTo(file);
+
+		String touxiang = str + "\\" + filetx.getOriginalFilename();
+
+		Admin admin = new Admin(null, name, phone, userName, password, touxiang);
+
+		adminService.save(admin);
+
+		return "redirect:/Login.jsp";
+
+	}
 			
-			int i = adminService.save(admin);
-			
-			if(i > 0){
-				
-				return "redirect:/login.jsp";
-				
-			}else{
-				
-				return "redirect:/zhuce.jsp";
-				
-			}
-			
-		}
+		
 		
 		//登录
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public String login(@RequestParam("userName") String userName,@RequestParam("password") String password,
+			Admin admin,HttpServletRequest req,HttpSession session){
 		
-		@RequestMapping(value = "/login",method = RequestMethod.POST)
-		public String login(@RequestParam("userName") String userName,Admin admin,HttpServletRequest req,HttpSession session){
-			 
-			session.setAttribute("userName", userName);
+		session.setAttribute("userName", userName);
+		
+		System.out.println(userName);
+		
+		Admin admin1 = adminService.login(admin.getUserName());
+		
+		if(admin1 == null){
 			
-			Admin admin1 = adminService.login(admin.getUserName());
+			return "redirect:/Login.jsp";
 			
-			if(admin1 == null){
-				
-				return "redirect:/login.jsp";
-				
-			}
+		}else if(!admin1.getPassword().equals(admin.getPassword())){
 			
-			if(!admin1.getPassword().equals(admin.getPassword())){
-				
-				return "redirect:/login.jsp";
-				
-			}
+			return "redirect:/Login.jsp";
 			
-			return "redirect:/index.jsp";
+		}else{
+			
+			String str =admin1.getTouxiang().substring(admin1.getTouxiang().lastIndexOf("\\")+1);
+			
+			session.setAttribute("touxiang", str);
 			
 		}
+		
+		return "redirect:/index.jsp";
+		
+	}
 		
 
 		//验证密码
-		@RequestMapping(value = "/queryByPassword")
+		@RequestMapping(value = "/queryByPassword",method = RequestMethod.POST)
 		@ResponseBody
 		public void queryByPassword(@RequestParam("password") String password,HttpServletResponse response,
 				HttpServletRequest request,HttpSession session) throws IOException{
@@ -90,7 +104,18 @@ public class AdminHandler {
 			
 			Admin a = adminService.queryByPassword(admin);
 			
-			response.getWriter().write(String.valueOf(a));
+			int i=1;
+			
+			if(a==null){
+				
+				i=1;
+				
+			}else{
+				
+				i=0;
+			}
+			
+			response.getWriter().write(String.valueOf(i));
 			
 		} 
 		
@@ -143,6 +168,8 @@ public class AdminHandler {
 				
 				String userName = (String) session.getAttribute("userName");
 				
+				System.out.println(userName);
+				
 				Admin a = adminService.selectByPrimaryKey(userName);
 				
 				session.setAttribute("admin", a);
@@ -158,7 +185,7 @@ public class AdminHandler {
 				session.invalidate();
 				
 				//2.跳转到登录界面		
-				return "redirect:/login.jsp";
+				return "redirect:/Login.jsp";
 				
 			}
 			

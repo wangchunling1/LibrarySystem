@@ -8,6 +8,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="touxiang" jdbcType="VARCHAR" property="touxiang" />
   </resultMap>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -20,11 +21,12 @@
   <!-- 注册 -->
   <insert id="save" parameterType="com.oracle.web.bean.Admin">
     
-    insert into admin (id, name, 
-      phone, userName, password
+    insert into admin (id,name, 
+      phone, userName, password,touxiang
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{touxiang,jdbcType=VARCHAR}
       )
   </insert>
   
@@ -50,12 +52,12 @@
 
   <!-- 查看管理员 -->
  	<select id="selectByPrimaryKey" parameterType="String" resultType="com.oracle.web.bean.Admin">
-     	select id, name, phone, userName, password FROM admin WHERE userName=#{userName,jdbcType=VARCHAR}
+     	select id, name, phone, userName, password,touxiang FROM admin WHERE userName=#{userName,jdbcType=VARCHAR}
     </select>
     
    <!-- 验证密码 -->
-    <select id="queryByPassword" parameterType="Admin" resultMap="BaseResultMap">
-		select userName,password from admin where userName=#{userName,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+    <select id="queryByPassword" parameterType="com.oracle.web.bean.Admin" resultMap="BaseResultMap">
+		select userName password from admin where userName=#{userName,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
 	</select>
   
   

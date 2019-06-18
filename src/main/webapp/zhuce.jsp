@@ -94,7 +94,7 @@
 	<div class = "container">
 		<h1 align = "center">图书管理系统----管理员注册</h1>
 		<hr width="1000px">
-		<form action="register" class="form-horizontal" method="post">
+		<form action="register" class="form-horizontal" method="post" enctype="multipart/form-data">
 		
 			<!-- 姓名 -->
 			<div class="form-group">
@@ -132,6 +132,17 @@
 						name="password" />
 				</div>	
 			</div>
+			
+			<!-- 头像 -->
+			<div class="form-group">
+				<label for="touxiang" class="col-sm-4 control-label">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</label>
+				<div class="col-sm-4">
+			      <input type="file" class="form-control" id="touxiang"
+						name="touxiang" />
+						
+				 </div>	
+			</div>
+			
 			
 			<div class="form-group">
 				<div class="col-sm-offset-5 col-sm-4">

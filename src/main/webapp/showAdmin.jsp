@@ -82,6 +82,13 @@ a {
 				<th><input type="password" value="${admin.password}" disabled="disabled"/></th>
 			</tr>
 			
+			<tr align="center">
+				<th>头像</th>
+				<th>
+			       <img src="touxiang/${sessionScope.touxiang }" style="width:60px;height:50px" class="img-cicle img-responsive" />
+			    </th>
+			</tr>
+			
 		</table>
 </body>
 </html>
