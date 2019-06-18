@@ -296,23 +296,25 @@
 </head>
 <body background="./imgs/l.jpg">
 	
-	<div class="col col-md-8">
+	<div class="container">
+     <div class="panel panel-warning">
+       <div class="panel-heading">
+         <div class="panel-title">
+           <h2>查看分类</h2>
+         </div>
+       </div>
+       <div class="col col-md-10">
 		<ul class="nav nav-tabs">
 		    <li class="active"><a href="addFenlei.jsp">添加分类</a></li>
 			<li><a id="selectAll" href="#">全选</a></li>
 			<li><a id="unselectAll" href="#">全不选</a></li>
 			<li><a id="fanxuan" href="#">反选</a></li>
+			<li><a id="DeleteF" href="#">删除</a></li>
 			<li><a id="OutSelect" href="#">导出选中</a></li>
 			<li><a id="OutAll" href="#">导出全部</a></li>
-			<li><a id="DeleteF" href="#">删除</a></li>
+			
 			</ul>
-	<div class="container">
-     <div class="panel panel-warning">
-       <div class="panel-heading">
-         <div class="panel-title">
-           <h2>查看所有分类</h2>
-         </div>
-       </div>
+		</div>
        <div class="panel-body">
          <table class="table table-borderd table-striped table-hover">
 		 <!-- info蓝色    success绿色    warning黄色    danger红色    active灰色 -->
@@ -337,7 +339,6 @@
 		<form action="" method="post" id="deleteForm">
 		  <input type="hidden" name="_method" value="DELETE"/>
 		</form>
-		</div>
 		</div>
 		</div>
 		<hr>

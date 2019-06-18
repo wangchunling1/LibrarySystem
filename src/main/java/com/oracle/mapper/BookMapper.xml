@@ -132,13 +132,13 @@
    			
    			AND chuban LIKE CONCAT(CONCAT('%',#{chuban,jdbcType=VARCHAR},'%'))
    		</if>
-   		<if test="jieshuren != null and jieshuren != ''">
-   			
-   			AND jieshuren LIKE CONCAT(CONCAT('%',#{jieshuren,jdbcType=VARCHAR},'%'))
-   		</if>
    		<if test="zhuangtai != null and zhuangtai != ''">
    			
    			AND zhuangtai LIKE CONCAT(CONCAT('%',#{zhuangtai,jdbcType=VARCHAR},'%'))
+   		</if>
+   		<if test="jieshuren != null and jieshuren != ''">
+   			
+   			AND jieshuren LIKE CONCAT(CONCAT('%',#{jieshuren,jdbcType=VARCHAR},'%'))
    		</if>
    	</where>
    	order by id ASC

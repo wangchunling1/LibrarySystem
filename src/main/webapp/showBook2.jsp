@@ -261,21 +261,16 @@ $(function(){
 				data-toggle="dropdown">高级搜索<span class="caret"></span></a>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu">
 					<li>
-						<form action="bookByWhere" class="form-horizontal" id="f1" method="get">
-
-							<!-- 隐藏域，用来传递action -->
-
-							<input type="hidden" name="action" value="bookByWhere">
+						<form action="bookByWhere/${pb.pageNow }" name="where" class="form-horizontal" id="f1" method="GET">
 
 							<div class="form-group">
 								<br> <label class="col-sm-4 control-label">选择分类：
 								</label>
 								<div class="controls col-sm-6">
-									<select name="fId" class="form-control input-sm"
-										id="fId">
+									<select name="fId" class="form-control input-sm">
 										<option value="0">----请选择----</option>
-										<c:forEach items="${flist }" var="fenlei">
-											<option value="${fenlei.id }">${fenlei.name}</option>
+										<c:forEach items="${flist }" var="f">
+											<option value="${f.id }">${f.name}</option>
 										</c:forEach>
 									</select><br>
 								</div>
@@ -409,7 +404,60 @@ $(function(){
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<li><a href="books?pageNow=${pb.pages }">尾页</a></li>
 			</ul>
+        <%-- <c:if test="show == gaoji">
+            <hr>
+	<center>
+		<p>第${pb.pageNow }页/共${pb.pages }页
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<ul class="pagination">
+				<li><a href="${pb.url }&pageNow=1">首页</a></li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${pb.pageNow>1 }">
+					<li><a href="${pb.url }&pageNow=${pb.pageNow-1 }">上一页</a></li>
+				</c:if>
+				<!-- 分两种情况
+		   1.如果页数小于10
+		   2.如果页数大于10
+		-->
+				<c:choose>
+					<c:when test="${pb.pages<=10 }">
+						<c:set var="begin" value="1"></c:set>
+						<c:set var="end" value="${pb.pages }"></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="begin" value="${pb.pageNow-5 }"></c:set>
+						<c:set var="end" value="${pb.pageNow+4 }"></c:set>
+						<c:if test="${begin<=1 }">
+							<c:set var="begin" value="1"></c:set>
+							<c:set var="end" value="10"></c:set>
+						</c:if>
+						<c:if test="${end>=pb.pages }">
+							<c:set var="begin" value="${pb.pageNow-9 }"></c:set>
+							<c:set var="end" value="${pb.pages }"></c:set>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+				<!-- 循环十个数 -->
+				<c:forEach begin="${begin }" end="${end }" var="i">
+					<c:choose>
+						<c:when test="${pb.pageNow==i }">
+							<li class="active"><span>${i }</span></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="${pb.url }&pageNow=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${pb.pageNow<pb.pages }">
+					<li><a href="${pb.url }&pageNow=${pb.pageNow+1 }">下一页</a></li>
+				</c:if>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<li><a href="${pb.url }&pageNow=${pb.pages }">尾页</a></li>
+			</ul>
+          </c:if> --%>
+		</div>
 		</div>
 </body>
 </html>

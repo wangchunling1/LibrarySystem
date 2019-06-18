@@ -68,7 +68,11 @@ public class pageBean<T> implements Serializable{
 	public void setBeanList(List<T> beanList) {
 		this.beanList = beanList;
 	}
-
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	@Override
 	public String toString() {
 		return "pageBean [pageNow=" + pageNow + ", counts=" + counts + ", pageSize=" + pageSize + ", url=" + url
