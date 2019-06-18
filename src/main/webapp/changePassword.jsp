@@ -35,7 +35,7 @@
 			success : function(data) {
 
 
-				if (data =="1") {//找到用户名
+				if (data =="0") {//找到用户名
 
 
 					pwMsg.style.color = "chartreuse";

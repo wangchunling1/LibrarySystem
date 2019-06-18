@@ -46,7 +46,7 @@ public class AdminHandler {
 
 		adminService.save(admin);
 
-		return "redirect:/Login.jsp";
+		return "redirect:/login.jsp";
 
 	}
 			
@@ -54,7 +54,7 @@ public class AdminHandler {
 		
 		//登录
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	public String login(@RequestParam("userName") String userName,@RequestParam("password") String password,
+	public String Login(@RequestParam("userName") String userName,@RequestParam("password") String password,
 			Admin admin,HttpServletRequest req,HttpSession session){
 		
 		session.setAttribute("userName", userName);
@@ -65,11 +65,11 @@ public class AdminHandler {
 		
 		if(admin1 == null){
 			
-			return "redirect:/Login.jsp";
+			return "redirect:/login.jsp";
 			
 		}else if(!admin1.getPassword().equals(admin.getPassword())){
 			
-			return "redirect:/Login.jsp";
+			return "redirect:/login.jsp";
 			
 		}else{
 			
@@ -185,7 +185,7 @@ public class AdminHandler {
 				session.invalidate();
 				
 				//2.跳转到登录界面		
-				return "redirect:/Login.jsp";
+				return "redirect:/login.jsp";
 				
 			}
 			
