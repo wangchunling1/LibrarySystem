@@ -8,7 +8,7 @@
 <!--移动设备优先 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <!--导入核心css文件 -->
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
 <title>修改密码</title>
@@ -35,7 +35,7 @@
 			success : function(data) {
 
 
-				if (data !=null) {//找到用户名
+				if (data =="1") {//找到用户名
 
 
 					pwMsg.style.color = "chartreuse";
@@ -83,12 +83,9 @@
 		
 		var reg = /^(\w|\w){6,15}$/;
 
-
 		var npwMsg = document.getElementById("npwMsg");
 
-
 		var password = document.changepassword.password;
-
 
 		if (!reg.test(newpassword.value)) {//格式不匹配
 
@@ -136,14 +133,13 @@
 
 	function queryByrePassword() {
 
-
 		var newpassword=document.changepassword.newpassword;
 		
-		var repassword=document.changepassword.repassword;
+		var rePassword=document.changepassword.rePassword;
 		
 		var rpwMsg=document.getElementById("rpwMsg");
 		
-		if(repassword.value==newpassword.value){
+		if(rePassword.value==newpassword.value){
 			
 			rpwMsg.style.color="chartreuse";
 			
@@ -168,7 +164,7 @@
 	function test() {
 
 
-		return flag && queryBynewPassword() && queryByrePassword();
+		return queryByPassword() && queryBynewPassword() && queryByrePassword();
 
 
 	}
@@ -178,13 +174,13 @@
 	<div class="container">
 		<h1 align="center">修改密码</h1>
 		<hr width="1000px">
-		<form name="changepassword" action="changePassword" class="form-horizontal" method="post" onsubmit="return rest()">
+		<form name="changepassword" action="changePassword" class="form-horizontal" method="post" >
 		
 		
 			<div class="form-group">
 				<label for="password" class="col-sm-4 control-label">原密码</label>
 				<div class="col-sm-4">
-					<input name="password" type="password" onblur="queryByPassword()" class="form-control" id="password"/>
+					<input type="password" name="password"  class="form-control" id="password" onblur=" queryByPassword()"/>
 					<span id="pwMsg"></span>
 				</div>	
 			</div>
