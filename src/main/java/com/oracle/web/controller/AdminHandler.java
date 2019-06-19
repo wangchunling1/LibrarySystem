@@ -59,7 +59,7 @@ public class AdminHandler {
 		
 		session.setAttribute("userName", userName);
 		
-		System.out.println(userName);
+		//System.out.println(userName);
 		
 		Admin admin1 = adminService.login(admin.getUserName());
 		
@@ -168,7 +168,7 @@ public class AdminHandler {
 				
 				String userName = (String) session.getAttribute("userName");
 				
-				System.out.println(userName);
+				//System.out.println(userName);
 				
 				Admin a = adminService.selectByPrimaryKey(userName);
 				

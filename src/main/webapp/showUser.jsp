@@ -239,19 +239,20 @@ $(function(){
 				<table class="table table-borderd table-striped table-hover">
 		
 			<tr>
+			    <td>选择</td>	
 				<td>编号</td>
-				    <td>id</td>
+				<td>id</td>
 				<td>头像</td>
 				<td>姓名</td>
 				<td>用户名</td>
 				<td>密码</td>
 				<td>手机号</td>
-				<td>注册时间</td>
-			    <td>选择</td>		
+				<td>注册时间</td>	
 			    <td>修改</td>			
 			</tr>
 			<c:forEach items="${pb.beanList }"  var="u" varStatus="u1">
 				<tr>
+				    <td><input type="checkbox" name="ids" value="${u.id }"></td>
 					<td>${u1.index+1}</td>
 					<td>${u.id }</td>
 					<td><img src="${u.touxiang}" width="30" height="30"></td>
@@ -260,7 +261,7 @@ $(function(){
 					<td>${u.password }</td>
 					<td>${u.phone }</td>
 					<td>${u.time }</td>
-					<td><input type="checkbox" name="ids" value="${u.id }"></td>
+					
 					<%-- <td><a href="/user/{ids}/${u.id }" class="deleteId btn btn-primary" >删除</a></td> --%>
 						
 					<td><a href="updateUser/${u.id }"><input type="submit" value="修改" class="btn btn-warning" /></a></td>
