@@ -64,7 +64,7 @@ public class FenleiHandler {
 	
 	@RequestMapping(value = "validate")
 	@ResponseBody
-	public String queryByBname(String name,HttpServletResponse response) throws IOException{
+	public String queryByFname(String name,HttpServletResponse response) throws IOException{
 
 		//System.out.println(name);
 
@@ -198,7 +198,7 @@ public class FenleiHandler {
 //		return "fenleis";
 //	}
 	
-	//6.选择导出用户
+	//6.选择导出
     @RequestMapping(value="/OutSelect/{ids}",method=RequestMethod.GET)
    	public String  OutSelect(@PathVariable("ids") String ids,HttpServletRequest request,HttpServletResponse response) throws IOException{
     	
