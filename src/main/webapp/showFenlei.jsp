@@ -154,7 +154,7 @@
 			for (var i = 0; i < check.length; i++) {
 				if (check[i].checked == true) {
 					str = str + check[i].value + ",";
-				}
+				} 
 				
 			}
 			;
@@ -174,7 +174,7 @@
 			   
 			   return false;
 			} else {
-				window.location.href = "http://localhost:8080/LibrarySystem/DeleteF/"+str;
+				location.reload();
 			}
 		};
 		 
@@ -338,7 +338,8 @@
 	<center>
 		<p>第${pb.pageNow }页/共${pb.pages }页
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<ul class="pagination">
+			<ul class="pagination" align="center">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<li><a href="fenleis?pageNow=1">首页</a></li>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<c:if test="${pb.pageNow>1 }">
@@ -385,6 +386,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<li><a href="fenleis?pageNow=${pb.pages }">尾页</a></li>
 			</ul>
+			</center>
 		</div>
 </body>
 </html>
