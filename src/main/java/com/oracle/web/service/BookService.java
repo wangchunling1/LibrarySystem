@@ -29,6 +29,12 @@ public interface BookService {
 	void delete1(String[] arr);
 
 	pageBean<SubBook> selectAllByPageAndWhere(Book where, int pageNow);
+
+	int jieshu(Book book);
+
+	int huanshu(Book book);
+
+	pageBean<SubBook> showPesgeUsBook(Integer pageNow, String bname);
 	
 
 }

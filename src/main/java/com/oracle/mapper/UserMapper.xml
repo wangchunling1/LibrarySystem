@@ -103,7 +103,9 @@
   	select * from user where userName = #{userName}
   </select>
   
- 
-  
-  
+ <!-- 登录 -->
+  <select id="login" parameterType="Map" resultType="com.oracle.web.bean.User">
+     select userName,password from user where userName=#{userName,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

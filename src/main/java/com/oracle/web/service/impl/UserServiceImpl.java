@@ -150,4 +150,10 @@ public class UserServiceImpl implements UserService {
 		return this.userMapper.selectAll2();
 	}
 
+
+	@Override
+	public User login(User a) {
+		// TODO Auto-generated method stub
+		return this.userMapper.login(a);
+	}
 }

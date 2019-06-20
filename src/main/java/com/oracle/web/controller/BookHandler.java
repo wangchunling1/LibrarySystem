@@ -532,7 +532,7 @@ public class BookHandler {
 		
         String url=this.getURL(req);
 		
-        //System.out.println("---"+url);
+        System.out.println("---"+url);
         
         int index=url.lastIndexOf("&pageNow=");
         

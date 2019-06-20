@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.web.bean.pageBean;
-
+import com.oracle.web.bean.SubBook;
 import com.oracle.web.bean.User;
 
 public interface UserService {
@@ -32,15 +32,6 @@ public interface UserService {
 
 	List<User> list2();
 
-	
+	User login(User a);
 
-	
-
-
-
-
-
-
- 
-	
 }

@@ -118,6 +118,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public pageBean<SubBook> selectAllByPageAndWhere(Book where, int pageNow) {
 		// TODO Auto-generated method stub
 		pageBean<SubBook> pb = new pageBean<SubBook>();
@@ -127,6 +128,48 @@ public class BookServiceImpl implements BookService {
 
 		// 已经是分页好的数据了
 		List<SubBook> list = this.bookMapper.selectAllByPageAndWhere(where);
+
+		pb.setBeanList(list);
+
+		// 总记录数
+		PageInfo<SubBook> pi = new PageInfo<SubBook>(list);
+
+		pb.setCounts((int) pi.getTotal());
+
+		// 当前页
+		pb.setPageNow(pi.getPageNum());
+
+		// 每页显示的条数，自定义
+		pb.setPageSize(pi.getPageSize());
+
+		return pb;
+	}
+
+	@Override
+	@Transactional
+	public int jieshu(Book book) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.jieshu(book);
+	}
+
+	@Override
+	@Transactional
+	public int huanshu(Book book) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.huanshu(book);
+	}
+
+	@Override
+	@Transactional
+	public pageBean<SubBook> showPesgeUsBook(Integer pageNow, String bname) {
+		// TODO Auto-generated method stub
+		pageBean<SubBook> pb = new pageBean<SubBook>();
+
+		// 当前页的数据
+		PageHelper.startPage(pageNow, 2);
+
+		// 已经是分页好的数据了
+		List<SubBook> list = this.bookMapper.showPesgeUsBook(bname);
 
 		pb.setBeanList(list);
 

@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String path = request.getContextPath();
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/"
-			+ path + "/";
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,18 +77,10 @@
 							<div class="col-md-3 col-md-offset-4">
 								<font size="7" color="#CF1834" face="隶书"><strong>图书信息</strong></font>
 							</div>
-							<div class="col-md-4 col-md-offset-1 fm">
-								<form class="navbar-form navbar-left"
-									action="showPasgeUsBook?quserName=${quserName }"
-									method="get">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="图书名称"
-											name="bname">
-									</div>
-									<button type="submit" class="btn btn-default">搜索</button>
-								</form>
-							</div></td>
-					</tr>
+							
+							</td>
+							</tr>
+						
 
 					<tr align="center">
 						<td>
@@ -127,13 +114,13 @@
 											</c:when>
 									 <c:otherwise>
 											<c:if test="${s.zhuangtai=='未借出'}">
-												<a  href="<%=base%>jieshu?pageNow=${pb.pageNow+1 }&quserName=${quserName}&id=${s.id }"
+												<a  href="jieshu?pageNow=${pb.pageNow+1 }&quserName=${quserName}&id=${s.id }"
 													id="jieshu" class="btn btn-default btn-sm " > 借阅 </a> 
 						                       <a href="#" id="huanshu"  class="btn btn-sm  btn-danger huanshu"> 还书 </a>
 											</c:if>
 											<c:if test="${s.zhuangtai=='借出'}">
 												<a  href="#" id="jieshu" class="btn btn-sm  btn-danger jieshu"> 借阅 </a> 
-						                   <a href="<%=base%>huanshu?pageNow=${pb.pageNow+1 }&quserName=${quserName}&id=${s.id }" id="huanshu" class="btn  btn-default  btn-sm"> 还书 </a>
+						                   <a href="huanshu?pageNow=${pb.pageNow+1 }&quserName=${quserName}&id=${s.id }" id="huanshu" class="btn  btn-default  btn-sm"> 还书 </a>
 											</c:if>
 												</c:otherwise>
 										 </c:choose>
@@ -147,11 +134,11 @@
 							<ul class="pagination">
 
 								<li><a
-									href="<%=base%>showBookByPage?pageNow=1&quserName=${quserName}">首页</a>
+									href="${pb.url}&pageNow=1">首页</a>
 									&nbsp;&nbsp;&nbsp;&nbsp;</li>
 								<c:if test="${pb.pageNow>1 }">
 									<li><a aria-label="Previous"
-										href="<%=base %>showBookByPage?pageNow=${pb.pageNow-1 }&quserName=${quserName}"><span
+										href="${pb.url}&pageNow=${pb.pageNow-1 }"><span
 											aria-hidden="ture">上一页</span></a></li>
 								</c:if>
 
@@ -188,7 +175,7 @@
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="<%=base %>showBookByPage?pageNow=${i}&quserName=${quserName}">${i }</a>
+												href="${pb.url}&pageNow=${i}">${i }</a>
 											</li>
 										</c:otherwise>
 									</c:choose>
@@ -197,13 +184,13 @@
 
 								<c:if test="${pb.pageNow<pb.pages }">
 									<li><a
-										href="<%=base %>showBookByPage?pageNow=${pb.pageNow+1 }&quserName=${quserName}">下一页</a>
+										href="${pb.url}&pageNow=${pb.pageNow+1 }">下一页</a>
 									</li>
 								</c:if>
 
 								<li>
 								<li>&nbsp;&nbsp;&nbsp;&nbsp;<a
-									href="<%=base %>showBookByPage?pageNow=${pb.pages}&quserName=${quserName}">尾页
+									href="${pb.url}&pageNow=${pb.pages}">尾页
 								</a>
 								</li>
 								</p>

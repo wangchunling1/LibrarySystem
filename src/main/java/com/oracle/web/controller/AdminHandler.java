@@ -131,7 +131,7 @@ public class AdminHandler {
 		    
 		    Admin a=adminService.changePassword(userName,newpassword);
 				
-		    return  "showAdmin";
+		    return  "redirect:/login.jsp";
 
 
 		}

@@ -144,4 +144,29 @@
    	order by id ASC
    </select>
     
+    <update id="jieshu" parameterType="com.oracle.web.bean.Book">
+    update book
+    set zhuangtai = "借出",
+      jieshuren = #{jieshuren,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="huanshu" parameterType="com.oracle.web.bean.Book">
+    update book
+    set zhuangtai = "未借出",
+      jieshuren = #{jieshuren,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="showPesgeUsBook" resultMap="SubBookResultMap" parameterType="java.lang.String">
+    select * from book
+    <where>
+   		<if test="_parameter != null">
+   			
+   			AND bname LIKE CONCAT(CONCAT('%',#{bname,jdbcType=VARCHAR},'%'))
+   		</if>
+    </where>
+    	
+    	 order by id desc
+  </select>
 </mapper>

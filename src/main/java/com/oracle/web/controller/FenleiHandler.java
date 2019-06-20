@@ -103,10 +103,10 @@ public class FenleiHandler {
 		
         String[] arr = ids.split(",");
 		
-		for(String str : arr){
-			
-			System.out.println(str);
-		}
+//		for(String str : arr){
+//			
+//			System.out.println(str);
+//		}
 		fenleiService.delete1(arr);
 		
 		return "redirect:/fenleis";

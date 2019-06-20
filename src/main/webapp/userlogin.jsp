@@ -91,56 +91,6 @@
 </script>
 </head>
 <body background="./imgs/i.jpg">
-	<!-- <table width="100%" height="750px" cellspacing="0">
-		<tr height="80px">
-			<td colspan="2">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-				color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
-				size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
-				color="silver" size="5">登录</font>
-			</td>
-		</tr>
-		<tr background="./imgs/11.jpg">
-			<td width="30%"></td>
-			<td align="center">
-				<form action="AdminServlet?action=login" method="post" name="login"
-					enctype="application/x-www-form-urlencoded"
-					onsubmit="return test()" class="container">
-					<table frame="box" width="300px" height="280px" bordercolor="white" class="table table-hover">
-						<tr>
-							<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-								size="4"><b>会员登录</b></font></td>
-						</tr>
-						<tr>
-							<td align="center"><b>登录账号:</b></td>
-							<td><input type="text" name="userName" /></td>
-						</tr>
-						<tr>
-							<td align="center"><b>密&nbsp;&nbsp;&nbsp;&nbsp;码:</b></td>
-							<td><input type="password" name="password" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" checked><font size="2">两周内自动登录</font></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="image" src="./imgs/login.png" /></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a href="zhuce.jsp"><font size="2" color="red">还不是会员？立即注册</font></a></td>
-						</tr>
-					</table>
-				</form>
-			</td>
-		</tr>
-		<tr height="100px">
-
-			<td align="center" colspan="2"><font color="gray" size="4"
-				face="楷体">Ling公司版权所有&copy;2000-2018</font></td>
-		</tr>
-	</table> -->
 	<div class="container-fluid" style="background-color: white;">
 		<table width="100%" height="50px" cellspacing="0">
 			<tr height="80px">
@@ -148,14 +98,13 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
 					color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
 					size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
-					color="silver" size="5">登录</font>
+					color="silver" size="5">前台登录</font>
 				</td>
 			</tr>
 		</table>
 	</div>
 	<div class="container-fluid" style="height: 580px;">
-				<form action="login" method="post"
-					enctype="application/x-www-form-urlencoded"
+				<form action="login2" method="post"
 					class="form-horizontal">
 					<br>
 					<br>

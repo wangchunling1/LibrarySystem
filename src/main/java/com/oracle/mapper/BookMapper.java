@@ -30,4 +30,10 @@ public interface BookMapper {
 	int deleteByPrimaryKey(String[] arr);
 
 	List<SubBook> selectAllByPageAndWhere(Book where);
+
+	int jieshu(Book book);
+
+	int huanshu(Book book);
+
+	List<SubBook> showPesgeUsBook(String bname);
 }

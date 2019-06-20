@@ -1,5 +1,6 @@
 package com.oracle.mapper;
 
+import com.oracle.web.bean.SubBook;
 import com.oracle.web.bean.User;
 import com.oracle.web.bean.UserExample;
 
@@ -29,6 +30,10 @@ public interface UserMapper {
 	List<User> queryUsers(String[] arr);
 
 	List<User> selectAll2();
+
+	User login(User a);
+
+	List<SubBook> showPesgeUsBook(String bname);
 
 
 

@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 <link rel="stylesheet" href="bootstrap/css/bootstrapValidator.css" />
 <script type="text/javascript" src="iconfont/iconfont.js"></script>
@@ -45,7 +45,7 @@
 				  <svg class="icon" aria-hidden="true" style="font-size: 50px;">
               <use xlink:href="#icon-tushu" ></use>
                  </svg>
-                 <font size="7" color="#CF1834" face=华文新魏><b>甲骨文</b></font><font
+                 <font size="7" color="#CF1834" face=华文新魏><b>Ling</b></font><font
 							size="5" color="silver">图书管理系统</font><font size="5"
 							color="silver">|</font><font size="5" color="silver">用户</font>
 					</marquee>
@@ -53,11 +53,11 @@
 				</div>
 					<div  class="col col-md-2 ">
                  <h4 id="userlogin">
-                  <c:if test="${empty qusername  }"> 
+                  <c:if test="${empty quserName  }"> 
 						<a href='<%=base %>userlogin.jsp' target="_top">请登录</a>
 				 </c:if>
-                    <c:if test="${!empty qusername  }"> 
-						<font class="text-warning"> ${qusername},欢迎您  </font>|&nbsp;<a href='<%=base %>userlogin.jsp' target="_top">退出</a>
+                    <c:if test="${!empty quserName  }"> 
+						<font class="text-warning"> ${quserName},欢迎您  </font>|&nbsp;<a href='<%=base %>userlogin.jsp' target="_top">退出</a>
 				 </c:if>		 
                  </h4>
 				</div>
