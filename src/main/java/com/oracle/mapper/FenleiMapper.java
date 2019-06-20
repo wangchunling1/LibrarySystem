@@ -56,6 +56,10 @@ public interface FenleiMapper {
 
 	int deleteByPrimaryKey(String[] arr);
 
+	Fenlei yanzhengAddFenlei(String name);
+
+	int yanzhengAddFenlei2(Integer id);
+
 
 
 	

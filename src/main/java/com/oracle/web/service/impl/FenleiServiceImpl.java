@@ -117,5 +117,23 @@ public class FenleiServiceImpl implements FenleiService {
 		
 	}
 
+	@Override
+	public Fenlei yanzhengAddFenlei(String name) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.yanzhengAddFenlei(name);
+	}
+
+	@Override
+	public int yanzhengAddFenlei2(Integer id) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.yanzhengAddFenlei2(id);
+	}
+
+	@Override
+	public int delete1(Fenlei f) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.deleteByPrimaryKey(f.getId());
+	}
+
 
 }

@@ -29,6 +29,12 @@ public interface FenleiService {
 
 	void delete1(String[] arr);
 
+	Fenlei yanzhengAddFenlei(String name);
+
+	int yanzhengAddFenlei2(Integer id);
+
+	int delete1(Fenlei f);
+
 
 	
 

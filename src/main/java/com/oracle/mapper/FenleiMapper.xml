@@ -17,11 +17,9 @@
       This element was generated on Tue May 07 15:52:21 CST 2019.
     -->
     delete from fenlei
-    where id in
-     <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
-    	#{arr}
-    </foreach>
+    where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.oracle.web.bean.Fenlei">
     insert into fenlei (id, name)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
@@ -94,5 +92,9 @@
   select * from fenlei
   
   </select>
+  
+  <select id="yanzhengAddFenlei2" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM book WHERE f_id =#{id}
+	</select>
  
 </mapper>
