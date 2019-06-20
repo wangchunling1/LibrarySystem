@@ -14,8 +14,20 @@
 <script type="text/javascript" src="bootstrap/js/jQuery.js"></script> 
 <!-- 5.引入Bookstrap的核心JS文件 --> 
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<c:if test="${!(empty mag) }">
+<script>
+  alert("${mag }");
+</script>
+<c:remove var="mag" scope="session"/>
+</c:if>
 <title>查看所有分类</title>
 <script type="text/javascript">
+<%-- <c:if test="${!(empty mag) }">
+<script>
+  alert("${mag }");
+</script>
+<c:remove var="mag" scope="session"/>
+</c:if> --%>
 
 /* $(function(){
 	   
@@ -33,6 +45,14 @@
 		   return false;
 	   });
 }); */
+
+
+
+
+
+
+
+
 
 
 
@@ -84,54 +104,10 @@
 				
 			};
 			
-			//导出所有用户信息
-			/* var OutAll = document.getElementById("OutAll");
-			OutAll.onclick = function() {
-				var flag2 = confirm("您确定要导出所有用户信息吗？");
-				if (flag2) {//真的话执行
-					window.location.href = "down";
-				}
-			};
-			//导出所选的用户信息
-			var OutSelect = document.getElementById("OutSelect");
-			OutSelect.onclick = function() {
-				var check = document.getElementsByName("ids");
-				//判断一下,他选了没有
-				var flag = false;
-				for (var i = 0; i < check.length; i++) {
-					if (check[i].checked == true) {
-						flag = true;
-						break;
-					}
-				}
-				if (flag == false) {
-					alert("请至少勾选一项进行导出！");
-					location.href = "fenleis";
-					return;
-				}
-				//如果选择了
-				var str = "";
-				for (var i = 0; i < check.length; i++) {
-					if (check[i].checked == true) {
-						str = str + check[i].value + ",";
-					}
-				}
-				//去除最后一个逗号
-				str = str.slice(0, str.length - 1);
-				//发送给服务器
-				var queren = confirm("您确定要导出所勾选的用户吗？");
-				if (queren == true) {
-					location.href = "down?ids="+ str;
-				} else {
-					location.reload();
-				}
-			};
-
-	};
-	 */
+			
 	 
 	 
-	 var deleteF=document.getElementById("DeleteF");
+	/*  var deleteF=document.getElementById("DeleteF");
 		
 		deleteF.onclick=function(){
 			
@@ -178,7 +154,72 @@
 			}
 		};
 		 
-		 
+		  */
+		  
+		  
+		//删除	  
+			var df = document.getElementById("DeleteF");
+
+		    var chek = document.getElementsByName("ids");
+		  
+			df.onclick = function() {
+
+				var flag = false;
+
+				for (i = 0; i < chek.length; i++) {
+
+					if (chek[i].checked == true) {
+						flag = true;
+						break;
+					}
+				}
+
+				if (flag == false) {
+					alert("请勾选一项");
+					return;
+
+				} else {    
+					
+					var str = "";
+	                var m=0;
+					for (var i = 0; i < chek.length; i++) {
+
+						if (chek[i].checked == true) {
+	                          m++;
+							str += chek[i].value + ",";
+
+						}
+						if(m>1){
+							alert("分类只支持一次删除一个");
+							return;
+						}
+					}
+					str = str.slice(0, str.length - 1);
+					//alert(str);
+	          
+				 
+					var flage = confirm("你确定删除所勾选的分类吗？");
+					if (flage == true) {//确定
+						//拿到请求地址
+						var $url = "http://localhost:8080/LibrarySystem/fenlei_delete/"+ str;
+
+						//alert($url);
+						//拿到表单
+						$("#deleteForm").attr("action", $url);
+
+						//提交表单
+						$("#deleteForm").submit();
+						
+						
+
+					} else {//取消
+
+						 
+						window.location.href = "http://localhost:8080/LibrarySystem/fenleis/1";
+
+					}
+				}
+			};
 	 
 	 
 	 
@@ -315,6 +356,7 @@
 			<td>编号</td>
 			<td>分类名称</td>
 			<td>修改</td>
+			
 			<!-- <td>删除</td> -->
 		</tr>
 			<c:forEach items="${pb.beanList }" var="f" varStatus="s">
