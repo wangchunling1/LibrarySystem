@@ -158,15 +158,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-  <select id="showPesgeUsBook" resultMap="SubBookResultMap" parameterType="java.lang.String">
-    select * from book
-    <where>
-   		<if test="_parameter != null">
-   			
-   			AND bname LIKE CONCAT(CONCAT('%',#{bname,jdbcType=VARCHAR},'%'))
-   		</if>
-    </where>
-    	
-    	 order by id desc
+  <select id="showPesgeUsBook"  parameterType="java.lang.String"  resultMap="SubBookResultMap">
+    select * from book where bname like '%${value}%' order by id desc
   </select>
+  
 </mapper>

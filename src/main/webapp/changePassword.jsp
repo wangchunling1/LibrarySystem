@@ -172,8 +172,10 @@
 </head>
 <body background="imgs/l.jpg">
 	<div class="container">
-		<h1 align="center">修改密码</h1>
-		<hr width="1000px">
+		<h1 class="text-center text-danger">
+						<font face="幼圆">修改分类信息</font>
+					</h1>
+					<hr>
 		<form name="changepassword" action="changePassword" class="form-horizontal" method="post" >
 		
 		
@@ -202,13 +204,14 @@
 				</div>	
 			</div>
 			
-			<div class="form-group">
-				<div class="col-sm-offset-4 col-sm-4">
-					<button type="submit" class="btn btn-info">点击修改</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="reset" class="btn btn-info">重新填写</button>
-				</div>
-			</div>
+			<br>
+						<div class="form-group text-center">
+						<ul class="list-inline">
+							<li><button type="submit" class="btn btn-warning" style="width:100px;">修改</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn btn-danger" style="width:100px;">清空</button></li>
+						</ul>
+						</div>
 			
 			
 		</form>

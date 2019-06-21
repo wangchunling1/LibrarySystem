@@ -5,6 +5,8 @@ import com.oracle.web.bean.SubBook;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface BookMapper {
 
 	//int deleteByPrimaryKey(Integer id);

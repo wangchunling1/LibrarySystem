@@ -91,12 +91,13 @@
 </script>
 </head>
 <body background="./imgs/i.jpg">
+
 	<div class="container-fluid" style="background-color: white;">
 		<table width="100%" height="50px" cellspacing="0">
 			<tr height="80px">
 				<td colspan="2">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-					color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
+					color="red" size="7" face="幼圆"><b>Ling</b></font>&nbsp;<font
 					size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
 					color="silver" size="5">前台登录</font>
 				</td>
@@ -140,11 +141,11 @@
          <button class="btn btn-warning btn-block">登录</button>
         </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <div class="col-md-4 col-md-offset-4">
       <a href="zhuce.jsp" class="btn btn-danger btn-block">还不是会员？立即注册</a>
       </div>
-      </div>
+      </div> -->
   </form>
   </div>
 	<div class="container-fluid" style="background-color: white;">

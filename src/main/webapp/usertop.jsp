@@ -40,15 +40,12 @@
 			<!-- 上 -->
 		 
 				<div class="col col-md-7 col-md-offset-1">
-	<marquee hspace="20" align="texttop" behavior="slide"
-						scrollamount="20" direction="left" width=500>
-				  <svg class="icon" aria-hidden="true" style="font-size: 50px;">
-              <use xlink:href="#icon-tushu" ></use>
-                 </svg>
+				
+				
                  <font size="7" color="#CF1834" face=华文新魏><b>Ling</b></font><font
 							size="5" color="silver">图书管理系统</font><font size="5"
 							color="silver">|</font><font size="5" color="silver">用户</font>
-					</marquee>
+				
 				
 				</div>
 					<div  class="col col-md-2 ">

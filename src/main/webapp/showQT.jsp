@@ -200,7 +200,9 @@
 					</tr>
 				</table>
 			</div>
+			
 		</div>
+		
 		<footer class="footer">
 			<!-- 下 -->
 
@@ -208,6 +210,8 @@
 				<font size="4" color="silver">Ling图书管理系统版权所有&nbsp;&copy;&nbsp;&nbsp;2000-2019</font>
 			</h4>
 		</footer>
+		
+		
 	</div>
 </body>
 </html>

@@ -143,7 +143,7 @@ a {
 					<li>
 						<span class="ui-icon ui-icon-power"></span>
 						<a href="exit" target="_parent">
-							<input type="button" value="退出登录">
+							<input type="button" value="退出登录" id="btn10">
 							</a>
 							
 				      </li>

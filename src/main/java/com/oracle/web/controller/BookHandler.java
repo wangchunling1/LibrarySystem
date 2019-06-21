@@ -119,10 +119,10 @@ public class BookHandler {
 
 		String[] arr = ids.split(",");
 		
-		for(String str : arr){
-			
-			System.out.println(str);
-		}
+//		for(String str : arr){
+//			
+//			System.out.println(str);
+//		}
 		bookService.delete1(arr);
 
 		return "redirect:/books";
@@ -532,7 +532,7 @@ public class BookHandler {
 		
         String url=this.getURL(req);
 		
-        System.out.println("---"+url);
+        //System.out.println("---"+url);
         
         int index=url.lastIndexOf("&pageNow=");
         

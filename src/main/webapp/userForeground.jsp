@@ -80,7 +80,7 @@
 					<tr height="6%">
 						<td align="center" colspan=2><br>
 							<div class="col-md-3 col-md-offset-4">
-								<font size="7" color="#CF1834" face="隶书"><strong>图书信息</strong></font>
+								<font size="7" color="#CF1834" face="幼圆"><strong>图书信息</strong></font>
 							</div>
 							<div class="col-md-4 col-md-offset-1 fm">
 								<form class="navbar-form navbar-left"

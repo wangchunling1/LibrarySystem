@@ -89,8 +89,18 @@
 	});
 </script> 
 </head>
-<body background="imgs/l.jpg">
+<body background="imgs/t.jpg">
 
+   <tr height="80px">
+			<td colspan="2">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+				color="red" size="7" face="楷体"><b>Ling</b></font>&nbsp;<font
+				size="6">图书管理系统</font>&nbsp;<font size="6" color="silver">|</font>&nbsp;<font
+				color="silver" size="5">注册</font>
+			</td>
+		</tr>
+		
+		<hr>
 	<div class = "container">
 		<h1 align = "center">图书管理系统----管理员注册</h1>
 		<hr width="1000px">
@@ -153,7 +163,7 @@
 		</form>
 		
 		<div class="col-sm-offset-5 col-sm-4">
-			<a href="Login.jsp">已经是管理员？直接登录</a>
+			<a href="login.jsp">已经是管理员？直接登录</a>
 		</div>
 	
 	</div>

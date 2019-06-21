@@ -205,7 +205,7 @@
 					var flage = confirm("你确定删除所勾选的分类吗？");
 					if (flage == true) {//确定
 						//拿到请求地址
-						var $url = "http://localhost:8080/LibrarySystem/fenlei_delete/"+ str;
+						var $url = "fenlei_delete/"+ str;
 
 						//alert($url);
 						//拿到表单
@@ -219,7 +219,7 @@
 					} else {//取消
 
 						 
-						window.location.href = "http://localhost:8080/LibrarySystem/fenleis/1";
+						window.location.href = "fenleis/1";
 
 					}
 				}

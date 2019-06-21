@@ -92,7 +92,7 @@ public class UserForegroundHandler {
 			@RequestParam(value="id",required=false) Integer id,HttpSession session,
 			HttpServletResponse resp) {
 
-		System.out.println(id);
+		//System.out.println(id);
 
 		//System.out.println(id1);
 
@@ -139,21 +139,20 @@ public class UserForegroundHandler {
 
 	// 3.搜索
 	@RequestMapping(value = "/showPasgeUsBook", method = RequestMethod.GET)
-	public String Show(String url,Integer pageNow,Book b, @RequestParam(value="quserName",required=false) String qusername,
-			@RequestParam(value="password",required=false) String password,
-			@RequestParam(value="bname",required=false) String bname,
+	public String Show(String url,Integer pageNow,@RequestParam(value="bname") String bname, @RequestParam(value="quserName",required=false) String qusername,
 			HttpSession session, HttpServletResponse resp,HttpServletRequest req) throws UnsupportedEncodingException {
-		//resp.setContentType("text/html;charset=utf-8");
+		//req.setCharacterEncoding("UTF-8");
 		
 		url = this.getURL2(req);
 		
-        bname=b.getBname();
-		
-	    b.setBname(new String(bname.getBytes("ISO-8859-1"),"UTF-8"));
+      // String bname=b.getBname();
+		bname=new String(bname.getBytes("iso-8859-1"),"utf-8"); 
+	 
+	 // b.setBname(new String(bname.getBytes("ISO-8859-1"),"UTF-8"));
 	    
-	    System.out.println(bname);
+       //System.out.println(bname);
 	    	
-		System.out.println("===="+url);
+		//System.out.println("===="+url);
 		
 		// int pageNew=this.getPageNew(req);
 		
@@ -165,10 +164,10 @@ public class UserForegroundHandler {
        // System.out.println(pageNow);
         
 		pageBean<SubBook> pb = bookService.showPesgeUsBook(pageNow,bname);
-
+         
 		pb.setUrl(url);
 		
-		System.out.println(pb);
+	//	System.out.println(pb);
 		
 		// System.out.println("搜索qusername"+qusername);
 		session.setAttribute("quserName", qusername);
@@ -183,11 +182,11 @@ public class UserForegroundHandler {
 			
 	        String url=this.getURL(req);
 			
-	        System.out.println("---"+url);
+	      //  System.out.println("---"+url);
 	        
 	        int index=url.lastIndexOf("&pageNow=");
 	        
-	        System.out.println("index=="+index);
+	        //System.out.println("index=="+index);
 		    
 		    if(index == -1){
 		    	
@@ -208,7 +207,7 @@ public class UserForegroundHandler {
 			
 			String param=req.getQueryString();		
 			
-			System.out.println(path+servlet+"?"+param);
+			//System.out.println(path+servlet+"?"+param);
 			
 			return path+servlet+"?"+param;
 			

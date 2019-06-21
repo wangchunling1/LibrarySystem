@@ -97,21 +97,21 @@ public class FenleiHandler {
 			
 	}
 	
-	@RequestMapping(value = "/fenlei/{id}",method = RequestMethod.DELETE)
-	public String delete(@PathVariable("id") String ids){
-		
-        String[] arr = ids.split(",");
-		
-//		for(String str : arr){
-//			
-//			System.out.println(str);
-//		}
-		fenleiService.delete1(arr);
-		
-		return "redirect:/fenleis";
-		
-		
-	}
+//	@RequestMapping(value = "/fenlei/{id}",method = RequestMethod.DELETE)
+//	public String delete(@PathVariable("id") String ids){
+//		
+//        String[] arr = ids.split(",");
+//		
+////		for(String str : arr){
+////			
+////			System.out.println(str);
+////		}
+//		fenleiService.delete1(arr);
+//		
+//		return "redirect:/fenleis";
+//		
+//		
+//	}
 	
 	@RequestMapping(value = "/fenlei/{id}",method = RequestMethod.GET)
 	public String updateUI(@PathVariable("id") Integer id,HttpSession session){
@@ -448,5 +448,35 @@ public class FenleiHandler {
     	
     	return null;
     }
+	
+	@RequestMapping(value = "/fenlei_delete/{id}", method = RequestMethod.DELETE)
+	public String delete(@PathVariable("id") String id1,HttpSession session) {
+
+		Integer id=Integer.parseInt(id1);
+		
+		int a= this.fenleiService.yanzhengAddFenlei2(id);
+		if(a==0){
+			Fenlei f = new Fenlei();
+
+
+			f.setId(id);
+
+
+			fenleiService.delete1(f);
+
+			session.setAttribute("mag", "删除成功");
+			return "redirect:/fenleis";
+
+		}else{
+			
+			session.setAttribute("mag", "该分类下有图书禁止删除");
+			 
+			return "redirect:/fenleis";
+
+		}
+
+	 
+
+	}
 
 }

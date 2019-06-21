@@ -243,7 +243,7 @@ $(function(){
 		<div class="panel panel-warning">
 			<div class="panel-heading">
 				<div class="panel-title">
-					<h2>查看图书</h2>
+					<h2>查看部分图书</h2>
 				</div>
 			</div>
 			

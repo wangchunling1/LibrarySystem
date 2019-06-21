@@ -46,49 +46,65 @@ a {
 		});
 	});
 </script>
+<style>
+
+#div1 {
+	background-size: cover;
+}
+
+</style>
 </head>
-<body align="center"  background="./imgs/l.jpg">
+<body background="./imgs/l.jpg">
 	
-         <caption>
-			<font size="7" face="宋体">查看管理员信息</font>
-		</caption>
-		<h1 class="text-center text-danger"><span class="glyphicon glyphicon-user"></span></h1>
+         <div class="container">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<h2>查看管理员信息</h2>
+				</div>
+			</div>
+		<!-- <h1 class="text-center text-danger"><span class="glyphicon glyphicon-user"></span></h1> -->
 
-
-		<table  border="1" align="center" width="500px"
+<div class="container-fluid" id="div1">
+     <div class="panel-body">
+		<table class="table table-borderd table-striped table-hover" width="500px"
 			height="300px" cellspacing="0">
 			<tr align="center">
-				<th>编号</th>
-				<th>${admin.id}</th>
+				<td>编号</td>
+				<td>${admin.id}</td>
 			</tr>
 			
 			<tr align="center">
-				<th>姓名</th>
-				<th>${admin.name}</th>
+				<td>姓名</td>
+				<td>${admin.name}</td>
 			</tr>
 			
 			<tr align="center">
-				<th>手机</th>
-				<th>${admin.phone}</th>
+				<td>手机</td>
+				<td>${admin.phone}</td>
 			</tr>
 			
 			<tr align="center">
-				<th>账号</th>
-				<th>${admin.userName}</th>
+				<td>账号</td>
+				<td>${admin.userName}</td>
 			</tr>
 			
 			<tr align="center">
-				<th>密码</th>
-				<th><input type="password" value="${admin.password}" disabled="disabled"/></th>
+				<td>密码</td>
+				<td><input type="password" value="${admin.password}" disabled="disabled"/></td>
 			</tr>
 			
 			<tr align="center">
-				<th>头像</th>
-				<th>
+				<td>头像</td>
+				<td>
 			       <img src="touxiang/${sessionScope.touxiang }" style="width:60px;height:50px" class="img-cicle img-responsive" />
-			    </th>
+			    </td>
 			</tr>
 			
 		</table>
+		</div>
+		</div>
+		</div>
+		</div>
 </body>
 </html>
